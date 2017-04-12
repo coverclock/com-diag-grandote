@@ -1,28 +1,31 @@
-# Copyright 2014 Digital Aggregates Corporation, Colorado, USA
+# vi: set ts=4 shiftwidth=4:
+# Copyright 2017 Digital Aggregates Corporation
 # Licensed under the terms in README.h
-# Chip Overclock
+# author:Chip Overclock
 # mailto:coverclock@diag.com
-# http://www.diag.com/navigation/downloads/Desperadito.html
+# http://www.diag.com/navigation/downloads/Grandote.html
+# "Chip Overclock" is a registered trademark.
+# "Digital Aggregates Corporation" is a registered trademark.
+# Grandote is a fork of Desperadito, which itself is a fork of Desperado.
 #
-# Desperadito is a mashup of code from the Digital Aggregates projects
-# Desperado and Hayloft with the build system from Diminuto. Why? Because
-# it's darn useful. Unfortunately, Desperado, Hayloft, and Diminuto each have
-# very different unit test frameworks; I have not made any attempt to reconcile
-# them in Desperadito.
+#	make all TARGET=<target>		# Build libraries, unit tests, executable programs.
+#
+#	. out/host/bin/setup			# Sets up PATH and LD_LIBRARY_PATH after build.
+#
 
-PROJECT				=	desperadito
-TITLE				=	Desperadito
-SYMBOL				=	DESPERADITO
+.PHONY:	default
+
+default:	all
 
 ########## Customizations
 
-TARGET				=	host
-#TARGET				=	cobbler
-#TARGET				=	stampede
+TITLE				:=	Grandote
 
-MAJOR				=	8# API changes requiring that applications be modified.
-MINOR				=	3# Only functionality or features added with no legacy API changes.
-BUILD				=	0# Only bugs fixed with no API changes or new functionality.
+MAJOR				:=	0# API changes that may require that applications be modified.
+MINOR				:=	0# Only functionality or features added with no legacy API changes.
+BUILD				:=	0# Only bugs fixed with no API changes or new functionality.
+
+TARGET				:=	host# Build for the x86_64 running Ubuntu 14.04 LTS.
 
 # Some certification, defense, or intelligence agencies (e.g. the U.S. Federal
 # Aviation Administration or FAA) require that software builds for safety
@@ -31,471 +34,671 @@ BUILD				=	0# Only bugs fixed with no API changes or new functionality.
 # a more stringent requirement than requiring that checksums or cryptographic
 # hashes are the same, although in practice it is the same thing.) This allows
 # agency inspectors to verify the integrity of the binary software images. This
-# makes embedding timestamps inside compiled translation units problematic.
+# makes embedding build timestamps inside compiled translation units problematic.
 # If your application has this requirement, you can pass in any fixed string
-# for the value of the VINTAGE make variable and you should be able to generate
-# identical images with subsequent builds of Diminuto. This string is embedded
-# inside the Diminuto vintage application.
-VINTAGE				:=	$(shell date -u +%Y-%m-%dT%H:%M:%S.%N%z)
+# for the value of the VINTAGE make variable, and only use the value of this
+# symbol as a build time stamp, and you should be able to generate identical
+# images with subsequent builds of Grandote. This string is embedded inside the
+# Grandote "vintage" application. The default build time stamp is an ISO-8601
+# complaint string with the time specified in UTC with nanosecond resolution.
 
 # This stuff all gets embedded in the vintage application.
-COPYRIGHT			=	2005-2016 Digital Aggregates Corporation, Colorado, USA.
-LICENSE				=	GNU Lesser General Public License 2.1
-CONTACT				=	coverclock@diag.com
-HOMEPAGE			=	http://www.diag.com/navigation/downloads/$(TITLE).html
+COPYRIGHT			:=	2005-2017 Digital Aggregates Corporation
+LICENSE				:=	GNU Lesser General Public License 2.1
+CONTACT				:=	coverclock@diag.com
+HOMEPAGE			:=	http://www.diag.com/navigation/downloads/$(TITLE).html
+HOST				:=	$(shell hostname -s)
+BRANCH				:=	$(shell git rev-parse --abbrev-ref HEAD)
+REVISION			:=	$(shell git rev-parse HEAD)
+MODIFIED			:=	$(shell date -u -d @$(shell git log -1 --format="%at") +%Y-%m-%dT%H:%M:%S.%N%z)
+ROOT				:=	$(shell git rev-parse --show-toplevel)
+VINTAGE				:=	$(shell date -u +%Y-%m-%dT%H:%M:%S.%N%z)
 
 # This is where I store collateral associated with projects that I have
 # downloaded off the web and use without alteration. Examples: Linux kernel
 # sources, toolchains, etc.
-HOME_DIR			=	$(HOME)/projects
+HOME_DIR			:=	$(HOME)/Projects
 
-########## Directory Tree
+########## Directories
 
-ARC_DIR				=	arc# Archive files
-BIN_DIR				=	bin# Stripped executable binaries
-DOC_DIR				=	doc# Documentation
-ETC_DIR				=	etc# Miscellaneous files
-GEN_DIR				=	gen# Generated files
-GOT_DIR				=	got# Google Test files
-INC_DIR				=	inc# Header files
-LIB_DIR				=	lib# Shared objects
-OUT_DIR				=	out# Build artifacts
-SRC_DIR				=	src# Library source files
-SYM_DIR				=	sym# Unstripped executable binaries
-SYS_DIR				=	sys# Kernel module build directory
-TMP_DIR				=	tmp# Temporary files
-TST_DIR				=	tst# Unit tests
-UTF_DIR				=	utf# Unit test functions
+ARC_DIR				:=	arc# Archive files for static linking
+BIN_DIR				:=	bin# Utility source files or stripped executable binaries
+CFG_DIR				:=	cfg# Build configuration files
+DEP_DIR				:=	dep# Generated dependencies and other make files
+DOC_DIR				:=	doc# Documentation
+ETC_DIR				:=	etc# Miscellaneous files
+GEN_DIR				:=	gen# Generated source files
+INC_DIR				:=	inc# Header files
+LIB_DIR				:=	lib# Shared objects for dynamic linking
+OBC_DIR				:=	obc# C object modules
+OBX_DIR				:=	obx# C++ object modules
+OUT_DIR				:=	out# Build artifacts
+SRC_DIR				:=	src# Library source files
+SYM_DIR				:=	sym# Unstripped executable binaries
+SYS_DIR				:=	sys# Kernel module build directory
+TGZ_DIR				:=	tgz# Compressed tarballs
+TST_DIR				:=	tst# Unit tests
+UTF_DIR				:=	UTF# Unit test functions
 
-########## Configurations
+########## Configuration
 
-ifeq ($(TARGET),cobbler)# Build for the Raspberry Pi version B with the Raspbian system.
-ARCH				=	arm
-PLATFORM			=	linux
-PLATFORM_CLASS		=	Linux
-CPPARCH				=
-CARCH				=	
-#LDARCH				=	-static -L$(OUT)/$(ARC_DIR)
-LDARCH				=	-Bdynamic -L$(OUT)/$(LIB_DIR)
-TOOLCHAIN			=	$(ARCH)-$(PLATFORM)-gnueabihf
-CROSS_COMPILE		=	$(TOOLCHAIN)-
-KERNEL_REV			=	rpi-3.6.y
-KERNEL_DIR			=	$(HOME_DIR)/cobbler/linux-$(KERNEL_REV)
-INCLUDE_DIR			=	$(HOME_DIR)/cobbler/include-$(KERNEL_REV)/include
-endif
-
-ifeq ($(TARGET),uclibc)# Build for the Raspberry Pi with uClibc.
-ARCH				=	arm
-PLATFORM			=	linux
-PLATFORM_CLASS		=	Linux
-CPPARCH				=
-CARCH				=	
-#LDARCH				=	-static -L$(OUT)/$(ARC_DIR)
-LDARCH				=	-Bdynamic -L$(OUT)/$(LIB_DIR)
-TOOLCHAIN			=	$(ARCH)-buildroot-$(PLATFORM)-uclibcgnueabihf
-CROSS_COMPILE		=	$(TOOLCHAIN)-
-KERNEL_REV			=	rpi-3.6.y
-KERNEL_DIR			=	$(HOME_DIR)/cobbler/linux-$(KERNEL_REV)
-INCLUDE_DIR			=	$(HOME_DIR)/cobbler/include-$(KERNEL_REV)/include
-endif
-
-ifeq ($(TARGET),stampede)# Build for the Nvidia Jetson TK1 with Ubuntu 14.04.
-ARCH				=	arm
-PLATFORM			=	linux
-PLATFORM_CLASS		=	Linux
-CPPARCH				=
-#CARCH				=
-CARCH				=	-rdynamic -fno-omit-frame-pointer -funwind-tables
-#LDARCH				=	-static -L$(OUT)/$(ARC_DIR)
-LDARCH				=	-Bdynamic -L$(OUT)/$(LIB_DIR)
-TOOLCHAIN			=	$(ARCH)-$(PLATFORM)-gnueabihf
-CROSS_COMPILE		=	$(TOOLCHAIN)-
-KERNEL_REV			=	3.10.24-jetson
-KERNEL_DIR			=	$(HOME_DIR)/stampede/linux-$(KERNEL_REV)-jetson
-INCLUDE_DIR			=	$(HOME_DIR)/stampede/linux-headers-$(KERNEL_REV)-jetson/include
-endif
-
-ifeq ($(TARGET),host0)# Build for an Intel build server with Ubuntu 12.04.
-ARCH				=	i386
-PLATFORM			=	linux
-PLATFORM_CLASS		=	Linux
-CPPARCH				=
-CARCH				=
-LDARCH				=	-L$(OUT)/$(LIB_DIR)
-TOOLCHAIN			=
-CROSS_COMPILE		=
-KERNEL_REV			=	3.2.0-51
-KERNEL_DIR			=	/usr/src/linux-headers-$(KERNEL_REV)-generic-pae
-INCLUDE_DIR			=	/usr/include
-endif
-
-ifeq ($(TARGET),host)# Build for an Intel build server with Ubuntu 14.04.
-ARCH				=	i386
-PLATFORM			=	linux
-PLATFORM_CLASS		=	Linux
-CPPARCH				=
-CARCH				=	-rdynamic
-LDARCH				=	-L$(OUT)/$(LIB_DIR)
-TOOLCHAIN			=
-CROSS_COMPILE		=
-KERNEL_REV			=	3.13.0-24
-KERNEL_DIR			=	/usr/src/linux-headers-$(KERNEL_REV)
-INCLUDE_DIR			=	/usr/include
-endif
-
-########## Variables
+PROJECT				:=	$(shell echo $(TITLE) | tr '[A-Z]' '[a-z]')
+SYMBOL				:=	$(shell echo $(TITLE) | tr '[a-z]' '[A-Z]')
 
 HERE				:=	$(shell pwd)
 
-OUT					=	$(OUT_DIR)/$(TARGET)
+OUT					:=	$(OUT_DIR)/$(TARGET)
 
-TEMP_DIR			=	/var/tmp
-ROOT_DIR			=	$(HOME_DIR)/$(PROJECT)
+TEMP_DIR			:=	/tmp
+ROOT_DIR			:=	$(HOME_DIR)/$(TARGET)
 
-TIMESTAMP			=	$(shell date -u +%Y%m%d%H%M%S%N%Z)
-DATESTAMP			=	$(shell date +%Y%m%d)
-SVNREPO				=	svn://graphite/$(PROJECT)
-SVNURL				=	$(SVNREPO)/trunk/$(TITLE)
-GITURL				=	https://github.com/coverclock/com-diag-$(PROJECT).git
+GITURL				:=	https://github.com/coverclock/com-diag-$(PROJECT).git
 
-PROJECT_A			=	lib$(PROJECT).a
-PROJECTXX_A			=	lib$(PROJECT)xx.a
-PROJECTUT_A			=	lib$(PROJECT)ut.a
-PROJECT_SO			=	lib$(PROJECT).so
-PROJECTXX_SO		=	lib$(PROJECT)xx.so
-PROJECTUT_SO		=	lib$(PROJECT)ut.so
+GENERATED			:=	vintage setup generate
+SYNTHESIZED			:=	$(PROJECT)_release.h $(PROJECT)_vintage.h $(PROJECT)_revision.h
 
-PROJECT_LIB			=	$(PROJECT_SO).$(MAJOR).$(MINOR).$(BUILD)
-PROJECTXX_LIB		=	$(PROJECTXX_SO).$(MAJOR).$(MINOR).$(BUILD)
+ALIASES				:=	hex oct ntohs htons ntohl htonl
 
-UTILITIES			=	
-GENERATED			=	vintage setup
-ALIASES				=	
+NEW					:=	dummy
+OLD					:=	dummy
 
-TARGETOBJECTS		=	$(addprefix $(OUT)/,$(addsuffix .o,$(basename $(wildcard $(SRC_DIR)/*.c))))
-TARGETOBJECTSXX		=	$(addprefix $(OUT)/,$(addsuffix .o,$(basename $(wildcard $(SRC_DIR)/*.cpp))))
-TARGETOBJECTSUT		=	$(addprefix $(OUT)/,$(addsuffix .o,$(basename $(wildcard $(UTF_DIR)/*.c))))
-TARGETOBJECTSUTXX	+=	$(addprefix $(OUT)/,$(addsuffix .o,$(basename $(wildcard $(UTF_DIR)/*.cpp))))
-TARGETSCRIPTS		=	$(addprefix $(OUT)/,$(basename $(wildcard $(BIN_DIR)/*.sh)))
-TARGETBINARIES		=	$(addprefix $(OUT)/,$(basename $(wildcard $(BIN_DIR)/*.c)))
-TARGETBINARIES		+=	$(addprefix $(OUT)/,$(basename $(wildcard $(BIN_DIR)/*.cpp)))
-TARGETGENERATED		=	$(addprefix $(OUT)/$(BIN_DIR)/,$(GENERATED))
-TARGETALIASES		=	$(addprefix $(OUT)/$(BIN_DIR)/,$(ALIASES))
-TARGETUNITTESTS		=	$(addprefix $(OUT)/,$(basename $(wildcard $(TST_DIR)/*.c)))
+PACKAGE				:=	$(OUT)/$(TGZ_DIR)/$(PROJECT)-$(TARGET)
+
+MANIFEST			:=	$(ARC_DIR) $(BIN_DIR) $(INC_DIR) $(LIB_DIR) $(TST_DIR)
+
+DISTRIBUTION		:=	$(OUT)/$(TGZ_DIR)/$(PROJECT)-$(MAJOR).$(MINOR).$(BUILD)
+
+TARBALL				:=	$(OUT)/$(TGZ_DIR)/$(PROJECT)
+
+SO					:=	so
+
+A2SOARCH			:=	-shared -Wl,-soname,lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
+A2SOXXARCH			:=	-shared -Wl,-soname,lib$(PROJECT)xx.$(SO).$(MAJOR).$(MINOR)
+
+########## Configuration Makefile
+
+TARGETMAKEFILE		:= $(CFG_DIR)/$(TARGET).mk
+
+include $(TARGETMAKEFILE)
+
+########## Commands and Option Flags
+
+PROJECT_A			:=	lib$(PROJECT).a
+PROJECTXX_A			:=	lib$(PROJECT)xx.a
+PROJECTUT_A			:=	lib$(PROJECT)ut.a
+PROJECT_SO			:=	lib$(PROJECT).$(SO)
+PROJECTXX_SO		:=	lib$(PROJECT)xx.$(SO)
+PROJECTUT_SO		:=	lib$(PROJECT)ut.$(SO)
+
+CROSS_COMPILE		:=	$(TOOLCHAIN)
+
+CC					:=	$(CROSS_COMPILE)gcc
+CXX					:=	$(CROSS_COMPILE)g++
+AR					:=	$(CROSS_COMPILE)ar
+RANLIB				:=	$(CROSS_COMPILE)ranlib
+STRIP				:=	$(CROSS_COMPILE)strip
+
+CDEFINES			:=
+
+ARFLAGS				:=	crsv
+#CPPFLAGS			:=	$(CDEFINES) -I $(SRC_DIR) -I $(INC_DIR) -I $(OUT)/$(INC_DIR) $(CPPARCH)
+CPPFLAGS			:=	$(CDEFINES) -iquote $(SRC_DIR) -iquote $(INC_DIR) -iquote $(OUT)/$(INC_DIR) $(CPPARCH)
+CFLAGS				:=	$(CARCH) -g
+#CFLAGS				:=	$(CARCH) -g -fprofile-arcs -ftest-coverage
+#CFLAGS				:=	$(CARCH) -O3
+CXXFLAGS			:=	$(CXXARCH) -g
+#CXXFLAGS			:=	$(CXXARCH) -g -fprofile-arcs -ftest-coverage
+#CXXFLAGS			:=	$(CXXARCH) -O3
+CPFLAGS				:=	-i
+MVFLAGS				:=	-i
+LDFLAGS				:=	$(LDARCH) -l$(PROJECT) $(LDLIBRARIES)
+LDXXFLAGS			:=	$(LDARCH) -l$(PROJECT)xx -l$(PROJECT) $(LDXXLIBRARIES)
+MOFLAGS				:=	$(MOARCH) -l$(PROJECT) $(LDLIBRARIES)
+MOXXFLAGS			:=	$(MOARCH) -l$(PROJECT)xx -l$(PROJECT) $(LDXXLIBRARIES)
+SOFLAGS				:=	$(SOARCH) $(LDLIBRARIES)
+SOXXFLAGS			:=	$(SOXXARCH) $(LDXXLIBRARIES)
+
+#BROWSER			:=	firefox
+#BROWSER			:=	epiphany
+BROWSER				:=	evince
+
+########## Build Artifacts
+
+TARGETOBJECTS		:=	$(addprefix $(OUT)/$(OBC_DIR)/,$(addsuffix .o,$(basename $(wildcard $(SRC_DIR)/*.c))))
+TARGETOBJECTSXX		:=	$(addprefix $(OUT)/$(OBX_DIR)/,$(addsuffix .o,$(basename $(wildcard $(SRC_DIR)/*.cpp))))
+TARGETOBJECTSUT		:=	$(addprefix $(OUT)/$(OBC_DIR)/,$(addsuffix .o,$(basename $(wildcard $(UTF_DIR)/*.c))))
+TARGETOBJECTSUTXX	:=	$(addprefix $(OUT)/$(OBX_DIR)/,$(addsuffix .o,$(basename $(wildcard $(UTF_DIR)/*.cpp))))
+TARGETSCRIPTS		:=	$(addprefix $(OUT)/,$(basename $(wildcard $(BIN_DIR)/*.sh)))
+TARGETBINARIES		:=	$(addprefix $(OUT)/,$(basename $(wildcard $(BIN_DIR)/*.c)))
+TARGETGENERATED		:=	$(addprefix $(OUT)/$(BIN_DIR)/,$(GENERATED)) $(addprefix $(OUT)/$(SYM_DIR)/,$(GENERATED))
+TARGETSYNTHESIZED	:=	$(addprefix $(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/,$(SYNTHESIZED))
+
+TARGETALIASES		:=	$(addprefix $(OUT)/$(BIN_DIR)/,$(ALIASES))
+TARGETUNITTESTS		:=	$(addprefix $(OUT)/,$(basename $(wildcard $(TST_DIR)/*.c)))
 TARGETUNITTESTS		+=	$(addprefix $(OUT)/,$(basename $(wildcard $(TST_DIR)/*.cpp)))
 TARGETUNITTESTS		+=	$(addprefix $(OUT)/,$(basename $(wildcard $(TST_DIR)/*.sh)))
-TARGETUTFUNCTIONS	=	$(addprefix $(OUT)/,$(basename $(wildcard $(UTF_DIR)/*.c)))
+TARGETUTFUNCTIONS	:=	$(addprefix $(OUT)/,$(basename $(wildcard $(UTF_DIR)/*.c)))
 TARGETUTFUNCTIONS	+=	$(addprefix $(OUT)/,$(basename $(wildcard $(UTF_DIR)/*.cpp)))
 
-TARGETARCHIVE		=	$(OUT)/$(ARC_DIR)/$(PROJECT_A)
-TARGETARCHIVEXX		=	$(OUT)/$(ARC_DIR)/$(PROJECTXX_A)
-TARGETARCHIVEUT		=	$(OUT)/$(ARC_DIR)/$(PROJECTUT_A)
-TARGETSHARED		=	$(OUT)/$(LIB_DIR)/$(PROJECT_SO).$(MAJOR).$(MINOR).$(BUILD)
-TARGETSHARED		+=	$(OUT)/$(LIB_DIR)/$(PROJECT_SO).$(MAJOR).$(MINOR)
+TARGETARCHIVE		:=	$(OUT)/$(ARC_DIR)/$(PROJECT_A)
+TARGETARCHIVEXX		:=	$(OUT)/$(ARC_DIR)/$(PROJECTXX_A)
+TARGETARCHIVEUT		:=	$(OUT)/$(ARC_DIR)/$(PROJECTUT_A)
+TARGETSHARED		:=	$(OUT)/$(LIB_DIR)/$(PROJECT_SO).$(MAJOR).$(MINOR)
 TARGETSHARED		+=	$(OUT)/$(LIB_DIR)/$(PROJECT_SO).$(MAJOR)
 TARGETSHARED		+=	$(OUT)/$(LIB_DIR)/$(PROJECT_SO)
-TARGETSHAREDXX		=	$(OUT)/$(LIB_DIR)/$(PROJECTXX_SO).$(MAJOR).$(MINOR).$(BUILD)
-TARGETSHAREDXX		+=	$(OUT)/$(LIB_DIR)/$(PROJECTXX_SO).$(MAJOR).$(MINOR)
+TARGETSHAREDXX		:=	$(OUT)/$(LIB_DIR)/$(PROJECTXX_SO).$(MAJOR).$(MINOR)
 TARGETSHAREDXX		+=	$(OUT)/$(LIB_DIR)/$(PROJECTXX_SO).$(MAJOR)
 TARGETSHAREDXX		+=	$(OUT)/$(LIB_DIR)/$(PROJECTXX_SO)
-TARGETSHAREDUT		=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO).$(MAJOR).$(MINOR).$(BUILD)
-TARGETSHAREDUT		+=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO).$(MAJOR).$(MINOR)
+TARGETSHAREDUT		:=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO).$(MAJOR).$(MINOR)
 TARGETSHAREDUT		+=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO).$(MAJOR)
 TARGETSHAREDUT		+=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO)
 
-TARGETLIBRARIES		=	$(TARGETARCHIVE) $(TARGETSHARED)
-TARGETLIBRARIESXX	=	$(TARGETARCHIVEXX) $(TARGETSHAREDXX) $(TARGETSHAREDUT)
-TARGETPROGRAMS		=	$(TARGETBINARIES) $(TARGETALIASES) $(TARGETUNITTESTS) $(TARGETGENERATED) $(TARGETSCRIPTS)
-TARGETDEFAULT		=	$(TARGETLIBRARIES) $(TARGETLIBRARIESXX) $(TARGETMODULES) $(TARGETPROGRAMS)
-TARGETPACKAGE		=	$(TARGETDEFAULT) $(TARGETDRIVERS)
-
-PACKAGEMANIFEST		=	./$(TITLE)/$(OUT)/$(BIN_DIR) ./$(TITLE)/$(OUT)/$(LIB_DIR) ./$(TITLE)/$(OUT)/$(TST_DIR)
-
-BUILDARTIFACTS		=	doxygen-local.cf dependencies.mk
-
-COMMAND				=	dummy
-SCRIPT				=	dummy
-
-CC					=	$(CROSS_COMPILE)gcc
-CXX					=	$(CROSS_COMPILE)g++
-AR					=	$(CROSS_COMPILE)ar
-RANLIB				=	$(CROSS_COMPILE)ranlib
-STRIP				=	$(CROSS_COMPILE)strip
-
-CDEFINES			=	-DCOM_DIAG_$(SYMBOL)_VINTAGE=\"$(VINTAGE)\" \
-						-DDESPERADO_TARGET_IS_$(TARGET) \
-						-DDESPERADO_TARGET_NAME="\"$(TARGET)\"" \
-						-DDESPERADO_PLATFORM_IS_$(PLATFORM_CLASS) \
-						-DDESPERADO_PLATFORM_NAME="\"$(PLATFORM_CLASS)\""  \
-						-DDESPERADO_PLATFORM_CLASS=$(PLATFORM_CLASS) \
-						-DDESPERADO_HAS_SYSLOG \
-						-D_REENTRANT \
-						-D_GNU_SOURCE
-
-ARFLAGS				=	rcv
-CPPFLAGS			=	$(CPPARCH) -iquote $(SRC_DIR) -iquote $(INC_DIR) -isystem $(INCLUDE_DIR) $(CDEFINES)
-CXXFLAGS			=	$(CARCH) -fPIC -g
-CFLAGS				=	$(CARCH) -fPIC -g
-#CXXFLAGS			=	$(CARCH) -fPIC -O3
-#CFLAGS				=	$(CARCH) -fPIC -O3
-CPFLAGS				=	-i
-MVFLAGS				=	-i
-LDFLAGS				=	$(LDARCH) -l$(PROJECT)ut -l$(PROJECT) -lpthread -lrt -ldl
-LDXXFLAGS			=	$(LDARCH) -l$(PROJECT)ut -l$(PROJECT)xx -l$(PROJECT) -lpthread -lrt -ldl
-
-BROWSER				=	firefox
+TARGETLIBRARIES		:=	$(TARGETARCHIVE) $(TARGETSHARED)
+TARGETLIBRARIESXX	:=	$(TARGETARCHIVEXX) $(TARGETSHAREDXX) $(TARGETSHAREDUT)
+TARGETPROGRAMS		:=	$(TARGETBINARIES) $(TARGETALIASES) $(TARGETUNITTESTS) $(TARGETGENERATED) $(TARGETSCRIPTS)
+TARGETALL		:=	$(TARGETLIBRARIES) $(TARGETLIBRARIESXX) $(TARGETPROGRAMS)
 
 ########## Main Entry Points
 
-.PHONY:	default all dist clean pristine
+.PHONY:	all dist clean pristine clobber
 
-default:	$(TARGETDEFAULT)
-
-all:	$(UTILITIES) $(TARGETPACKAGE)
+all:	$(TARGETALL)
 
 dist:	distribution
 
 clean:
-	rm -rf $(OUT) $(UTILITIES) $(BUILDARTIFACTS)
-	rm -rf $(DOC_DIR)
+	rm -rf $(OUT)
+	rm -rf *.gcda *.gcno *.gcov
 
 pristine:	clean
 	rm -rf $(OUT_DIR)
 
-########## Distribution
+clobber:	pristine
+	rm -f .cscope.lst .cscope.out .cscope.out.in .cscope.out.po
 
-.PHONY:	distribution
+########## Packaging and Distribution
 
-distribution:
-	rm -rf $(TEMP_DIR)/$(PROJECT)-$(MAJOR).$(MINOR).$(BUILD)
-	svn export $(SVNURL) $(TEMP_DIR)/$(PROJECT)-$(MAJOR).$(MINOR).$(BUILD)
-	( cd $(TEMP_DIR); tar cvzf - $(PROJECT)-$(MAJOR).$(MINOR).$(BUILD) ) > $(TEMP_DIR)/$(PROJECT)-$(MAJOR).$(MINOR).$(BUILD).tgz
-	( cd $(TEMP_DIR)/$(PROJECT)-$(MAJOR).$(MINOR).$(BUILD); make TARGET=host; ./out/host/bin/vintage )
+# Useful for copying the executables over to another target for which they were
+# cross compiled.
 
 .PHONY:	package
 
-package $(PROJECT)-$(TARGET).tgz:
-	tar -C .. -cvzf - $(PACKAGEMANIFEST) > $(PROJECT)-$(TARGET).tgz
+package $(PACKAGE).tgz:
+	D=`dirname $(PACKAGE)`; mkdir -p $$D; \
+	for M in $(MANIFEST); do mkdir -p $(OUT)/$$M; done; \
+	T=`mktemp -d "$(TEMP_DIR)/$(PROJECT).XXXXXXXXXX"`; \
+	B=`basename $(PACKAGE)`; mkdir -p $$T/$$B; \
+	tar -C $(OUT) --exclude-vcs -cvf - $(MANIFEST) | tar -C $$T/$$B -xvf -; \
+	tar --exclude-vcs -cvf - $(INC_DIR) | tar -C $$T/$$B -xvf -; \
+	tar -C $$T --exclude-vcs -cvzf - $$B > $(PACKAGE).tgz; \
+	rm -rf $$T
 
-.PHONY: commit dcommit push init
+# Useful for given someone a tarball of the actual source distribution that
+# is guaranteed to at least build.
 
-commit:
-	git commit .
+.PHONY:	distribution distro
 
-dcommit:
-	git svn dcommit
+distribution distro $(DISTRIBUTION).tgz:
+	D=`dirname $(DISTRIBUTION)`; mkdir -p $$D; \
+	T=`mktemp -d "$(TEMP_DIR)/$(PROJECT).XXXXXXXXXX"`; \
+	B=`basename $(DISTRIBUTION)`; \
+	( cd $$T; git clone $(GITURL) $$B ); \
+	tar -C $$T --exclude-vcs -cvzf - ./$$B > $(DISTRIBUTION).tgz; \
+	rm -rf $$T/$$B; \
+	tar -C $$T -xvzf - < $(DISTRIBUTION).tgz; \
+	( cd $$T/$$B/$(TITLE); make all TARGET=host OUT=out/host && $(OUT)/bin/generate > ./setup && . ./setup && vintage ); \
+	rm -rf $$T
 
-push:
-	git push origin master
+# Useful for copying a tarball of the current development source base to a
+# target for which there is no cross compiler toolchain.
 
-init:
-	git svn show-ignore > .gitignore
-	git add .gitignore
-	git remote add origin $(GITURL)
+.PHONY:	tarball
+
+tarball $(TARBALL).tgz:
+	D=`dirname $(TARBALL)`; mkdir -p $$D; \
+	T=`pwd`; \
+	B=`basename $$T`; \
+	( tar -C .. --exclude-vcs --exclude=$(OUT_DIR) --exclude=.??* -cvzf - $$B ) > $(TARBALL).tgz; \
+
+# Useful for backing a complete backup before doing something that may turn
+# out to be profoundly stupid, like running a transformative script across all
+# the source files. Sure, your local and remote repos should save you, but what
+# if they didn't?
+
+.PHONY:	backup
+
+backup:
+	tar --exclude=$(OUT_DIR) -cvzf - . > $(HOME)/$(PROJECT)-$(shell date -u +%Y%m%d%H%M%S%N%Z).tgz
 
 ########## Target C Libraries
 
-$(OUT)/$(ARC_DIR)/lib$(PROJECT).a:	$(TARGETOBJECTS)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(ARC_DIR)/$(PROJECT_A):	$(TARGETOBJECTS)
+	D=`dirname $@`; mkdir -p $$D
 	$(AR) $(ARFLAGS) $@ $^
 	$(RANLIB) $@
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT).so.$(MAJOR).$(MINOR).$(BUILD):	$(OUT)/$(ARC_DIR)/lib$(PROJECT).a
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
-	$(CC) $(CARCH) -shared -Wl,-soname,lib$(PROJECT).so.$(MAJOR).$(MINOR).$(BUILD) -o $@ -Wl,--whole-archive $< -Wl,--no-whole-archive
+$(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR).$(MINOR):	$(TARGETOBJECTS)
+	D=`dirname $@`; mkdir -p $$D
+	$(CC) $(CFLAGS) $(A2SOARCH) -o $@ $(SOFLAGS) $(TARGETOBJECTS)
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT).so:	$(OUT)/$(LIB_DIR)/lib$(PROJECT).so.$(MAJOR).$(MINOR).$(BUILD)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT).so.$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT).so.$(MAJOR).$(MINOR).$(BUILD)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO):	$(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT).so.$(MAJOR).$(MINOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT).so.$(MAJOR).$(MINOR).$(BUILD)
-	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
-	
 ########## Target C++ Libraries
 
-$(OUT)/$(ARC_DIR)/lib$(PROJECT)xx.a:	$(TARGETOBJECTSXX)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(ARC_DIR)/$(PROJECTXX_A):	$(TARGETOBJECTSXX)
+	D=`dirname $@`; mkdir -p $$D
 	$(AR) $(ARFLAGS) $@ $^
 	$(RANLIB) $@
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so.$(MAJOR).$(MINOR).$(BUILD):	$(OUT)/$(ARC_DIR)/lib$(PROJECT)xx.a
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
-	$(CC) $(CARCH) -shared -Wl,-soname,lib$(PROJECT)xx.so.$(MAJOR).$(MINOR).$(BUILD) -o $@ -Wl,--whole-archive $< -Wl,--no-whole-archive
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO).$(MAJOR).$(MINOR):	$(TARGETOBJECTSXX) $(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
+	D=`dirname $@`; mkdir -p $$D
+	$(CXX) $(CXXFLAGS) $(A2SOXXARCH) -o $@ $(SOXXFLAGS) $(TARGETOBJECTSXX)
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so:	$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so.$(MAJOR).$(MINOR).$(BUILD)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO).$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO).$(MAJOR).$(MINOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so.$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so.$(MAJOR).$(MINOR).$(BUILD)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO).$(MAJOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so.$(MAJOR).$(MINOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.so.$(MAJOR).$(MINOR).$(BUILD)
-	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
-	
-########## Target Unit Test Libraries
+########## Target Unit TestLibraries
 
-$(OUT)/$(ARC_DIR)/lib$(PROJECT)ut.a:	$(TARGETOBJECTSUT) $(TARGETOBJECTSUTXX)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(ARC_DIR)/$(PROJECTUT_A):	$(TARGETOBJECTSUT)
+	D=`dirname $@`; mkdir -p $$D
 	$(AR) $(ARFLAGS) $@ $^
 	$(RANLIB) $@
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so.$(MAJOR).$(MINOR).$(BUILD):	$(OUT)/$(ARC_DIR)/lib$(PROJECT)ut.a
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
-	$(CC) $(CARCH) -shared -Wl,-soname,lib$(PROJECT)ut.so.$(MAJOR).$(MINOR).$(BUILD) -o $@ -Wl,--whole-archive $< -Wl,--no-whole-archive
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR).$(MINOR):	$(TARGETOBJECTSUT) $(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
+	D=`dirname $@`; mkdir -p $$D
+	$(CXX) $(CXXFLAGS) $(A2SOXXARCH) -o $@ $(SOXXFLAGS) $(TARGETOBJECTSUT)
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so:	$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so.$(MAJOR).$(MINOR).$(BUILD)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR).$(MINOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so.$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so.$(MAJOR).$(MINOR).$(BUILD)
-	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
-
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so.$(MAJOR).$(MINOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.so.$(MAJOR).$(MINOR).$(BUILD)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
 ########## Target Unstripped Binaries
 
-$(OUT)/$(SYM_DIR)/%:	$(BIN_DIR)/%.c $(TARGETLIBRARIES)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
-	$(CC) $(CPPFLAGS) -I $(KERNEL_DIR)/include $(CFLAGS) -o $@ $< $(LDFLAGS)
+$(OUT)/$(SYM_DIR)/%:	$(OUT)/$(OBC_DIR)/$(BIN_DIR)/%.o $(TARGETLIBRARIES)
+	D=`dirname $@`; mkdir -p $$D
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
-$(OUT)/$(SYM_DIR)/%:	$(BIN_DIR)/%.cpp $(TARGETLIBRARIESXX) $(TARGETLIBRARIES)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
-	$(CXX) $(CPPFLAGS) -I $(KERNEL_DIR)/include $(CXXFLAGS) -o $@ $< $(LDXXFLAGS)
+$(OUT)/$(SYM_DIR)/%:	$(OUT)/$(OBX_DIR)/$(BIN_DIR)/%.o $(TARGETLIBRARIESXX) $(TARGETLIBRARIES)
+	D=`dirname $@`; mkdir -p $$D
+	$(CXX) $(CXXFLAGS) -o $@ $< $(LDXXFLAGS)
 
 ########## Target Aliases
 
 $(OUT)/$(BIN_DIR)/hex $(OUT)/$(BIN_DIR)/oct $(OUT)/$(BIN_DIR)/ntohs $(OUT)/$(BIN_DIR)/htons $(OUT)/$(BIN_DIR)/ntohl $(OUT)/$(BIN_DIR)/htonl:	$(OUT)/$(BIN_DIR)/dec
 	ln -f $< $@
-	
+
 ########## Unit Tests
 
-$(OUT)/$(TST_DIR)/%:	$(TST_DIR)/%.c $(TARGETLIBRARIES)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
-	$(CC) -rdynamic $(CPPFLAGS) $(CFLAGS) -o $@ $< $(LDFLAGS)
+# Generally if the unit tests work they exit with an exit code of zero;
+# otherwise they exit with something else (or core dump). But left to their
+# own devices, the unit tests aren't very chatty. If you want to see more log
+# output from them, you can tune the logging using the environmental variable
+# COM_DIAG_DIMINUTO_LOG_MASK. For example, this bash command turns on
+# everything.
+#
+#	export COM_DIAG_DIMINUTO_LOG_MASK=0xffff
+#
+# The Diminuto logging system sends log messages to the system log (syslog)
+# when the emitter is a kernel-space module or the emitting process is a child
+# of process 1 (that is, the emitting process is a daemon). Unfortunately
+# different GNU/Linux distributions write syslog messages to different places.
+# My current Ubuntu server uses "/var/log/syslog". Your mileage may vary.
+#
+# Some platforms may route syslog messages from processes to the kernel log
+# buffer in memory by writing them to "/dev/kmesg". You can adjust the level of
+# logging used by the kernel. Level 8 means "everything".
+#
+#	echo 8 > /proc/sys/kernel/printk
+#
+# The kernel log memory buffer can be displayed by using the "dmesg" utility.
+#
+# Even though the Android bionic library supports the openlog(3) and syslog(3)
+# functions, syslog appears to be broken in the CyanogenMod 10.2 that I use.
+# The library expects to send the log message as a datagram to a UNIX domain
+# socket at "/dev/kmsg". But since that's a character device driver as described
+# above, any attempt to connect(2) to it results in the connection being refused
+# (you can use strace(1) to see this). This smells like a BSD (bionic) versus
+# Linux (kernel) incompatibility.
+
+$(OUT)/$(TST_DIR)/%:	$(OUT)/$(OBC_DIR)/$(TST_DIR)/%.o $(TARGETLIBRARIES)
+	D=`dirname $@`; mkdir -p $$D
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 	
-$(OUT)/$(TST_DIR)/%:	$(TST_DIR)/%.cpp $(TARGETLIBRARIESXX) $(TARGETLIBRARIES)
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
-	$(CXX) -rdynamic $(CPPFLAGS) $(CXXFLAGS) -o $@ $< $(LDXXFLAGS)
-	
-########## Google Tests
+$(OUT)/$(TST_DIR)/%:	$(OUT)/$(OBX_DIR)/$(TST_DIR)/%.o $(TARGETLIBRARIESXX) $(TARGETLIBRARIES)
+	D=`dirname $@`; mkdir -p $$D
+	$(CXX) $(CXXFLAGS) -o $@ $< $(LDXXFLAGS)
 
-GTEST_DIR=$(HOME)/src/gtest-1.7.0#http://googletest.googlecode.com/files/gtest-1.7.0.zip
-
-GTEST_LIB=$(GTEST_DIR)/libgtest.a
-GTEST_INC=$(GTEST_DIR)/include
-
-GTEST_INCS=-I$(GTEST_INC)
-GTEST_LIBS=$(GTEST_LIB)
-
-.PHONY:	unittest
-
-unittest:	$(OUT_DIR)/host/$(TST_DIR)/unittest
-
-$(OUT_DIR)/host/$(TST_DIR)/unittest:	$(GOT_DIR)/unittest.cpp
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
-	g++ $(CPPFLAGS) $(CXXFLAGS) $(GTEST_INCS) -I$(GOT_DIR) -o $@ $^ $(GTEST_LIBS) $(LDXXFLAGS)
-
-########## Generated
-
-.PHONY:	$(OUT)/$(GEN_DIR)/vintage.c $(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h $(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h
+########## Generated Source Files
 
 # For embedding in a system where it can be executed from a shell.
-# The major.minor.build is emitted to standard output, a bunch more
-# metadata to standard error. Hence, they can be redirected to separate
-# files. The metadata file is intended to parsable as a standard properties
-# file (although I have not tried it).
-$(OUT)/$(GEN_DIR)/vintage.c:	$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h $(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h Makefile
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
+#
+# The major.minor.build is emitted to standard error, a bunch more
+# metadata to standard output. Hence, they can be redirected to separate
+# files.
+#
+# Some of the information in this binary executable may be sensitive, for
+# example, the Directory or the User. That's why it's in a form that doesn't
+# have to be distributed with the product, unlike the shared objects.
+#
+# This program also serves as a unit test, so be careful about removing stuff
+# from it that looks redundant or unused.
+#
+# The stdout stream from vintage is designed so that you can source it
+# into a variety of tools including bash. e.g. eval $(vintage 2> /dev/null) .
+#
+# NOTE: in the generated C code below, whether you should have \\n or \n in the
+# echo statements seems to depend on what version of make you are running.
+
+SLASHES=2
+
+ifeq ($(SLASHES), 1)
+
+$(OUT)/$(GEN_DIR)/vintage.c:	Makefile
+	@echo MAKE_VERSION=$(MAKE_VERSION) SLASHES=$(SLASHES)
+	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
 	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
 	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
 	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
 	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
 	echo '#include <stdio.h>' >> $@
+	echo '#include <assert.h>' >> $@
 	echo 'static const char METADATA[] =' >> $@
-	echo "\"Title = $(TITLE)\\\\n\"" >> $@
-	echo "\"Copyright = $(COPYRIGHT)\\\\n\"" >> $@
-	echo "\"Contact = $(CONTACT)\\\\n\"" >> $@
-	echo "\"License = $(LICENSE)\\\\n\"" >> $@
-	echo "\"Homepage = $(HOMEPAGE)\\\\n\"" >> $@
-	echo "\"Release = $(MAJOR).$(MINOR).$(BUILD)\\\\n\"" >> $@
-	echo "\"Vintage = $(VINTAGE)\\\\n\"" >> $@
-	echo "\"Host = $(shell hostname)\\\\n\"" >> $@
-	echo "\"Directory = $(shell pwd)\\\\n\"" >> $@
-	echo "\"Arch = $(ARCH)\\\\n\"" >> $@
-	echo "\"Target = $(TARGET)\\\\n\"" >> $@
-	echo "\"Platform = $(PLATFORM)\\\\n\"" >> $@
-	echo "\"Toolchain = $(TOOLCHAIN)\\\\n\"" >> $@
+	echo '    "Arch=\"$(ARCH)\"\n"' >> $@
+	echo '    "Branch=\"$(BRANCH)\"\n"' >> $@
+	echo '    "Contact=\"$(CONTACT)\"\n"' >> $@
+	echo '    "Copyright=\"$(COPYRIGHT)\"\n"' >> $@
+	echo '    "Homepage=\"$(HOMEPAGE)\"\n"' >> $@
+	echo '    "Repository=\"$(GITURL)\"\n"' >> $@
+	echo '    "Host=\"$(HOST)\"\n"' >> $@
+	echo '    "Kernel=\"$(KERNEL_REV)\"\n"' >> $@
+	echo '    "License=\"$(LICENSE)\"\n"' >> $@
+	echo '    "Modified=\"$(MODIFIED)\"\n"' >> $@
+	echo '    "Os=\"$(OS)\"\n"' >> $@
+	echo '    "Platform=\"" COM_DIAG_$(SYMBOL)_PLATFORM "\"\n"' >> $@
+	echo '    "Release=\"" COM_DIAG_$(SYMBOL)_RELEASE "\"\n"' >> $@
+	echo '    "Revision=\"" COM_DIAG_$(SYMBOL)_REVISION "\"\n"' >> $@
+	echo '    "Root=\"$(ROOT)\"\n"' >> $@
+	echo '    "Target=\"$(TARGET)\"\n"' >> $@
+	echo '    "Title=\"$(TITLE)\"\n"' >> $@
+	echo '    "Toolchain=\"$(TOOLCHAIN)\"\n"' >> $@
+	echo '    "User=\"$(USER)\"\n"' >> $@
+	echo '    "Vintage=\"" COM_DIAG_$(SYMBOL)_VINTAGE "\"\n"' >> $@
 	echo ';' >> $@
-	echo 'int main(void) { fputs(METADATA, stderr); fputs("$(MAJOR).$(MINOR).$(BUILD)\\n", stdout); return 0; }' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_RELEASE_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_RELEASE_VALUE;' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_VINTAGE_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_VINTAGE_VALUE;' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_REVISION_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_REVISION_VALUE;' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_PLATFORM_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_PLATFORM_VALUE;' >> $@
+	echo 'int main(void) {' >> $@
+	echo '    const char * release_keyword = (const char *)0;' >> $@
+	echo '    const char * release_value = (const char *)0;' >> $@
+	echo '    const char * vintage_keyword = (const char *)0;' >> $@
+	echo '    const char * vintage_value = (const char *)0;' >> $@
+	echo '    const char * revision_keyword = (const char *)0;' >> $@
+	echo '    const char * revision_value = (const char *)0;' >> $@
+	echo '    const char * platform_keyword = (const char *)0;' >> $@
+	echo '    const char * platform_value = (const char *)0;' >> $@
+	echo '    fputs(METADATA, stdout);' >> $@
+	echo '    fputs("$(MAJOR).$(MINOR).$(BUILD)\n", stderr);' >> $@
+	echo '    release_keyword = COM_DIAG_$(SYMBOL)_RELEASE_KEYWORD;' >> $@
+	echo '    release_value = COM_DIAG_$(SYMBOL)_RELEASE_VALUE;' >> $@
+	echo '    vintage_keyword = COM_DIAG_$(SYMBOL)_VINTAGE_KEYWORD;' >> $@
+	echo '    vintage_value = COM_DIAG_$(SYMBOL)_VINTAGE_VALUE;' >> $@
+	echo '    revision_keyword = COM_DIAG_$(SYMBOL)_REVISION_KEYWORD;' >> $@
+	echo '    revision_value = COM_DIAG_$(SYMBOL)_REVISION_VALUE;' >> $@
+	echo '    platform_keyword = COM_DIAG_$(SYMBOL)_PLATFORM_KEYWORD;' >> $@
+	echo '    platform_value = COM_DIAG_$(SYMBOL)_PLATFORM_VALUE;' >> $@
+	echo '    assert(release_keyword != (const char *)0);' >> $@
+	echo '    assert(release_value != (const char *)0);' >> $@
+	echo '    assert(vintage_keyword != (const char *)0);' >> $@
+	echo '    assert(vintage_value != (const char *)0);' >> $@
+	echo '    assert(release_keyword != (const char *)0);' >> $@
+	echo '    assert(release_value != (const char *)0);' >> $@
+	echo '    assert(platform_keyword != (const char *)0);' >> $@
+	echo '    assert(platform_value != (const char *)0);' >> $@
+	echo '    return 0;' >> $@
+	echo '}' >> $@
+
+endif
+
+ifeq ($(SLASHES), 2)
+
+$(OUT)/$(GEN_DIR)/vintage.c:	Makefile
+	@echo MAKE_VERSION=$(MAKE_VERSION) SLASHES=$(SLASHES)
+	D=`dirname $@`; mkdir -p $$D
+	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
+	echo '#include <stdio.h>' >> $@
+	echo '#include <assert.h>' >> $@
+	echo 'static const char METADATA[] =' >> $@
+	echo '    "Arch=\\"$(ARCH)\\"\\n"' >> $@
+	echo '    "Branch=\\"$(BRANCH)\\"\\n"' >> $@
+	echo '    "Contact=\\"$(CONTACT)\\"\\n"' >> $@
+	echo '    "Copyright=\\"$(COPYRIGHT)\\"\\n"' >> $@
+	echo '    "Homepage=\\"$(HOMEPAGE)\\"\\n"' >> $@
+	echo '    "Repository=\\"$(GITURL)\\"\\n"' >> $@
+	echo '    "Host=\\"$(HOST)\\"\\n"' >> $@
+	echo '    "Kernel=\\"$(KERNEL_REV)\\"\\n"' >> $@
+	echo '    "License=\\"$(LICENSE)\\"\\n"' >> $@
+	echo '    "Modified=\\"$(MODIFIED)\\"\\n"' >> $@
+	echo '    "Os=\\"$(OS)\\"\\n"' >> $@
+	echo '    "Platform=\\"" COM_DIAG_$(SYMBOL)_PLATFORM "\\"\\n"' >> $@
+	echo '    "Release=\\"" COM_DIAG_$(SYMBOL)_RELEASE "\\"\\n"' >> $@
+	echo '    "Revision=\\"" COM_DIAG_$(SYMBOL)_REVISION "\\"\\n"' >> $@
+	echo '    "Root=\\"$(ROOT)\\"\\n"' >> $@
+	echo '    "Target=\\"$(TARGET)\\"\\n"' >> $@
+	echo '    "Title=\\"$(TITLE)\\"\\n"' >> $@
+	echo '    "Toolchain=\\"$(TOOLCHAIN)\\"\\n"' >> $@
+	echo '    "User=\\"$(USER)\\"\\n"' >> $@
+	echo '    "Vintage=\\"" COM_DIAG_$(SYMBOL)_VINTAGE "\\"\\n"' >> $@
+	echo ';' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_RELEASE_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_RELEASE_VALUE;' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_VINTAGE_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_VINTAGE_VALUE;' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_REVISION_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_REVISION_VALUE;' >> $@
+	echo 'extern const char COM_DIAG_$(SYMBOL)_PLATFORM_KEYWORD[];' >> $@
+	echo 'extern const char * COM_DIAG_$(SYMBOL)_PLATFORM_VALUE;' >> $@
+	echo 'int main(void) {' >> $@
+	echo '    const char * release_keyword = (const char *)0;' >> $@
+	echo '    const char * release_value = (const char *)0;' >> $@
+	echo '    const char * vintage_keyword = (const char *)0;' >> $@
+	echo '    const char * vintage_value = (const char *)0;' >> $@
+	echo '    const char * revision_keyword = (const char *)0;' >> $@
+	echo '    const char * revision_value = (const char *)0;' >> $@
+	echo '    const char * platform_keyword = (const char *)0;' >> $@
+	echo '    const char * platform_value = (const char *)0;' >> $@
+	echo '    fputs(METADATA, stdout);' >> $@
+	echo '    fputs("$(MAJOR).$(MINOR).$(BUILD)\\n", stderr);' >> $@
+	echo '    release_keyword = COM_DIAG_$(SYMBOL)_RELEASE_KEYWORD;' >> $@
+	echo '    release_value = COM_DIAG_$(SYMBOL)_RELEASE_VALUE;' >> $@
+	echo '    vintage_keyword = COM_DIAG_$(SYMBOL)_VINTAGE_KEYWORD;' >> $@
+	echo '    vintage_value = COM_DIAG_$(SYMBOL)_VINTAGE_VALUE;' >> $@
+	echo '    revision_keyword = COM_DIAG_$(SYMBOL)_REVISION_KEYWORD;' >> $@
+	echo '    revision_value = COM_DIAG_$(SYMBOL)_REVISION_VALUE;' >> $@
+	echo '    platform_keyword = COM_DIAG_$(SYMBOL)_PLATFORM_KEYWORD;' >> $@
+	echo '    platform_value = COM_DIAG_$(SYMBOL)_PLATFORM_VALUE;' >> $@
+	echo '    assert(release_keyword != (const char *)0);' >> $@
+	echo '    assert(release_value != (const char *)0);' >> $@
+	echo '    assert(vintage_keyword != (const char *)0);' >> $@
+	echo '    assert(vintage_value != (const char *)0);' >> $@
+	echo '    assert(revision_keyword != (const char *)0);' >> $@
+	echo '    assert(revision_value != (const char *)0);' >> $@
+	echo '    assert(platform_keyword != (const char *)0);' >> $@
+	echo '    assert(platform_value != (const char *)0);' >> $@
+	echo '    return 0;' >> $@
+	echo '}' >> $@
+
+endif
 
 # For embedding in an application where it can be interrogated or displayed.
-$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h:
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h:	Makefile
+	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
 	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_RELEASE_' >> $@
 	echo '#define _H_COM_DIAG_$(SYMBOL)_RELEASE_' >> $@
-	echo "static const char RELEASE[] = \"RELEASE=$(MAJOR).$(MINOR).$(BUILD)\";" >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_RELEASE_MAJOR $(MAJOR)' >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_RELEASE_MINOR $(MINOR)' >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_RELEASE_BUILD $(BUILD)' >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_RELEASE "$(MAJOR).$(MINOR).$(BUILD)"' >> $@
 	echo '#endif' >> $@
 
+# For embedding in the library archive and shared object.
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/$(PROJECT)_release.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h
+
 # For embedding in an application where it can be interrogated or displayed.
-$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h:
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h:	Makefile
+	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
 	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_VINTAGE_' >> $@
 	echo '#define _H_COM_DIAG_$(SYMBOL)_VINTAGE_' >> $@
-	echo "static const char VINTAGE[] = \"VINTAGE=$(VINTAGE)\";" >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_VINTAGE "$(VINTAGE)"' >> $@
 	echo '#endif' >> $@
 
+# For embedding in the library archive and shared object.
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/$(PROJECT)_vintage.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h
+
+# For embedding in an application where it can be interrogated or displayed.
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_revision.h:	Makefile
+	D=`dirname $@`; mkdir -p $$D
+	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
+	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_REVISION_' >> $@
+	echo '#define _H_COM_DIAG_$(SYMBOL)_REVISION_' >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_REVISION "$(REVISION)"' >> $@
+	echo '#endif' >> $@
+
+# For embedding in the library archive and shared object.
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/$(PROJECT)_revision.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_revision.h
+
+# For executing from the command line during testing.
 $(OUT)/$(SYM_DIR)/vintage:	$(OUT)/$(GEN_DIR)/vintage.c
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
+	D=`dirname $@`; mkdir -p $$D
 	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 # For sourcing into a bash shell (for example, ". setup").
 $(OUT)/$(BIN_DIR)/setup:	Makefile
-	D=`dirname $@`; test -d $$D || mkdir -p $$D	
+	D=`dirname $@`; mkdir -p $$D
 	echo 'COM_DIAG_$(SYMBOL)_PATH=`dirname $${BASH_ARGV[0]}`; COM_DIAG_$(SYMBOL)_ROOT=`cd $$COM_DIAG_$(SYMBOL)_PATH; pwd`' > $@
-	echo 'export PATH=$$PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../bin:$$COM_DIAG_$(SYMBOL)_ROOT/../tst' >> $@
-	echo 'export LD_DRIVER_PATH=$$COM_DIAG_$(SYMBOL)_ROOT/../drv' >> $@
-	echo 'export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../lib' >> $@
-	echo 'export LD_MODULE_PATH=$$COM_DIAG_$(SYMBOL)_ROOT/../mod' >> $@
+	echo 'export PATH=$$PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(BIN_DIR):$$COM_DIAG_$(SYMBOL)_ROOT/../$(TST_DIR)' >> $@
+	echo 'export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(LIB_DIR)' >> $@
+	echo 'export COM_DIAG_$(SYMBOL)_LOG_MASK=0xffff' >> $@
+	chmod 644 $@
+
+$(OUT)/$(SYM_DIR)/setup:	Makefile
+	D=`dirname $@`; mkdir -p $$D
+	echo 'COM_DIAG_$(SYMBOL)_PATH=`dirname $${BASH_ARGV[0]}`; COM_DIAG_$(SYMBOL)_ROOT=`cd $$COM_DIAG_$(SYMBOL)_PATH; pwd`' > $@
+	echo 'export PATH=$$PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(SYM_DIR):$$COM_DIAG_$(SYMBOL)_ROOT/../$(BIN_DIR):$$COM_DIAG_$(SYMBOL)_ROOT/../$(TST_DIR)' >> $@
+	echo 'export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(LIB_DIR)' >> $@
+	echo 'export COM_DIAG_$(SYMBOL)_LOG_MASK=0xffff' >> $@
+	chmod 644 $@
+
+# For generating a setup script for a bash shell (for example, "bash generate > setup").
+# (Because the Android bash doesn't seem to implement BASH_ARGV.)
+$(OUT)/$(BIN_DIR)/generate:	Makefile
+	D=`dirname $@`; mkdir -p $$D
+	echo 'COM_DIAG_$(SYMBOL)_PATH=`dirname $$0`; COM_DIAG_$(SYMBOL)_ROOT=`cd $$COM_DIAG_$(SYMBOL)_PATH; pwd`' > $@
+	echo 'echo export PATH=$$PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(BIN_DIR):$$COM_DIAG_$(SYMBOL)_ROOT/../$(TST_DIR)' >> $@
+	echo 'echo export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(LIB_DIR)' >> $@
+	echo 'echo export COM_DIAG_$(SYMBOL)_LOG_MASK=0xffff' >> $@
+	chmod 755 $@
+
+$(OUT)/$(SYM_DIR)/generate:	Makefile
+	D=`dirname $@`; mkdir -p $$D
+	echo 'COM_DIAG_$(SYMBOL)_PATH=`dirname $$0`; COM_DIAG_$(SYMBOL)_ROOT=`cd $$COM_DIAG_$(SYMBOL)_PATH; pwd`' > $@
+	echo 'echo export PATH=$$PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(SYM_DIR):$$COM_DIAG_$(SYMBOL)_ROOT/../$(BIN_DIR):$$COM_DIAG_$(SYMBOL)_ROOT/../$(TST_DIR)' >> $@
+	echo 'echo export LD_LIBRARY_PATH=$$LD_LIBRARY_PATH:$$COM_DIAG_$(SYMBOL)_ROOT/../$(LIB_DIR)' >> $@
+	echo 'echo export COM_DIAG_$(SYMBOL)_LOG_MASK=0xffff' >> $@
+	chmod 755 $@
 
 ########## Helpers
 
-.PHONY:	backup implicit
+.PHONY:	makeversion gccversion implicit defines iquotes isystems
 
-backup:	../$(PROJECT).bak.tgz
-	mv $(MVFLAGS) ../$(PROJECT).bak.tgz ../$(PROJECT).$(TIMESTAMP).tgz
+makeversion:
+	@echo $(MAKE_VERSION)
 
-../$(PROJECT).bak.tgz:
-	tar cvzf - . > $@
-	
+gccversion:
+	@$(CC) -x c $(CPPFLAGS) $(CFLAGS) -E -v - < /dev/null
+
 implicit:
-	$(CC) $(CPPFLAGS) $(CFLAGS) -dM -E - < /dev/null
+	@$(CC) $(CFLAGS) -dM -E - < /dev/null
+	
+defines:
+	@$(CC) $(CPPFLAGS) $(CFLAGS) -dM -E - < /dev/null
+
+iquotes:
+	@$(CC) -x c $(CPPFLAGS) $(CFLAGS) -E -v - < /dev/null 2>&1 | awk 'BEGIN { S=0; } ($$0=="#include \"...\" search starts here:") { S=1; next; } ($$0=="#include <...> search starts here:") { S=0; next; } (S!=0) { print $$1; } { next; }'
+
+isystems:
+	@$(CC) -x c $(CPPFLAGS) $(CFLAGS) -E -v - < /dev/null 2>&1 | awk 'BEGIN { S=0; } ($$0=="#include <...> search starts here:") { S=1; next; } ($$0=="End of search list.") { S=0; next; } (S!=0) { print $$1; } { next; }'
 
 ########## Documentation
 
 .PHONY:	documentation browse refman manpages
 
-documentation:
-	sed -e "s/\\\$$Name.*\\\$$/$(MAJOR).$(MINOR).$(BUILD)/" < doxygen.cf > doxygen-local.cf
-	doxygen doxygen-local.cf
-	test -d $(DOC_DIR)/pdf || mkdir -p $(DOC_DIR)/pdf
-	( cd $(DOC_DIR)/latex; $(MAKE) refman.pdf; cp refman.pdf ../pdf )
-	cat $(DOC_DIR)/man/man3/*.3 | groff -man -Tps - > $(DOC_DIR)/pdf/manpages.ps
-	ps2pdf $(DOC_DIR)/pdf/manpages.ps $(DOC_DIR)/pdf/manpages.pdf
+DOCCOOKED := $(shell echo $(OUT)/$(DOC_DIR) | sed 's/\//\\\//g')
+
+documentation $(OUT)/$(DOC_DIR)/latex $(OUT)/$(DOC_DIR)/man $(OUT)/$(DOC_DIR)/pdf:
+	mkdir -p $(OUT)/$(DOC_DIR)/pdf
+	cat doxygen.cf | \
+		sed -e "s/\\\$$PROJECT_NUMBER\\\$$/$(MAJOR).$(MINOR).$(BUILD)/" | \
+		sed -e "s/\\\$$OUTPUT_DIRECTORY\\\$$/$(DOCCOOKED)/" | \
+		cat > $(OUT)/$(DOC_DIR)/doxygen-local.cf
+	doxygen $(OUT)/$(DOC_DIR)/doxygen-local.cf
+
+# When I upgraded to Ubuntu 14.04, a pile of latex macros used by the Doxygen
+# PDF generation were missing. I was never able to figure out what (if any)
+# Ubuntu package they might have been in (although I did install a boatload
+# of packages for TeX and Latex). In the end I just kept rerunning the make
+# step below, examining the refman.log output file in the output directory,
+# and figuring out what Latex macro packages from CTAN to manually download,
+# install in a subdirectory of /usr/share/texmf/tex/latex, and then run texhash.
+# It was very tedius. Here's a list of what I installed.
+# https://www.ctan.org/tex-archive/macros/latex/contrib/xtab
+# https://www.ctan.org/tex-archive/macros/latex/contrib/multirow
+# https://www.ctan.org/pkg/sectsty
+# https://www.ctan.org/tex-archive/macros/latex/contrib/tocloft
+documentation-ancillary:	$(OUT)/$(DOC_DIR)/latex $(OUT)/$(DOC_DIR)/man $(OUT)/$(DOC_DIR)/pdf
+	$(MAKE) -C $(OUT)/$(DOC_DIR)/latex refman.pdf || exit 0
+	cp $(OUT)/$(DOC_DIR)/latex/refman.pdf $(OUT)/$(DOC_DIR)/pdf
+	cat $(OUT)/$(DOC_DIR)/man/man3/*.3 | groff -man -Tps - > $(OUT)/$(DOC_DIR)/pdf/manpages.ps
+	ps2pdf $(OUT)/$(DOC_DIR)/pdf/manpages.ps $(OUT)/$(DOC_DIR)/pdf/manpages.pdf
 
 browse:
-	$(BROWSER) file:doc/html/index.html
+	$(BROWSER) file:$(OUT)/$(DOC_DIR)/html/index.html
 
 refman:
-	$(BROWSER) file:doc/pdf/refman.pdf
+	$(BROWSER) file:$(OUT)/$(DOC_DIR)/pdf/refman.pdf
 
 manpages:
-	$(BROWSER) file:doc/pdf/manpages.pdf
+	$(BROWSER) file:$(OUT)/$(DOC_DIR)/pdf/manpages.pdf
 
-########## Submakes
+########## Diffs and Patches
 
 .PHONY:	patch
 
@@ -504,52 +707,95 @@ patch:	$(OLD) $(NEW)
 
 ########## Rules
 
-$(OUT)/%.txt:	%.cpp
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(OBX_DIR)/%.txt:	%.cpp $(TARGETSYNTHESIZED)
+	D=`dirname $@`; mkdir -p $$D
 	$(CXX) -E $(CPPFLAGS) -c $< > $@
 
-$(OUT)/%.o:	%.cpp
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(OBX_DIR)/%.o:	%.cpp $(TARGETSYNTHESIZED)
+	D=`dirname $@`; mkdir -p $$D
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ -c $<
 
-$(OUT)/%.txt:	%.c
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(OBC_DIR)/%.txt:	%.c $(TARGETSYNTHESIZED)
+	D=`dirname $@`; mkdir -p $$D
 	$(CC) -E $(CPPFLAGS) -c $< > $@
 
-$(OUT)/%.o:	%.c
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+$(OUT)/$(OBC_DIR)/%.o:	%.c $(TARGETSYNTHESIZED)
+	D=`dirname $@`; mkdir -p $$D
 	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ -c $<
 
 $(OUT)/%:	%.sh
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+	D=`dirname $@`; mkdir -p $$D
 	cp $< $@
 	chmod 755 $@
 	
 .SECONDARY:
 
 $(OUT)/$(BIN_DIR)/%:	$(OUT)/$(SYM_DIR)/%
-	D=`dirname $@`; test -d $$D || mkdir -p $$D
+	D=`dirname $@`; mkdir -p $$D
 	$(STRIP) -o $@ $<
 
 ########## Dependencies
 
 .PHONY:	depend
 
-depend:
-	cp /dev/null dependencies.mk
-	for S in $(SRC_DIR) $(TST_DIR) $(BIN_DIR); do \
-		for F in $$S/*.cpp; do \
-			D=`dirname $$F`; \
-			echo -n "$(OUT)/$$D/" >> dependencies.mk; \
-			$(CXX) $(CPPFLAGS) -MM -MG $$F >> dependencies.mk; \
-		done; \
+DEPENDENCIES := $(OUT)/$(DEP_DIR)/dependencies.mk
+
+depend:	$(TARGETSYNTHESIZED)
+	M=`dirname $(DEPENDENCIES)`; mkdir -p $$M
+	cp /dev/null $(DEPENDENCIES)
+	for S in $(BIN_DIR) $(SRC_DIR) $(TST_DIR); do \
+		if [ -d $$S ]; then \
+			for F in $$S/*.c; do \
+				D=`dirname $$F`; \
+				T=`mktemp "$(TEMP_DIR)/$(PROJECT).XXXXXXXXXX"`; \
+				echo -n "$(OUT)/$(OBC_DIR)/$$D/" > $$T; \
+				$(CC) $(CPPFLAGS) -MM -MG $$F >> $$T && cat $$T >> $(DEPENDENCIES); \
+				rm -f $$T; \
+			done; \
+		fi; \
 	done
-	for S in $(SRC_DIR); do \
-		for F in $$S/*.c; do \
-			D=`dirname $$F`; \
-			echo -n "$(OUT)/$$D/" >> dependencies.mk; \
-			$(CC) $(CPPFLAGS) -MM -MG $$F >> dependencies.mk; \
-		done; \
+	for S in $(SRC_DIR) $(TST_DIR); do \
+		if [ -d $$S ]; then \
+			for F in $$S/*.cpp; do \
+				D=`dirname $$F`; \
+				T=`mktemp "$(TEMP_DIR)/$(PROJECT).XXXXXXXXXX"`; \
+				echo -n "$(OUT)/$(OBX_DIR)/$$D/" > $$T; \
+				$(CXX) $(CPPFLAGS) -MM -MG $$F >> $$T && cat $$T >> $(DEPENDENCIES); \
+				rm -f $$T; \
+			done; \
+		fi; \
 	done
 
--include dependencies.mk
+-include $(DEPENDENCIES)
+
+########## Installation
+
+.PHONY:	install install-bin install-lib install-include
+
+INSTALL_DIR := /usr/local
+INSTALL_BIN := $(INSTALL_DIR)/bin
+INSTALL_LIB := $(INSTALL_DIR)/lib
+INSTALL_INC := $(INSTALL_DIR)/include
+
+install:	install-bin install-lib install-include
+
+install-bin:
+	mkdir -p $(INSTALL_BIN)
+	for B in $(OUT)/$(BIN_DIR)/*; do \
+		install $$B $(INSTALL_BIN); \
+	done
+
+install-lib:
+	mkdir -p $(INSTALL_LIB)
+	for F in $(OUT)/$(LIB_DIR)/*.so; do \
+		O=`basename $$F`; \
+		cp $(OUT)/$(LIB_DIR)/$$O.$(MAJOR).$(MINOR) $(INSTALL_LIB); \
+		( cd $(INSTALL_LIB); ln -s -f $$O.$(MAJOR).$(MINOR) $$O.$(MAJOR) ); \
+		( cd $(INSTALL_LIB); ln -s -f $$O.$(MAJOR) $$O ); \
+	done
+	ldconfig -n $(INSTALL_LIB)
+
+install-include:
+	mkdir -p $(INSTALL_INC)
+	tar -C $(OUT)/$(INC_DIR) -cvf - . | tar -C $(INSTALL_INC) -xvf -
+	tar -C $(INC_DIR) -cvf - . | tar -C $(INSTALL_INC) -xvf -
