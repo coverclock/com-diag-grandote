@@ -37,17 +37,17 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdlib.h"
 #include <unistd.h>
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/exceptions.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/exceptions.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/Desperado.h"
 
 #define USAGE \
     "[ -b(ytes) | -w(ords) ]" \

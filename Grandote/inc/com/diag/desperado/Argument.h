@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ARGUMENT_H_
-#define _COM_DIAG_DESPERADO_ARGUMENT_H_
+#ifndef _COM_DIAG_GRANDOTE_ARGUMENT_H_
+#define _COM_DIAG_GRANDOTE_ARGUMENT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -174,7 +174,7 @@ inline Argument::Argument() {
 #include "com/diag/desperado/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 #include "com/diag/desperado/cxxcapi.h"
 /**
  *  Run the Argument unit test.

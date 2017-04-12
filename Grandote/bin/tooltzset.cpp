@@ -37,12 +37,12 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdlib.h"
 #include <unistd.h>
 #include <ctime>
 #include <sys/time.h>
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Desperado.h"
 
 extern long timezone;
 extern int daylight;

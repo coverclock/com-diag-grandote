@@ -36,22 +36,22 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/stdlib.h"
 #include <unistd.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/ready.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/ready.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/Desperado.h"
 
 
 int main(int argc, char **argv, char **) {
@@ -193,10 +193,10 @@ int main(int argc, char **argv, char **) {
 			writeable = desperado_file_writeable(infp);
 			errorf("input: ready=0x%x%s%s%s%s readable=%zu writeable=%u\n",
 				ready,
-				((ready & DESPERADO_DESCRIPTOR_READY_READ) != 0) ? " READ": "",
-				((ready & DESPERADO_DESCRIPTOR_READY_WRITE) != 0) ? " WRITE": "",
-				((ready & DESPERADO_DESCRIPTOR_READY_EXCEPTION) != 0) ? " EXCEPTION": "",
-				((ready & DESPERADO_DESCRIPTOR_READY_ERROR) != 0) ? " ERROR": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_READ) != 0) ? " READ": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_WRITE) != 0) ? " WRITE": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_EXCEPTION) != 0) ? " EXCEPTION": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_ERROR) != 0) ? " ERROR": "",
 				readable, writeable
 			);
     	}
@@ -218,10 +218,10 @@ int main(int argc, char **argv, char **) {
 			writeable = desperado_file_writeable(outfp);
 			errorf("output: ready=0x%x%s%s%s%s readable=%zu writeable=%zu\n",
 				ready,
-				((ready & DESPERADO_DESCRIPTOR_READY_READ) != 0) ? " READ": "",
-				((ready & DESPERADO_DESCRIPTOR_READY_WRITE) != 0) ? " WRITE": "",
-				((ready & DESPERADO_DESCRIPTOR_READY_EXCEPTION) != 0) ? " EXCEPTION": "",
-				((ready & DESPERADO_DESCRIPTOR_READY_ERROR) != 0) ? " ERROR": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_READ) != 0) ? " READ": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_WRITE) != 0) ? " WRITE": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_EXCEPTION) != 0) ? " EXCEPTION": "",
+				((ready & GRANDOTE_DESCRIPTOR_READY_ERROR) != 0) ? " ERROR": "",
 				readable, writeable
 			);
     	}

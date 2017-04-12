@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ASCII_H_
-#define _COM_DIAG_DESPERADO_ASCII_H_
+#ifndef _COM_DIAG_GRANDOTE_ASCII_H_
+#define _COM_DIAG_GRANDOTE_ASCII_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -191,7 +191,7 @@ inline const Ascii::Entry& Ascii::operator[] (unsigned char index) const {
 #include "com/diag/desperado/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 #include "com/diag/desperado/cxxcapi.h"
 /**
  *  Run the Ascii unit test.

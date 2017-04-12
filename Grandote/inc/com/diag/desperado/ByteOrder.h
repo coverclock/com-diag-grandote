@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_BYTEORDER_H_
-#define _COM_DIAG_DESPERADO_BYTEORDER_H_
+#ifndef _COM_DIAG_GRANDOTE_BYTEORDER_H_
+#define _COM_DIAG_GRANDOTE_BYTEORDER_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -143,7 +143,7 @@ public:
 };
 
 
-#define DESPERADO_BYTEORDER_INTEGER(_ITYPE_) \
+#define GRANDOTE_BYTEORDER_INTEGER(_ITYPE_) \
     inline _ITYPE_ ntoh(_ITYPE_ data) { \
         return ByteOrder<_ITYPE_, _ITYPE_, _ITYPE_>::swapif(data); \
     } \
@@ -151,7 +151,7 @@ public:
         return ByteOrder<_ITYPE_, _ITYPE_, _ITYPE_>::swapif(data); \
     }
 
-#define DESPERADO_BYTEORDER_FLOAT(_FTYPE_, _ITYPE_) \
+#define GRANDOTE_BYTEORDER_FLOAT(_FTYPE_, _ITYPE_) \
     inline _FTYPE_ fntoh(_ITYPE_ data) { \
         return ByteOrder<_ITYPE_, _FTYPE_, _ITYPE_>::swapif(data); \
     } \
@@ -168,8 +168,8 @@ public:
  *  seems to confuse things.
  */
 
-DESPERADO_BYTEORDER_INTEGER(unsigned long long)
-DESPERADO_BYTEORDER_INTEGER(unsigned long)
+GRANDOTE_BYTEORDER_INTEGER(unsigned long long)
+GRANDOTE_BYTEORDER_INTEGER(unsigned long)
 DESPERADO_BYTEORDER_INTEGER(unsigned int)
 DESPERADO_BYTEORDER_INTEGER(unsigned short)
 DESPERADO_BYTEORDER_INTEGER(unsigned char)

@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ARROYO_H_
-#define _COM_DIAG_DESPERADO_ARROYO_H_
+#ifndef _COM_DIAG_GRANDOTE_ARROYO_H_
+#define _COM_DIAG_GRANDOTE_ARROYO_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,7 +56,7 @@
  */
 
 
-#if defined(DESPERADO_PLATFORM_IS_Arroyo)
+#if defined(GRANDOTE_PLATFORM_IS_Arroyo)
 
 #include "com/diag/desperado/Linux.h"
 

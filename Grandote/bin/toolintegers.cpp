@@ -31,10 +31,10 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/integers.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/integers.h"
+#include "com/diag/grandote/Desperado.h"
 
 int main() {
 

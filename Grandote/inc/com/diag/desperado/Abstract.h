@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ABSTRACT_H_
-#define _COM_DIAG_DESPERADO_ABSTRACT_H_
+#ifndef _COM_DIAG_GRANDOTE_ABSTRACT_H_
+#define _COM_DIAG_GRANDOTE_ABSTRACT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -132,7 +132,7 @@ private:
 inline Abstract::Abstract() :
     Object()
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Abstract(%p)::Abstract()\n", this);
 #endif
 }
@@ -142,7 +142,7 @@ inline Abstract::Abstract() :
 //  Destructor
 //
 inline Abstract::~Abstract() {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Abstract(%p)::~Abstract()\n", this);
 #endif
 }
@@ -152,7 +152,7 @@ inline Abstract::~Abstract() {
 //  Assignment operator.
 //
 inline Abstract& Abstract::operator=(const Abstract& that) {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Abstract(%p)::operator=(%p)\n", this, &that);
 #endif
     if (&that != this) {
@@ -168,7 +168,7 @@ inline Abstract& Abstract::operator=(const Abstract& that) {
 inline Abstract::Abstract(const Abstract& that) :
     Object()
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Abstract(%p)::Abstract(%p)\n", this, &that);
 #endif
     if (&that != this) {

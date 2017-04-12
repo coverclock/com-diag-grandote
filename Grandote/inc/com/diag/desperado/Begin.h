@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_BEGIN_H_
-#define _COM_DIAG_DESPERADO_BEGIN_H_
+#ifndef _COM_DIAG_GRANDOTE_BEGIN_H_
+#define _COM_DIAG_GRANDOTE_BEGIN_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -49,8 +49,8 @@
  *  @author Chip Overclock (coverclock@diag.com)
  */
 
-#ifdef _COM_DIAG_DESPERADO_END_H_
-#undef _COM_DIAG_DESPERADO_END_H_
+#ifdef _COM_DIAG_GRANDOTE_END_H_
+#undef _COM_DIAG_GRANDOTE_END_H_
 #endif
 
 #if defined(__cplusplus)

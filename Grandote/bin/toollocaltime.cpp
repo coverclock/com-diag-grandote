@@ -37,11 +37,11 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/LocalTime.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/LocalTime.h"
+#include "com/diag/grandote/Desperado.h"
 
 int main(int, char **, char **) {
     Print printf(Platform::instance().output());

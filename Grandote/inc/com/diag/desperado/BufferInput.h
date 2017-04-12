@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_BUFFERINPUT_H_
-#define _COM_DIAG_DESPERADO_BUFFERINPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_BUFFERINPUT_H_
+#define _COM_DIAG_GRANDOTE_BUFFERINPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -264,7 +264,7 @@ inline size_t BufferInput::getLength() const {
 #include "com/diag/desperado/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 #include "com/diag/desperado/cxxcapi.h"
 /**
  *  Run the BufferInput unit test.
