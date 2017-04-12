@@ -15,9 +15,9 @@ THIS IS A WORK IN PROGRESS.
 
 CONTACT
 
-Chip Overclock
-<mailto:coverclock@diag.com>
-Digital Aggregates Corporation
-3440 Youngfield Street #209
-Wheat Ridge CO 80033
-USA
+Chip Overclock 
+<mailto:coverclock@diag.com> 
+Digital Aggregates Corporation 
+3440 Youngfield Street #209 
+Wheat Ridge CO 80033 
+USA 

@@ -78,7 +78,7 @@ SYM_DIR				:=	sym# Unstripped executable binaries
 SYS_DIR				:=	sys# Kernel module build directory
 TGZ_DIR				:=	tgz# Compressed tarballs
 TST_DIR				:=	tst# Unit tests
-UTF_DIR				:=	UTF# Unit test functions
+UTF_DIR				:=	utf# Unit test functions
 
 ########## Configuration
 
@@ -159,9 +159,7 @@ CXXFLAGS			:=	$(CXXARCH) -g
 CPFLAGS				:=	-i
 MVFLAGS				:=	-i
 LDFLAGS				:=	$(LDARCH) -l$(PROJECT) $(LDLIBRARIES) $(DIMINUTO_LDFLAGS)
-LDXXFLAGS			:=	$(LDARCH) -l$(PROJECT)xx -l$(PROJECT) $(LDXXLIBRARIES)
-MOFLAGS				:=	$(MOARCH) -l$(PROJECT) $(LDLIBRARIES)
-MOXXFLAGS			:=	$(MOARCH) -l$(PROJECT)xx -l$(PROJECT) $(LDXXLIBRARIES)
+LDXXFLAGS			:=	$(LDARCH) -l$(PROJECT)ut -l$(PROJECT)xx -l$(PROJECT) $(LDXXLIBRARIES)
 SOFLAGS				:=	$(SOARCH) $(LDLIBRARIES)
 SOXXFLAGS			:=	$(SOXXARCH) $(LDXXLIBRARIES)
 
