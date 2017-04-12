@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_READS_H_
-#define _COM_DIAG_DESPERADO_READS_H_
+#ifndef _COM_DIAG_GRANDOTE_READS_H_
+#define _COM_DIAG_GRANDOTE_READS_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -51,8 +51,8 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
 /**
@@ -76,7 +76,7 @@
  *          the number of actual number of bytes read if an error
  *          occurred.
  */
-CXXCAPI ssize_t desperado_reads(
+CXXCAPI ssize_t grandote_reads(
     int fd,
     void* pointer,
     size_t atleast,

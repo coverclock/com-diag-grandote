@@ -53,15 +53,15 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/barrier.h"
-#include "com/diag/desperado/barrier.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/barrier.h"
+#include "com/diag/grandote/barrier.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
 
 int unittestbarrier2() {
     int errors = 0;
@@ -72,7 +72,7 @@ int unittestbarrier2() {
     print_f(platform_output(), "%s[%d]: begin\n", __FILE__, __LINE__);
 
     dbbefore = platform_time();
-    dbrc = desperado_portable_barrier();
+    dbrc = grandote_portable_barrier();
     dbafter = platform_time();
     if (0 != dbrc) {
         print_f(platform_error(), "%s[%d]: (%d!=%d)!\n",
@@ -80,11 +80,11 @@ int unittestbarrier2() {
         ++errors;
     }
     print_f(platform_output(),
-        "%s[%d]: desperado_portable_barrier(): %llu ticks\n",
+        "%s[%d]: grandote_portable_barrier(): %llu ticks\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
     dbbefore = platform_time();
-    dbrc = desperado_native_barrier();
+    dbrc = grandote_native_barrier();
     dbafter = platform_time();
     if (0 != dbrc) {
         print_f(platform_error(), "%s[%d]: (%d!=%d)!\n",
@@ -92,14 +92,14 @@ int unittestbarrier2() {
         ++errors;
     }
     print_f(platform_output(),
-        "%s[%d]: desperado_native_barrier(): %llu ticks\n",
+        "%s[%d]: grandote_native_barrier(): %llu ticks\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
     dbbefore = platform_time();
-    desperado_memory_barrier();
+    grandote_memory_barrier();
     dbafter = platform_time();
     print_f(platform_output(),
-        "%s[%d]: desperado_memory_barrier(): %llu ticks\n",
+        "%s[%d]: grandote_memory_barrier(): %llu ticks\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
 #if defined(__GNUC__)

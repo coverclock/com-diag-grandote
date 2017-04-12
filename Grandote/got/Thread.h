@@ -13,23 +13,23 @@
 
 #include "gtest/gtest.h"
 #include "Fixture.h"
-#include "com/diag/desperado/Thread.h"
-#include "com/diag/desperado/Mutex.h"
-#include "com/diag/desperado/CriticalSection.h"
-#include "com/diag/desperado/Uncancellable.h"
-#include "com/diag/desperado/Condition.h"
-#include "com/diag/desperado/MemoryBarrier.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/Thread.h"
+#include "com/diag/grandote/Mutex.h"
+#include "com/diag/grandote/CriticalSection.h"
+#include "com/diag/grandote/Uncancellable.h"
+#include "com/diag/grandote/Condition.h"
+#include "com/diag/grandote/MemoryBarrier.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
 #include <pthread.h>
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture ThreadTest;
 
@@ -261,7 +261,7 @@ TEST_F(ThreadTest, ExitJoin) {
 
 struct ThreadJoinReturn : public Thread {
 	virtual void * run() {
-		::com::diag::desperado::Platform::instance().yield(::com::diag::desperado::Platform::instance().frequency());
+		::com::diag::grandote::Platform::instance().yield(::com::diag::grandote::Platform::instance().frequency());
 		return 0;
 	}
 };
@@ -483,7 +483,7 @@ struct ThreadMonitor : public Thread {
 	: variable(shared)
 	{}
 	virtual void * run() {
-		::com::diag::desperado::Platform::instance().yield(::com::diag::desperado::Platform::instance().frequency());
+		::com::diag::grandote::Platform::instance().yield(::com::diag::grandote::Platform::instance().frequency());
 		{
 			MyCriticalSection guard(monitormutex);
 			monitorcondition.signal();

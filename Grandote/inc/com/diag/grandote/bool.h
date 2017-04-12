@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_BOOL_H_
-#define _COM_DIAG_DESPERADO_BOOL_H_
+#ifndef _COM_DIAG_GRANDOTE_BOOL_H_
+#define _COM_DIAG_GRANDOTE_BOOL_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -54,13 +54,13 @@
 
 #if !defined(__cplusplus)
 
-#if defined(DESPERADO_HAS_STDBOOL_H)
+#if defined(GRANDOTE_HAS_STDBOOL_H)
 
 #include <stdbool.h>
 
 #else
 
-#if defined(DESPERADO_NEEDS_BOOL)
+#if defined(GRANDOTE_NEEDS_BOOL)
 typedef unsigned char _Bool;
 #endif
 

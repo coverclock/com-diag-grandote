@@ -54,16 +54,16 @@
 
 
 #include <limits.h>
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/exceptions.h"
-#include "com/diag/desperado/Exception.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/exceptions.h"
+#include "com/diag/grandote/Exception.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 static FILE* filepointer(const char* path, const char* mode, int* errorp) {
@@ -89,7 +89,7 @@ static FILE* filepointer(const char* path, const char* mode, int* errorp) {
 PathOutput::PathOutput(const char* path, const char* mode) :
     FileOutput(filepointer(path, mode, &error))
 {
-#if defined(DESPERADO_HAS_EXCEPTIONS)
+#if defined(GRANDOTE_HAS_EXCEPTIONS)
     if ((0 != path) && (0 == this->getFile())) {
         Exception* e = new Exception(path, -(this->error), __FILE__, __LINE__,
         	__func__);
@@ -128,4 +128,4 @@ void PathOutput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

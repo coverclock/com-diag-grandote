@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_CRC_H_
-#define _COM_DIAG_DESPERADO_CRC_H_
+#ifndef _COM_DIAG_GRANDOTE_CRC_H_
+#define _COM_DIAG_GRANDOTE_CRC_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,18 +56,18 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
 extern "C" {
-#include "com/diag/desperado/crcmodel.h"
+#include "com/diag/grandote/crcmodel.h"
 }
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Generates sixteen bit and thirty-two bit Cyclic Redundancy Check
@@ -327,11 +327,11 @@ void Crc<_TYPE_>::show(int level, Output* display, int indent) const {
     }
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Crc unit test.
  *

@@ -43,7 +43,7 @@
 /**
  *  @file
  *
- *  Implements the Desperado portable memory barrier function.
+ *  Implements the Grandote portable memory barrier function.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  *
@@ -52,9 +52,9 @@
 
 
 #include <pthread.h>
-#include "com/diag/desperado/barrier.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/barrier.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 //
 //  Implement a memory barrier. Yes, we really are creating a mutex
@@ -67,7 +67,7 @@
 //  The down side is that this is extremely inefficient compared to using
 //  an assembler memory barrier instruction.
 //
-CXXCAPI int desperado_portable_barrier() {
+CXXCAPI int grandote_portable_barrier() {
     Logger& logger = Platform::instance().logger();
     int value = 0;
     int rc;

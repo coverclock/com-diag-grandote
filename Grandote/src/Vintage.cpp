@@ -55,34 +55,34 @@
 
 
 
-#include "com/diag/desperado/release.h"
-#include "com/diag/desperado/Vintage.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
+#include "com/diag/grandote/release.h"
+#include "com/diag/grandote/Vintage.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
-const char Vintage::product[] =     "$Product: " DESPERADO_VINTAGE_PRODUCT " $";
+const char Vintage::product[] =     "$Product: " GRANDOTE_VINTAGE_PRODUCT " $";
 
-const char Vintage::license[] =     "$License: " DESPERADO_VINTAGE_LICENSE " $";
+const char Vintage::license[] =     "$License: " GRANDOTE_VINTAGE_LICENSE " $";
 
-const char Vintage::copyright[] =   "$Copyright: " DESPERADO_VINTAGE_COPYRIGHT " $";
+const char Vintage::copyright[] =   "$Copyright: " GRANDOTE_VINTAGE_COPYRIGHT " $";
 
-const char Vintage::contact[] =     "$Contact: " DESPERADO_VINTAGE_CONTACT " $";
+const char Vintage::contact[] =     "$Contact: " GRANDOTE_VINTAGE_CONTACT " $";
 
-const char Vintage::url[] =         "$Url: " DESPERADO_VINTAGE_URL " $";
+const char Vintage::url[] =         "$Url: " GRANDOTE_VINTAGE_URL " $";
 
-const char Vintage::date[] =        "$Date: " DESPERADO_VINTAGE_DATE " $";
+const char Vintage::date[] =        "$Date: " GRANDOTE_VINTAGE_DATE " $";
 
-const char Vintage::release[] =     "$Release: " DESPERADO_VINTAGE_RELEASE " $";
+const char Vintage::release[] =     "$Release: " GRANDOTE_VINTAGE_RELEASE " $";
 
-const char Vintage::version[] =     "$Version: " DESPERADO_VINTAGE_VERSION " $";
+const char Vintage::version[] =     "$Version: " GRANDOTE_VINTAGE_VERSION " $";
 
-const char Vintage::target[] =     "$Target: " DESPERADO_VINTAGE_TARGET " $";
+const char Vintage::target[] =     "$Target: " GRANDOTE_VINTAGE_TARGET " $";
 
-const char Vintage::platform[] =     "$Platform: " DESPERADO_VINTAGE_PLATFORM " $";
+const char Vintage::platform[] =     "$Platform: " GRANDOTE_VINTAGE_PLATFORM " $";
 
 const char Vintage::build[] =       "$Build: " __DATE__ " " __TIME__ " $";
 
@@ -130,4 +130,4 @@ void Vintage::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

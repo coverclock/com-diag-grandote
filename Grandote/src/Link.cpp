@@ -53,12 +53,12 @@
  */
 
 
-#include "com/diag/desperado/Link.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/Link.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -116,4 +116,4 @@ Link::Functor::~Functor() {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

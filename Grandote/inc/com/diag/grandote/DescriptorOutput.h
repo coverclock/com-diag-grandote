@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DESCRIPTOROUTPUT_H_
-#define _COM_DIAG_DESPERADO_DESCRIPTOROUTPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_DESCRIPTOROUTPUT_H_
+#define _COM_DIAG_GRANDOTE_DESCRIPTOROUTPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -63,10 +63,10 @@
 #if !defined(STDERR_FILENO)
 # define STDERR_FILENO (2)
 #endif
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an output functor that writes data to a file
@@ -227,7 +227,7 @@ inline int DescriptorOutput::getDescriptor() const {
     return this->descriptor;
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _COM_DIAG_DESPERADO_STDLIB_H_
-#define _COM_DIAG_DESPERADO_STDLIB_H_
+#ifndef _COM_DIAG_GRANDOTE_STDLIB_H_
+#define _COM_DIAG_GRANDOTE_STDLIB_H_
 
 /******************************************************************************
 

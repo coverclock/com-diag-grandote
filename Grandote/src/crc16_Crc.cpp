@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/crc16_Crc.h"
+#include "com/diag/grandote/crc16_Crc.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 Crc<uint16_t> crc16_Crc(0x8005, true, 0, 0);
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

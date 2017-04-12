@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Iso3166.h"
-#include "com/diag/desperado/Iso3166.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Iso3166.h"
+#include "com/diag/grandote/Iso3166.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 static Iso3166 staticIso3166;
 

@@ -41,7 +41,7 @@
 /**
  *  @file
  *
- *  Pulls in all of the symbols from the Desperado namespace.
+ *  Pulls in all of the symbols from the Grandote namespace.
  *
  *  Care should be taken when used in header files used outside of the library
  *  since it pollutes the user's namespace.
@@ -55,5 +55,5 @@
  */
 
 #if defined(__cplusplus)
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 #endif

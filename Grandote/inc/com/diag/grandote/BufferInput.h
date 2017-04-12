@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/Input.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Input.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an input functor that returns data from a buffer in
@@ -261,11 +261,11 @@ inline size_t BufferInput::getLength() const {
 	return (this->size - this->offset);
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the BufferInput unit test.
  *  

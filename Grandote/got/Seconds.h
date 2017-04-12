@@ -13,15 +13,15 @@
 
 #include "gtest/gtest.h"
 #include "Fixture.h"
-#include "com/diag/desperado/Seconds.h"
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/Seconds.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/generics.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture SecondsTest;
 

@@ -53,8 +53,8 @@
  */
 
 
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Grandote.h"
 
 
 CXXCAPI size_t print_f(Output* o, const char* format, ...) {

@@ -54,41 +54,41 @@
  */
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/BufferInput.h"
-#include "com/diag/desperado/BufferInput.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/DumpInput.h"
-#include "com/diag/desperado/DumpInput.h"
-#include "com/diag/desperado/DumpOutput.h"
-#include "com/diag/desperado/DumpOutput.h"
-#include "com/diag/desperado/FileInput.h"
-#include "com/diag/desperado/FileInput.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/Input.h"
-#include "com/diag/desperado/Input.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/SyslogOutput.h"
-#include "com/diag/desperado/SyslogOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/BufferInput.h"
+#include "com/diag/grandote/BufferInput.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/DumpInput.h"
+#include "com/diag/grandote/DumpInput.h"
+#include "com/diag/grandote/DumpOutput.h"
+#include "com/diag/grandote/DumpOutput.h"
+#include "com/diag/grandote/FileInput.h"
+#include "com/diag/grandote/FileInput.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/Input.h"
+#include "com/diag/grandote/Input.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/SyslogOutput.h"
+#include "com/diag/grandote/SyslogOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 static BufferInput staticBufferInput;
 static BufferOutput staticBufferOutput;
@@ -103,7 +103,7 @@ static Input staticInput;
 static Output staticOutput;
 static PathInput staticPathInput;
 static PathOutput staticPathOutput;
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
 static SyslogOutput staticSyslogOutput;
 #endif
 
@@ -126,7 +126,7 @@ CXXCAPI int unittestInputOutputStatic(void) {
     ::staticOutput.show();
     ::staticPathInput.show();
     ::staticPathOutput.show();
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     ::staticSyslogOutput.show();
 #endif
 

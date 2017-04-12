@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_EXCEPTIONS_H_
-#define _COM_DIAG_DESPERADO_EXCEPTIONS_H_
+#ifndef _COM_DIAG_GRANDOTE_EXCEPTIONS_H_
+#define _COM_DIAG_GRANDOTE_EXCEPTIONS_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -58,7 +58,7 @@
 #include <new>
 
 
-#if defined(DESPERADO_HAS_EXCEPTIONS)
+#if defined(GRANDOTE_HAS_EXCEPTIONS)
 
 
 #include <exception>
@@ -150,8 +150,8 @@
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Exception unit test.
  *

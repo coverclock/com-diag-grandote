@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_MASKABLELOGGER_
-#define _H_COM_DIAG_DESPERADO_MASKABLELOGGER_
+#ifndef _H_COM_DIAG_GRANDOTE_MASKABLELOGGER_
+#define _H_COM_DIAG_GRANDOTE_MASKABLELOGGER_
 
 /**
  * @file
@@ -11,16 +11,16 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/Logger.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/Logger.h"
+#include "com/diag/grandote/Platform.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
- * MaskableLogger extends the Desperado Logger class to implement a mechanism to
+ * MaskableLogger extends the Grandote Logger class to implement a mechanism to
  * enable and disable log levels selectively. The superclass supports sixteen
  * logging levels (which turns out to be the transitive closure of logging
  * levels support by common logging systems such as Syslog, Java, and Apache).
@@ -79,7 +79,7 @@ public:
      * @return the name of the environmental variable.
      */
     static const char * MASK_ENV() {
-    	return "COM_DIAG_DESPERADO_LOGGER_MASK";
+    	return "COM_DIAG_GRANDOTE_LOGGER_MASK";
     }
 
 	/**
@@ -121,15 +121,15 @@ public:
     	// Yes, I know this is kinda funky. We just want to reinitialize the
     	// super class portion of ourselves with the new version to set the
     	// output functor, and the super class doesn't have an operation with
-    	// which to do that, and adding one violates the design of Desperado.
+    	// which to do that, and adding one violates the design of Grandote.
     	//
     	// IMO this is legal and should compile, but does not. Worse, the
     	// diagnostics are completely unhelpful.
-    	//  static_cast<::com::diag::desperado::Logger&>(*this) = logger;
+    	//  static_cast<::com::diag::grandote::Logger&>(*this) = logger;
     	//
     	// Somewhat to my surprise, this compiles and works, invoking the
     	// default assignment operator in the base class to do the copy.
-    	//  ::com::diag::desperado::Logger::operator=(logger);
+    	//  ::com::diag::grandote::Logger::operator=(logger);
     	//
     	// But this is a little less scary looking, and works fine.
     	//

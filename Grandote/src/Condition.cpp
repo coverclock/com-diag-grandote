@@ -7,12 +7,12 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/Condition.h"
-#include "com/diag/desperado/Mutex.h"
+#include "com/diag/grandote/Condition.h"
+#include "com/diag/grandote/Mutex.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 Condition::Condition()
 {

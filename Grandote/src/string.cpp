@@ -43,7 +43,7 @@
 /**
  *  @file
  *
- *  Implements the Desperado string functions.
+ *  Implements the Grandote string functions.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  *
@@ -51,15 +51,15 @@
  */
 
 
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/target.h"
 
 
 //
 //  This emulates the non-POSIX Linux strnlen() function.
 //
-CXXCAPI size_t desperado_strnlen(const char* s, size_t maxlen) {
+CXXCAPI size_t grandote_strnlen(const char* s, size_t maxlen) {
     size_t length = 0;
     while (('\0' != *(s++)) && (0 < (maxlen--))) {
         ++length;
@@ -71,7 +71,7 @@ CXXCAPI size_t desperado_strnlen(const char* s, size_t maxlen) {
 //
 //  This emulates the non-POSIX OpenBSD strlcpy() function.
 //
-CXXCAPI size_t desperado_strlcpy(char *dst, const char *src, size_t count) {
+CXXCAPI size_t grandote_strlcpy(char *dst, const char *src, size_t count) {
     char* dstptr = dst;
     const char* srcptr = src;
     size_t tocopy = count;
@@ -97,7 +97,7 @@ CXXCAPI size_t desperado_strlcpy(char *dst, const char *src, size_t count) {
 //
 //  This emulates the non-POSIX OpenBSD strlcat() function.
 //
-CXXCAPI size_t desperado_strlcat(char *dst, const char *src, size_t count) {
+CXXCAPI size_t grandote_strlcat(char *dst, const char *src, size_t count) {
     char* dstptr = dst;
     const char* srcptr = src;
     size_t tocopy = count;
@@ -125,7 +125,7 @@ CXXCAPI size_t desperado_strlcat(char *dst, const char *src, size_t count) {
 //
 //  Search from the left.
 //
-CXXCAPI char* desperado_strnchr(const char* s, size_t count, int c) {
+CXXCAPI char* grandote_strnchr(const char* s, size_t count, int c) {
     while (('\0' != *s) && (0 < (count--))) {
         if (c == *s) {
             return const_cast<char*>(s);
@@ -139,8 +139,8 @@ CXXCAPI char* desperado_strnchr(const char* s, size_t count, int c) {
 //
 //  Search from the left.
 //
-CXXCAPI char* desperado_strnrchr(const char* s, size_t count, int c) {
-    size_t maxlen = ::desperado_strnlen(s, count);
+CXXCAPI char* grandote_strnrchr(const char* s, size_t count, int c) {
+    size_t maxlen = ::grandote_strnlen(s, count);
     if (0 < maxlen) {
         const char* e = s + maxlen - 1;
         while (e >= s) {

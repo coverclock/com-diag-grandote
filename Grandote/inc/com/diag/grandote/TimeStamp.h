@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_TIMESTAMP_H_
-#define _COM_DIAG_DESPERADO_TIMESTAMP_H_
+#ifndef _COM_DIAG_GRANDOTE_TIMESTAMP_H_
+#define _COM_DIAG_GRANDOTE_TIMESTAMP_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,15 +56,15 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/LocalTime.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/LocalTime.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements methods to represent CommonEra and LocalTime dates and times
@@ -320,7 +320,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

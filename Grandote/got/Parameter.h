@@ -13,15 +13,15 @@
 
 #include "gtest/gtest.h"
 #include "Fixture.h"
-#include "com/diag/desperado/Parameter.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/DataInput.h"
+#include "com/diag/grandote/Parameter.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/DataInput.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture ParameterTest;
 
@@ -41,7 +41,7 @@ TEST_F(ParameterTest, String) {
 
 TEST_F(ParameterTest, Stack) {
 	static const char INPUT[] = "/usr/local/etc/stack.conf";
-	::com::diag::desperado::DataInput input(INPUT);
+	::com::diag::grandote::DataInput input(INPUT);
 	Parameter parameter(input);
 	EXPECT_EQ(std::strcmp(parameter, INPUT), 0);
 	EXPECT_EQ((int)parameter, std::strlen(INPUT));
@@ -49,7 +49,7 @@ TEST_F(ParameterTest, Stack) {
 
 TEST_F(ParameterTest, StackLength) {
 	static const char INPUT[] = "/usr/local/etc/stack.conf";
-	::com::diag::desperado::DataInput input(INPUT);
+	::com::diag::grandote::DataInput input(INPUT);
 	Parameter parameter(input, std::strlen(INPUT) - 5);
 	EXPECT_EQ(std::strcmp(parameter, "/usr/local/etc/stack"), 0);
 	EXPECT_EQ((int)parameter, std::strlen("/usr/local/etc/stack"));
@@ -57,7 +57,7 @@ TEST_F(ParameterTest, StackLength) {
 
 TEST_F(ParameterTest, Heap) {
 	static const char INPUT[] = "/usr/local/etc/heap.conf";
-	::com::diag::desperado::DataInput * input = new ::com::diag::desperado::DataInput(INPUT);
+	::com::diag::grandote::DataInput * input = new ::com::diag::grandote::DataInput(INPUT);
 	Parameter * parameter = new Parameter(input);
 	EXPECT_EQ(std::strcmp(*parameter, INPUT), 0);
 	EXPECT_EQ((int)*parameter, std::strlen(INPUT));
@@ -65,7 +65,7 @@ TEST_F(ParameterTest, Heap) {
 }
 
 static const char PARAMETERTESTINPUT[] = "/usr/local/etc/default.conf";
-static const char * parameterfunction(const Parameter & parameter = Parameter(new ::com::diag::desperado::DataInput(PARAMETERTESTINPUT))) {
+static const char * parameterfunction(const Parameter & parameter = Parameter(new ::com::diag::grandote::DataInput(PARAMETERTESTINPUT))) {
 	return parameter;
 }
 

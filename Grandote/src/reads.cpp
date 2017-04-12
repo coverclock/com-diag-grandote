@@ -48,10 +48,10 @@
 
 
 #include <unistd.h>
-#include "com/diag/desperado/reads.h"
+#include "com/diag/grandote/reads.h"
 
 
-CXXCAPI ssize_t desperado_reads(
+CXXCAPI ssize_t grandote_reads(
     int fd,
     void* pointer,
     size_t atleast,

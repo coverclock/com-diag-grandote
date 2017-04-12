@@ -54,24 +54,24 @@
 
 
 #if 0
-#define DESPERADO_HAS_DEBUGGING
+#define GRANDOTE_HAS_DEBUGGING
 #endif
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/TimeZone.h"
-#include "com/diag/desperado/LeapSeconds.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/Ticks.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/TimeZone.h"
+#include "com/diag/grandote/LeapSeconds.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/Ticks.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -589,4 +589,4 @@ void CommonEra::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

@@ -13,22 +13,22 @@
 
 #include <string>
 #include "gtest/gtest.h"
-#include "com/diag/desperado/Packet.h"
-#include "com/diag/desperado/size.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/string.h"
+#include "com/diag/grandote/Packet.h"
+#include "com/diag/grandote/size.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/string.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture PacketDataTest;
 
@@ -855,7 +855,7 @@ TEST_F(PacketInputOutputTest, Formatted) {
 	static const size_t ALLOC = 7;
 	Packet packet(ALLOC, Packet::APPEND);
 	EXPECT_TRUE(packet.empty());
-	::com::diag::desperado::Print print(packet.output());
+	::com::diag::grandote::Print print(packet.output());
 	for (size_t ii = 0; ii < countof(HENRYV); ++ii) {
 		print("%s", HENRYV[ii]);
 		EXPECT_FALSE(packet.empty());
@@ -886,14 +886,14 @@ static const char RICHARDII[] = {
 };
 
 TEST_F(PacketInputOutputTest, SourceSinkBuffer) {
-	::com::diag::desperado::DataInput datainput(RICHARDII, sizeof(RICHARDII));
+	::com::diag::grandote::DataInput datainput(RICHARDII, sizeof(RICHARDII));
 	static const size_t ALLOC = 7;
 	Packet packet(ALLOC, Packet::APPEND);
 	EXPECT_TRUE(packet.empty());
 	EXPECT_EQ(packet.source(datainput), sizeof(RICHARDII));
 	EXPECT_FALSE(packet.empty());
 	char buffer[sizeof(RICHARDII)];
-	::com::diag::desperado::BufferOutput bufferoutput(buffer, sizeof(buffer));
+	::com::diag::grandote::BufferOutput bufferoutput(buffer, sizeof(buffer));
 	EXPECT_EQ(packet.sink(bufferoutput), sizeof(RICHARDII));
 	EXPECT_TRUE(packet.empty());
 	EXPECT_EQ(std::strncmp(RICHARDII, buffer, sizeof(buffer)), 0);
@@ -901,13 +901,13 @@ TEST_F(PacketInputOutputTest, SourceSinkBuffer) {
 
 TEST_F(PacketInputOutputTest, SourceSinkPathFile) {
 
-	::com::diag::desperado::PathInput input("unittest.txt", "r");
+	::com::diag::grandote::PathInput input("unittest.txt", "r");
 	Size inputsize = size(input);
 	EXPECT_TRUE(inputsize > 0);
 	char name[] = "/tmp/PacketTest.SourceSinkPathFile.XXXXXX";
 	int fd = ::mkstemp(name);
 	ASSERT_TRUE(fd > 0);
-	::com::diag::desperado::DescriptorOutput output(fd);
+	::com::diag::grandote::DescriptorOutput output(fd);
 	Packet packet;
 	EXPECT_TRUE(packet.empty());
 	size_t sourced = packet.source(input);

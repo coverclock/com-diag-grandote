@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_JAVA_H_
-#define _COM_DIAG_DESPERADO_JAVA_H_
+#ifndef _COM_DIAG_GRANDOTE_JAVA_H_
+#define _COM_DIAG_GRANDOTE_JAVA_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -73,7 +73,7 @@
  */
 
 
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/target.h"
 
 
 #if defined(__cplusplus)
@@ -156,8 +156,8 @@ typedef j_opaque_t *j_object_t;
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the C++ CXXJAPI unit test.
  *

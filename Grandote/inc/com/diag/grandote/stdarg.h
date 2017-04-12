@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_STDARG_H_
-#define _COM_DIAG_DESPERADO_STDARG_H_
+#ifndef _COM_DIAG_GRANDOTE_STDARG_H_
+#define _COM_DIAG_GRANDOTE_STDARG_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -46,7 +46,7 @@
 /**
  *  @file
  *
- *  Defines the Desperado stdarg functions.
+ *  Defines the Grandote stdarg functions.
  * 
  *  This can be included from either a C or a C++ translation unit.
  *

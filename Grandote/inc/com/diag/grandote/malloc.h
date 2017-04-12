@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_MALLOC_H_
-#define _COM_DIAG_DESPERADO_MALLOC_H_
+#ifndef _COM_DIAG_GRANDOTE_MALLOC_H_
+#define _COM_DIAG_GRANDOTE_MALLOC_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -62,10 +62,10 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Heap.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Heap.h"
 
 
 /**
@@ -77,7 +77,7 @@
  *  @return a pointer to the suitably aligned memory block of
  *          at least the requested size, or null if an error occurred.
  */
-CXXCINLINE void* desperado_malloc(size_t size) {
+CXXCINLINE void* grandote_malloc(size_t size) {
     return heap_malloc(platform_heap(), size);
 }
 
@@ -90,7 +90,7 @@ CXXCINLINE void* desperado_malloc(size_t size) {
  *                      returned by malloc(), realloc(), or calloc().
  *                      It is not an error for this pointer to be null.
  */
-CXXCINLINE void desperado_free(void* ptr) {
+CXXCINLINE void grandote_free(void* ptr) {
     heap_free(platform_heap(), ptr);
 }
 
@@ -118,7 +118,7 @@ CXXCINLINE void desperado_free(void* ptr) {
  *  @return a pointer to the suitably aligned memory block of
  *          at least the requested size, or null if an error occurred.
  */
-CXXCINLINE void* desperado_realloc(void* ptr, size_t size) {
+CXXCINLINE void* grandote_realloc(void* ptr, size_t size) {
     return heap_realloc(platform_heap(), ptr, size);
 }
 
@@ -135,7 +135,7 @@ CXXCINLINE void* desperado_realloc(void* ptr, size_t size) {
  *  @return a pointer to the suitably aligned and zeroed memory block of
  *          at least the requested size, or null if an error occurred.
  */
-CXXCINLINE void* desperado_calloc(size_t nmemb, size_t size) {
+CXXCINLINE void* grandote_calloc(size_t nmemb, size_t size) {
     return heap_calloc(platform_heap(), nmemb, size);
 }
 
@@ -146,10 +146,10 @@ CXXCINLINE void* desperado_calloc(size_t nmemb, size_t size) {
 /**
  *  @def    malloc(_SIZE_)
  *
- *  Generates the code to call the Desperado malloc using the
+ *  Generates the code to call the Grandote malloc using the
  *  size @a _SIZE_.
  */
-#define malloc(_SIZE_) desperado_malloc(_SIZE_)
+#define malloc(_SIZE_) grandote_malloc(_SIZE_)
 
 #if defined(free)
 #undef free
@@ -157,10 +157,10 @@ CXXCINLINE void* desperado_calloc(size_t nmemb, size_t size) {
 /**
  *  @def    free(_PTR_)
  *
- *  Generates the code to call the Desperado free using the
+ *  Generates the code to call the Grandote free using the
  *  pointer @a _PTR_.
  */
-#define free(_PTR_) desperado_free(_PTR_)
+#define free(_PTR_) grandote_free(_PTR_)
 
 #if defined(realloc)
 #undef realloc
@@ -168,10 +168,10 @@ CXXCINLINE void* desperado_calloc(size_t nmemb, size_t size) {
 /**
  *  @def    realloc(_PTR_, _SIZE_)
  *
- *  Generates the code to call the Desperado realloc using the
+ *  Generates the code to call the Grandote realloc using the
  *  pointer @a _PTR_ and the size @a _SIZE_.
  */
-#define realloc(_PTR_, _SIZE_) desperado_realloc(_PTR_, _SIZE_)
+#define realloc(_PTR_, _SIZE_) grandote_realloc(_PTR_, _SIZE_)
 
 #if defined(calloc)
 #undef calloc
@@ -179,10 +179,10 @@ CXXCINLINE void* desperado_calloc(size_t nmemb, size_t size) {
 /**
  *  @def    calloc(_NMEMB_, _SIZE_)
  *
- *  Generates the code to call the Desperado calloc using the
+ *  Generates the code to call the Grandote calloc using the
  *  number of members @a _NMEMB_ and the size @a _SIZE_.
  */
-#define calloc(_NMEMB_, _SIZE_) desperado_calloc(_NMEMB_, _SIZE_)
+#define calloc(_NMEMB_, _SIZE_) grandote_calloc(_NMEMB_, _SIZE_)
 
 
 #endif

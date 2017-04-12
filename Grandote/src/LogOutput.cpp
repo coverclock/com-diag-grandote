@@ -49,16 +49,16 @@
  */
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/LogOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Logger.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/LogOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Logger.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -152,4 +152,4 @@ void LogOutput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_CRC32_CRC_H_
-#define _COM_DIAG_DESPERADO_CRC32_CRC_H_
+#ifndef _COM_DIAG_GRANDOTE_CRC32_CRC_H_
+#define _COM_DIAG_GRANDOTE_CRC32_CRC_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,15 +56,15 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/Crc.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/Crc.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 extern Crc<uint32_t> crc32_Crc;
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

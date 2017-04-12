@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_PLATFORM_H_
-#define _COM_DIAG_DESPERADO_PLATFORM_H_
+#ifndef _COM_DIAG_GRANDOTE_PLATFORM_H_
+#define _COM_DIAG_GRANDOTE_PLATFORM_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -52,28 +52,28 @@
  */
 
 
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Input.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Logger.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Input.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Logger.h"
 
 
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/TimeZone.h"
-#include "com/diag/desperado/DaylightSavingTime.h"
-#include "com/diag/desperado/LeapSeconds.h"
-#include "com/diag/desperado/Epoch.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/TimeZone.h"
+#include "com/diag/grandote/DaylightSavingTime.h"
+#include "com/diag/grandote/LeapSeconds.h"
+#include "com/diag/grandote/Epoch.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Defines an interface to an underlying operating system.
@@ -312,7 +312,7 @@ public:
     virtual ticks_t yield(ticks_t ticks = 0, bool premature = true) = 0;
 
     /**
-     *  Returns the identity of the caller. Since Desperado requires
+     *  Returns the identity of the caller. Since Grandote requires
      *  a POSIX interface including POSIX Threads, this is typically
      *  the process ID from getpid(2) appended with the thread ID
      *  from pthread_self(3). However, other platforms may implement
@@ -660,7 +660,7 @@ inline DaylightSavingTime& Platform::getDaylightSavingTime() const {
     return *this->dstrule;
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 #endif
 
@@ -673,7 +673,7 @@ inline DaylightSavingTime& Platform::getDaylightSavingTime() const {
  *
  *  @return the frequency of the platform clock in Hertz.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_frequency(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, ticks_t) platform_frequency(void);
 
 
 /**
@@ -682,7 +682,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_frequency(void);
  *  @return the time of day in absolute ticks of duration since
  *          the platform epoch.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_time(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, ticks_t) platform_time(void);
 
 
 /**
@@ -692,7 +692,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_time(void);
  *  @return the relative time in relative ticks of duration since
  *          this object was constructed.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_elapsed(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, ticks_t) platform_elapsed(void);
 
 
 /**
@@ -712,11 +712,11 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_elapsed(void);
  *          depending on the scheduling granularity and whether an
  *          asynchronous event caused the method to return prematurely.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_yield(CXXCTYPE(::com::diag::desperado::, ticks_t) ticks, int premature);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, ticks_t) platform_yield(CXXCTYPE(::com::diag::grandote::, ticks_t) ticks, int premature);
 
 
 /**
- *  Returns the identity of the caller. Since Desperado requires
+ *  Returns the identity of the caller. Since Grandote requires
  *  a POSIX interface including POSIX Threads, this is typically
  *  the process ID from getpid(2) appended with the thread ID
  *  from pthread_self(3). However, other platforms may implement
@@ -724,7 +724,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, ticks_t) platform_yield(CXXCTYPE(::co
  *
  *  @return the identity of the caller.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, identity_t) platform_identity();
+CXXCAPI CXXCTYPE(::com::diag::grandote::, identity_t) platform_identity();
 
 
 /**
@@ -765,7 +765,7 @@ CXXCAPI void platform_fatal(
  *
  *  @return a pointer to the platform input object.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, Input)* platform_input(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, Input)* platform_input(void);
 
 
 /**
@@ -775,7 +775,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, Input)* platform_input(void);
  *
  *  @return a pointer to the platform output object.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, Output)* platform_output(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, Output)* platform_output(void);
 
 
 /**
@@ -785,7 +785,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, Output)* platform_output(void);
  *
  *  @return a pointer to the platform error output object.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, Output)* platform_error(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, Output)* platform_error(void);
 
 
 /**
@@ -795,7 +795,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, Output)* platform_error(void);
  *
  *  @return a pointer to the platform dump object.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, Dump)* platform_dump(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, Dump)* platform_dump(void);
 
 
 /**
@@ -805,7 +805,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, Dump)* platform_dump(void);
  *
  *  @return a pointer to the platform heap object.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, Heap)* platform_heap(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, Heap)* platform_heap(void);
 
 
 /**
@@ -815,7 +815,7 @@ CXXCAPI CXXCTYPE(::com::diag::desperado::, Heap)* platform_heap(void);
  *
  *  @return a pointer to the platform logger object.
  */
-CXXCAPI CXXCTYPE(::com::diag::desperado::, Logger)* platform_logger(void);
+CXXCAPI CXXCTYPE(::com::diag::grandote::, Logger)* platform_logger(void);
 
 
 /**
@@ -907,7 +907,7 @@ CXXCAPI const char* platform_errormessage(
 );
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the Platform unit test.
  *

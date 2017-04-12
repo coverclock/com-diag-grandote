@@ -13,17 +13,17 @@
 
 #include "gtest/gtest.h"
 #include "Fixture.h"
-#include "com/diag/desperado/MaskableLogger.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/LogOutput.h"
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/string.h"
+#include "com/diag/grandote/MaskableLogger.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/LogOutput.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/string.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture LoggerTest;
 
@@ -134,7 +134,7 @@ TEST_F(LoggerTest, EnableDisable) {
 }
 
 TEST_F(LoggerTest, Initialization) {
-	::com::diag::desperado::Output nulloutput;
+	::com::diag::grandote::Output nulloutput;
 	MaskableLogger mylogger;
 	EXPECT_FALSE(mylogger.isEnabled(mylogger.FINEST));
 	EXPECT_FALSE(mylogger.isEnabled(mylogger.FINER));
@@ -318,8 +318,8 @@ TEST_F(LoggerTest, SetMaskEnvironment) {
 	} while (false)
 
 TEST_F(LoggerTest, Logging) {
-	::com::diag::desperado::FileOutput errput(stderr);
-	::com::diag::desperado::LogOutput logput(errput);
+	::com::diag::grandote::FileOutput errput(stderr);
+	::com::diag::grandote::LogOutput logput(errput);
 	MaskableLogger mylogger(logput);
 	for (int mask = 0; mask <= 0xffff; mask = (mask == 0) ? 1 : (mask << 1)) {
 		LOGGER_TEST_ENABLEDISABLE_SET(mylogger.FINEST);
@@ -361,8 +361,8 @@ TEST_F(LoggerTest, Logging) {
 
 TEST_F(LoggerTest, Instance) {
 	MaskableLogger & l1 = MaskableLogger::instance();
-	::com::diag::desperado::FileOutput errput(stderr);
-	::com::diag::desperado::LogOutput logput(errput);
+	::com::diag::grandote::FileOutput errput(stderr);
+	::com::diag::grandote::LogOutput logput(errput);
 	MaskableLogger mylogger(logput);
 	EXPECT_NE(&l1, &mylogger);
 	MaskableLogger & l2 = MaskableLogger::instance(mylogger);

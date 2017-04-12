@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_BARRIER_H_
-#define _COM_DIAG_DESPERADO_BARRIER_H_
+#ifndef _COM_DIAG_GRANDOTE_BARRIER_H_
+#define _COM_DIAG_GRANDOTE_BARRIER_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -54,7 +54,7 @@
  */
 
 
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
 /**
@@ -88,7 +88,7 @@
  *
  *  This is usable from either a C or C++ translation unit.
  *
- *  @see    desperado_native_barrier()
+ *  @see    grandote_native_barrier()
  *
  *  @see    Mutex
  *
@@ -139,22 +139,22 @@
  *
  *  @author coverclock@diag.com (Chip Overclock)
  */
-CXXCAPI int desperado_portable_barrier(void);
+CXXCAPI int grandote_portable_barrier(void);
 
 
-#if !defined(desperado_native_barrier)
+#if !defined(grandote_native_barrier)
 #   if defined(__GNUC__)
 #       if defined(__GNUC_MINOR__)
 #           if ((((__GNUC__)*1000)+(__GNUC_MINOR__))>=4001)
-#               define desperado_native_barrier() (__sync_synchronize(), 0)
+#               define grandote_native_barrier() (__sync_synchronize(), 0)
 #           endif
 #       endif
 #   endif
 #endif
 
-#if !defined(desperado_native_barrier)
-#   define desperado_native_barrier() desperado_portable_barrier()
-#	warning Using desperado_portable_barrier!
+#if !defined(grandote_native_barrier)
+#   define grandote_native_barrier() grandote_portable_barrier()
+#	warning Using grandote_portable_barrier!
 #endif
 
 
@@ -169,7 +169,7 @@ CXXCAPI int desperado_portable_barrier(void);
  *
  *  This is usable from either a C or C++ translation unit.
  *
- *  @see    desperado_portable_barrier()
+ *  @see    grandote_portable_barrier()
  *
  *  @see    R. Stallman et al., <I>Using the GCC Compiler Collection
  *          (GCC)</I>, GCC 4.1.1, GNU Press, October 2003
@@ -178,12 +178,12 @@ CXXCAPI int desperado_portable_barrier(void);
  *
  *  @author coverclock@diag.com (Chip Overclock)
  */
-CXXCINLINE int desperado_memory_barrier(void) {
-    return desperado_native_barrier();
+CXXCINLINE int grandote_memory_barrier(void) {
+    return grandote_native_barrier();
 }
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the barrier unit test.
  *

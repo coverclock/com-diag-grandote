@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_TYPES_H_
-#define _COM_DIAG_DESPERADO_TYPES_H_
+#ifndef _COM_DIAG_GRANDOTE_TYPES_H_
+#define _COM_DIAG_GRANDOTE_TYPES_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -46,7 +46,7 @@
 /**
  *  @file
  *
- *  Defines the integral types used by Desperado.
+ *  Defines the integral types used by Grandote.
  *
  *  This header file can included from both C++ and C translation units.
  *
@@ -54,10 +54,10 @@
  */
 
 
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/target.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 /**
@@ -84,7 +84,7 @@ typedef uint64_t seconds_t;
 
 /**
  *  This type identifies the running task/thread/process in some
- *  unique manner. Typically, since Desperado requires POSIX
+ *  unique manner. Typically, since Grandote requires POSIX
  *  including POSIX Threads, this is the process ID from getpid(2)
  *  combined with the thread ID from pthread_self(3). However, some
  *  platforms may implement some other form of identity.
@@ -92,7 +92,7 @@ typedef uint64_t seconds_t;
 typedef uint64_t identity_t;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

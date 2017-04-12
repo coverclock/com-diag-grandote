@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  This is a pilot framework for a header file declaring a purely abstract
@@ -176,7 +176,7 @@ inline Abstract::Abstract(const Abstract& that) :
     }
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

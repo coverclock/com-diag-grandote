@@ -53,19 +53,19 @@
  */
 
 #include <sys/time.h>
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/BandwidthThrottle.h"
-#include "com/diag/desperado/BandwidthThrottle.h"
-#include "com/diag/desperado/Meter.h"
-#include "com/diag/desperado/Meter.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Ticks.h"
-#include "com/diag/desperado/Ticks.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/BandwidthThrottle.h"
+#include "com/diag/grandote/BandwidthThrottle.h"
+#include "com/diag/grandote/Meter.h"
+#include "com/diag/grandote/Meter.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Ticks.h"
+#include "com/diag/grandote/Ticks.h"
+#include "com/diag/grandote/Grandote.h"
 
 static BandwidthThrottle staticBandwidthThrottle;
 

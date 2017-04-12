@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DUMP_H_
-#define _COM_DIAG_DESPERADO_DUMP_H_
+#ifndef _COM_DIAG_GRANDOTE_DUMP_H_
+#define _COM_DIAG_GRANDOTE_DUMP_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,19 +56,19 @@
  */
 
 
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/target.h"
 
 
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Input.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Input.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Displays the contents of a block of memory of an arbitary location,
@@ -425,7 +425,7 @@ inline char* Dump::hexadecimals(const Byte value, char* to) const {
     return to;
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #else
@@ -456,7 +456,7 @@ typedef struct Dump Dump;
  *
  *  @return         the number of bytes dumped.
  */
-CXXCAPI size_t dump_bytes(CXXCTYPE(::com::diag::desperado::, Dump)* d, const void* data, size_t length);
+CXXCAPI size_t dump_bytes(CXXCTYPE(::com::diag::grandote::, Dump)* d, const void* data, size_t length);
 
 
 /**
@@ -474,10 +474,10 @@ CXXCAPI size_t dump_bytes(CXXCTYPE(::com::diag::desperado::, Dump)* d, const voi
  *
  *  @return         the number of words dumped.
  */
-CXXCAPI size_t dump_words(CXXCTYPE(::com::diag::desperado::, Dump)* d, const void* data, size_t length);
+CXXCAPI size_t dump_words(CXXCTYPE(::com::diag::grandote::, Dump)* d, const void* data, size_t length);
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the Dump unit test.
  *  

@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DAYLIGHTSAVINGTIME_H_
-#define _COM_DIAG_DESPERADO_DAYLIGHTSAVINGTIME_H_
+#ifndef _COM_DIAG_GRANDOTE_DAYLIGHTSAVINGTIME_H_
+#define _COM_DIAG_GRANDOTE_DAYLIGHTSAVINGTIME_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/DateTime.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/DateTime.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Defines an interface to encode a rule to decide whether a given
@@ -132,7 +132,7 @@ public:
 inline DaylightSavingTime::DaylightSavingTime() {
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

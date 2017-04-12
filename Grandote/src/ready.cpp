@@ -41,7 +41,7 @@
 /**
  *  @file
  *
- *  Implements the Desperado select-based I/O ready indication.
+ *  Implements the Grandote select-based I/O ready indication.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  */
@@ -55,10 +55,10 @@
 #include <unistd.h>
 #endif
 #include <cstring>
-#include "com/diag/desperado/ready.h"
+#include "com/diag/grandote/ready.h"
 
 
-CXXCAPI int desperado_descriptor_ready(int fd) {
+CXXCAPI int grandote_descriptor_ready(int fd) {
 	int result = 0;
 
 	fd_set readable;
@@ -79,16 +79,16 @@ CXXCAPI int desperado_descriptor_ready(int fd) {
 	int rc = ::select(fd + 1, &readable, &writeable, &exceptional, &timeout);
 	if (0 < rc) {
 		if (FD_ISSET(fd, &readable)) {
-			result |= DESPERADO_DESCRIPTOR_READY_READ;
+			result |= GRANDOTE_DESCRIPTOR_READY_READ;
 		}
 		if (FD_ISSET(fd, &writeable)) {
-			result |= DESPERADO_DESCRIPTOR_READY_WRITE;
+			result |= GRANDOTE_DESCRIPTOR_READY_WRITE;
 		}
 		if (FD_ISSET(fd, &exceptional)) {
-			result |= DESPERADO_DESCRIPTOR_READY_EXCEPTION;
+			result |= GRANDOTE_DESCRIPTOR_READY_EXCEPTION;
 		}
 	} else if (0 > rc) {
-		result |= DESPERADO_DESCRIPTOR_READY_ERROR;
+		result |= GRANDOTE_DESCRIPTOR_READY_ERROR;
 	} else {
 		// Do nothing.
 	}

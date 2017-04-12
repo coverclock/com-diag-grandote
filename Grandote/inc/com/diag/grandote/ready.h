@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _COM_DIAG_DESPERADO_READY_H_
-#define _COM_DIAG_DESPERADO_READY_H_
+#ifndef _COM_DIAG_GRANDOTE_READY_H_
+#define _COM_DIAG_GRANDOTE_READY_H_
 
 /******************************************************************************
 
@@ -43,23 +43,23 @@
 /**
  *  @file
  *
- *  Defines the Desperado select-based I/O ready indication.
+ *  Defines the Grandote select-based I/O ready indication.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/uClibc.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/uClibc.h"
 
 
-#define DESPERADO_DESCRIPTOR_READY_READ			(1<<0)
-#define DESPERADO_DESCRIPTOR_READY_WRITE		(1<<1)
-#define DESPERADO_DESCRIPTOR_READY_EXCEPTION	(1<<2)
-#define DESPERADO_DESCRIPTOR_READY_ERROR		(1<<(widthof(int)-1))
+#define GRANDOTE_DESCRIPTOR_READY_READ			(1<<0)
+#define GRANDOTE_DESCRIPTOR_READY_WRITE		(1<<1)
+#define GRANDOTE_DESCRIPTOR_READY_EXCEPTION	(1<<2)
+#define GRANDOTE_DESCRIPTOR_READY_ERROR		(1<<(widthof(int)-1))
 
 
 /**
@@ -69,7 +69,7 @@
  * @param fd is the file descriptor.
  * @return 0 for not ready, masked with defined bits if ready, <0 if error.
  */
-CXXCAPI int desperado_descriptor_ready(int fd);
+CXXCAPI int grandote_descriptor_ready(int fd);
 
 /**
  * Returns the number of bytes readable from the standard I/O buffer for the
@@ -79,13 +79,13 @@ CXXCAPI int desperado_descriptor_ready(int fd);
  * @param fp points to the FILE structure.
  * @return the number of readable bytes.
  */
-CXXCINLINE size_t desperado_file_readable(FILE * fp) {
-#if !defined(DESPERADO_HAS_UCLIBC)
+CXXCINLINE size_t grandote_file_readable(FILE * fp) {
+#if !defined(GRANDOTE_HAS_UCLIBC)
 	return (fp != 0) ? ((fp->_IO_read_ptr < fp->_IO_read_end) ? fp->_IO_read_end - fp->_IO_read_ptr : 0) : 0;
 #elif defined(__STDIO_BUFFERS) && defined(__STDIO_GETC_MACRO)
 	return (fp != 0) ? ((fp->__bufpos < fp->__bufgetc_u) ? fp->__bufgetc_u - fp->__bufpos : 0) : 0;
 #else
-#	warning desperado_file_readable stubbed!
+#	warning grandote_file_readable stubbed!
 	return -1;
 #endif
 }
@@ -98,13 +98,13 @@ CXXCINLINE size_t desperado_file_readable(FILE * fp) {
  * @param fp points to the FILE structure.
  * @return the number of writeable bytes.
  */
-CXXCINLINE size_t desperado_file_writeable(FILE * fp) {
-#if !defined(DESPERADO_HAS_UCLIBC)
+CXXCINLINE size_t grandote_file_writeable(FILE * fp) {
+#if !defined(GRANDOTE_HAS_UCLIBC)
 	return (fp != 0) ? ((fp->_IO_write_ptr < fp->_IO_write_end) ? fp->_IO_write_end - fp->_IO_write_ptr : 0) : 0;
 #elif defined(__STDIO_BUFFERS) && defined(__STDIO_PUTC_MACRO)
 	return (fp != 0) ? ((fp->__bufpos < fp->__bufputc_u) ? fp->__bufputc_u - fp->__bufpos : 0) : 0;
 #else
-#	warning desperado_file_writeable stubbed!
+#	warning grandote_file_writeable stubbed!
 	return -1;
 #endif
 }

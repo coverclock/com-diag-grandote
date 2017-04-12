@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/uint16_Ram.h"
+#include "com/diag/grandote/uint16_Ram.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 Ram<uint16_t> uint16_Ram;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

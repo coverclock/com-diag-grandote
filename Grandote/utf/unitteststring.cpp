@@ -53,11 +53,11 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Grandote.h"
 
 CXXCAPI int unitteststring(void) {
     Print printf(Platform::instance().output());
@@ -73,7 +73,7 @@ CXXCAPI int unitteststring(void) {
 
     size_t sl = std::strlen(string1);
     size_t snl = ::strnlen(string1, 8);
-    size_t dsnl = ::desperado_strnlen(string1, 8);
+    size_t dsnl = ::grandote_strnlen(string1, 8);
     if (sl != snl) {
         errorf("%s[%d]: (%u!=%u)!\n", __FILE__, __LINE__, sl, snl);
         ++errors;
@@ -85,7 +85,7 @@ CXXCAPI int unitteststring(void) {
 
     sl = 8;
     snl = ::strnlen(string2, 8);
-    dsnl = ::desperado_strnlen(string2, 8);
+    dsnl = ::grandote_strnlen(string2, 8);
     if (sl != snl) {
         errorf("%s[%d]: (%u!=%u)!\n", __FILE__, __LINE__, sl, snl);
         ++errors;
@@ -97,7 +97,7 @@ CXXCAPI int unitteststring(void) {
 
     sl = std::strlen(string3);
     snl = ::strnlen(string3, 16);
-    dsnl = ::desperado_strnlen(string3, 16);
+    dsnl = ::grandote_strnlen(string3, 16);
     if (sl != snl) {
         errorf("%s[%d]: (%u!=%u)!\n", __FILE__, __LINE__, sl, snl);
         ++errors;
@@ -109,7 +109,7 @@ CXXCAPI int unitteststring(void) {
 
     sl = std::strlen(string4);
     snl = ::strnlen(string4, 32);
-    dsnl = ::desperado_strnlen(string4, 32);
+    dsnl = ::grandote_strnlen(string4, 32);
     if (sl != snl) {
         errorf("%s[%d]: (%u!=%u)!\n", __FILE__, __LINE__, sl, snl);
         ++errors;

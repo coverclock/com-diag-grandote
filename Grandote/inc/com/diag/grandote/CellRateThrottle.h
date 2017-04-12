@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_CELLRATETHROTTLE_H_
-#define _COM_DIAG_DESPERADO_CELLRATETHROTTLE_H_
+#ifndef _COM_DIAG_GRANDOTE_CELLRATETHROTTLE_H_
+#define _COM_DIAG_GRANDOTE_CELLRATETHROTTLE_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,12 +56,12 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/CompoundThrottle.h"
-#include "com/diag/desperado/Gcra.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/CompoundThrottle.h"
+#include "com/diag/grandote/Gcra.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a throttle that enforces a traffic contract based on
@@ -242,11 +242,11 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the CellRateThrottle unit test. This may take a while on a typical
  *  system.

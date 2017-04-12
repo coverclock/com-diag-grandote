@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/TransliteratorType.h"
+#include "com/diag/grandote/TransliteratorType.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 template class TransliteratorType<16>;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

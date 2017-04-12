@@ -53,14 +53,14 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Logger.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Logger.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
 
 int unittestLogger2() {
     int errors = 0;
@@ -69,7 +69,7 @@ int unittestLogger2() {
     print_f(platform_output(), "%s[%d]: begin\n",
         __FILE__, __LINE__);
 
-#define DESPERADO_LOGGER_TEST_6(_FUNCTION_) \
+#define GRANDOTE_LOGGER_TEST_6(_FUNCTION_) \
     rc = logger_##_FUNCTION_(platform_logger(), "%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "cxxcapi", #_FUNCTION_); \
     if (0 >= rc) { \
@@ -78,22 +78,22 @@ int unittestLogger2() {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_6(finest)
-    DESPERADO_LOGGER_TEST_6(finer)
-    DESPERADO_LOGGER_TEST_6(fine)
-    DESPERADO_LOGGER_TEST_6(trace)
-    DESPERADO_LOGGER_TEST_6(debug)
-    DESPERADO_LOGGER_TEST_6(information)
-    DESPERADO_LOGGER_TEST_6(configuration)
-    DESPERADO_LOGGER_TEST_6(notice)
-    DESPERADO_LOGGER_TEST_6(warning)
-    DESPERADO_LOGGER_TEST_6(error)
-    DESPERADO_LOGGER_TEST_6(severe)
-    DESPERADO_LOGGER_TEST_6(critical)
-    DESPERADO_LOGGER_TEST_6(alert)
-    DESPERADO_LOGGER_TEST_6(fatal)
-    DESPERADO_LOGGER_TEST_6(emergency)
-    DESPERADO_LOGGER_TEST_6(print)
+    GRANDOTE_LOGGER_TEST_6(finest)
+    GRANDOTE_LOGGER_TEST_6(finer)
+    GRANDOTE_LOGGER_TEST_6(fine)
+    GRANDOTE_LOGGER_TEST_6(trace)
+    GRANDOTE_LOGGER_TEST_6(debug)
+    GRANDOTE_LOGGER_TEST_6(information)
+    GRANDOTE_LOGGER_TEST_6(configuration)
+    GRANDOTE_LOGGER_TEST_6(notice)
+    GRANDOTE_LOGGER_TEST_6(warning)
+    GRANDOTE_LOGGER_TEST_6(error)
+    GRANDOTE_LOGGER_TEST_6(severe)
+    GRANDOTE_LOGGER_TEST_6(critical)
+    GRANDOTE_LOGGER_TEST_6(alert)
+    GRANDOTE_LOGGER_TEST_6(fatal)
+    GRANDOTE_LOGGER_TEST_6(emergency)
+    GRANDOTE_LOGGER_TEST_6(print)
 
     print_f(platform_output(), "%s[%d]: end errors=%d\n",
         __FILE__, __LINE__, errors);

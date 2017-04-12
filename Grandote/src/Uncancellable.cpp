@@ -7,12 +7,12 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/Uncancellable.h"
+#include "com/diag/grandote/Uncancellable.h"
 #include <pthread.h>
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 Uncancellable::Uncancellable()
 {

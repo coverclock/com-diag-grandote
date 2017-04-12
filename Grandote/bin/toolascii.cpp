@@ -185,7 +185,7 @@ man ascii (SunOS 5.1 maybe):
 #include "com/diag/grandote/stdlib.h"
 #include "com/diag/grandote/Platform.h"
 #include "com/diag/grandote/Print.h"
-#include "com/diag/grandote/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
 static const char *ascii[]={
     "NUL","SOH","STX","ETX",

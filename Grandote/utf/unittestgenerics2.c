@@ -74,21 +74,21 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/bool.h"
-#include "com/diag/desperado/bool.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/bool.h"
+#include "com/diag/grandote/bool.h"
 
 int unittestgenerics2() {
     int errors = 0;
@@ -181,39 +181,39 @@ int unittestgenerics2() {
     psizeof(int64_t);
     psizeof(uint64_t);
 
-    print_f(platform_output(), "%s[%d]: desperado_offsetof\n",
+    print_f(platform_output(), "%s[%d]: grandote_offsetof\n",
         __FILE__, __LINE__);
 
 #define poffsetof(_FIELD_) \
-    print_f(platform_output(), "%s[%d]: desperado_offsetof(" #_FIELD_ ")=%u\n", __FILE__, __LINE__, desperado_offsetof(Type, _FIELD_))
+    print_f(platform_output(), "%s[%d]: grandote_offsetof(" #_FIELD_ ")=%u\n", __FILE__, __LINE__, grandote_offsetof(Type, _FIELD_))
 
     poffsetof(cc);
     poffsetof(ss);
     poffsetof(ll);
     poffsetof(dd);
 
-    offset = desperado_offsetof(Type, dd);
+    offset = grandote_offsetof(Type, dd);
     if (8 != offset) {
         print_f(platform_error(), "%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 8, offset);
         ++errors;
     }
 
-    offset = desperado_offsetof(Type, ll);
+    offset = grandote_offsetof(Type, ll);
     if (4 != offset) {
         print_f(platform_error(), "%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 4, offset);
         ++errors;
     }
 
-    offset = desperado_offsetof(Type, ss);
+    offset = grandote_offsetof(Type, ss);
     if (2 != offset) {
         print_f(platform_error(), "%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 2, offset);
         ++errors;
     }
 
-    offset = desperado_offsetof(Type, cc);
+    offset = grandote_offsetof(Type, cc);
     if (0 != offset) {
         print_f(platform_error(), "%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 0, offset);

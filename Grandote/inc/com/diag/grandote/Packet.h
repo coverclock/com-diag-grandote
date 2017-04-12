@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_PACKET_
-#define _H_COM_DIAG_DESPERADO_PACKET_
+#ifndef _H_COM_DIAG_GRANDOTE_PACKET_
+#define _H_COM_DIAG_GRANDOTE_PACKET_
 
 /**
  * @file
@@ -11,14 +11,14 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/InputOutput.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/InputOutput.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * PacketData is an object that can be appended or prepended to a Packet.
@@ -453,7 +453,7 @@ public:
      *        value is passed from outer to inner objects as this object calls
      *        the show methods of its inherited and composited objects.
      */
-    virtual void show(int level = 0, com::diag::desperado::Output * display = 0, int indent = 0) const;
+    virtual void show(int level = 0, com::diag::grandote::Output * display = 0, int indent = 0) const;
 
 private:
 
@@ -503,7 +503,7 @@ public:
      * @return the number of octets output if successful (which may be zero),
      *         EOF otherwise.
      */
-    virtual ssize_t operator() (const char * s /* COPIED */, size_t size = com::diag::desperado::Output::maximum_string_length);
+    virtual ssize_t operator() (const char * s /* COPIED */, size_t size = com::diag::grandote::Output::maximum_string_length);
 
     /**
      * Format a variable length argument list and output the result.
@@ -557,7 +557,7 @@ public:
      *        value is passed from outer to inner objects as this object calls
      *        the show methods of its inherited and composited objects.
      */
-    virtual void show(int level = 0, com::diag::desperado::Output * display = 0, int indent = 0) const;
+    virtual void show(int level = 0, com::diag::grandote::Output * display = 0, int indent = 0) const;
 
 private:
 

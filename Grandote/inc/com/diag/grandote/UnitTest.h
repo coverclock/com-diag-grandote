@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_UNITTEST_H_
-#define _COM_DIAG_DESPERADO_UNITTEST_H_
+#ifndef _COM_DIAG_GRANDOTE_UNITTEST_H_
+#define _COM_DIAG_GRANDOTE_UNITTEST_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -45,13 +45,13 @@
  *  @file
  *
  *  Defines the magic UNIT TEST preprocessor symbol for the
- *  Desperado unit test code.
+ *  Grandote unit test code.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  */
 
 
-#define DESPERADO_HAS_UNITTESTS (1)
+#define GRANDOTE_HAS_UNITTESTS (1)
 
 
 #endif

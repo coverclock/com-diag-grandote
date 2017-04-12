@@ -1,6 +1,6 @@
 /* vi: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_FIBONACCI_
-#define _H_COM_DIAG_DESPERADO_FIBONACCI_
+#ifndef _H_COM_DIAG_GRANDOTE_FIBONACCI_
+#define _H_COM_DIAG_GRANDOTE_FIBONACCI_
 
 /**
  * @file
@@ -11,11 +11,11 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/generics.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * Fibonacci implements the Fibonacci sequence for use in back off during

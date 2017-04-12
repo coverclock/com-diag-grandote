@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_LOGGER_H_
-#define _COM_DIAG_DESPERADO_LOGGER_H_
+#ifndef _COM_DIAG_GRANDOTE_LOGGER_H_
+#define _COM_DIAG_GRANDOTE_LOGGER_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,18 +56,18 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Defines a simple interface to a multi-level logging mechanism, and
@@ -488,7 +488,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #else
@@ -517,7 +517,7 @@ typedef struct Logger Logger;
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_finest(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_finest(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -533,7 +533,7 @@ CXXCAPI ssize_t logger_finest(CXXCTYPE(::com::diag::desperado::, Logger)* logger
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_finer(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_finer(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -549,7 +549,7 @@ CXXCAPI ssize_t logger_finer(CXXCTYPE(::com::diag::desperado::, Logger)* logger,
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_fine(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_fine(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -565,7 +565,7 @@ CXXCAPI ssize_t logger_fine(CXXCTYPE(::com::diag::desperado::, Logger)* logger, 
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_trace(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_trace(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -581,7 +581,7 @@ CXXCAPI ssize_t logger_trace(CXXCTYPE(::com::diag::desperado::, Logger)* logger,
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_debug(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_debug(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -597,7 +597,7 @@ CXXCAPI ssize_t logger_debug(CXXCTYPE(::com::diag::desperado::, Logger)* logger,
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_information(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_information(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -613,7 +613,7 @@ CXXCAPI ssize_t logger_information(CXXCTYPE(::com::diag::desperado::, Logger)* l
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_configuration(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_configuration(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -629,7 +629,7 @@ CXXCAPI ssize_t logger_configuration(CXXCTYPE(::com::diag::desperado::, Logger)*
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_notice(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_notice(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -645,7 +645,7 @@ CXXCAPI ssize_t logger_notice(CXXCTYPE(::com::diag::desperado::, Logger)* logger
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_warning(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_warning(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -661,7 +661,7 @@ CXXCAPI ssize_t logger_warning(CXXCTYPE(::com::diag::desperado::, Logger)* logge
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_error(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_error(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -677,7 +677,7 @@ CXXCAPI ssize_t logger_error(CXXCTYPE(::com::diag::desperado::, Logger)* logger,
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_severe(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_severe(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -693,7 +693,7 @@ CXXCAPI ssize_t logger_severe(CXXCTYPE(::com::diag::desperado::, Logger)* logger
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_critical(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_critical(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -709,7 +709,7 @@ CXXCAPI ssize_t logger_critical(CXXCTYPE(::com::diag::desperado::, Logger)* logg
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_alert(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_alert(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -725,7 +725,7 @@ CXXCAPI ssize_t logger_alert(CXXCTYPE(::com::diag::desperado::, Logger)* logger,
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_fatal(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_fatal(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -741,7 +741,7 @@ CXXCAPI ssize_t logger_fatal(CXXCTYPE(::com::diag::desperado::, Logger)* logger,
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_emergency(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_emergency(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
 /**
@@ -757,10 +757,10 @@ CXXCAPI ssize_t logger_emergency(CXXCTYPE(::com::diag::desperado::, Logger)* log
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI ssize_t logger_print(CXXCTYPE(::com::diag::desperado::, Logger)* logger, const char* format, ...);
+CXXCAPI ssize_t logger_print(CXXCTYPE(::com::diag::grandote::, Logger)* logger, const char* format, ...);
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the Logger unit test.
  *  

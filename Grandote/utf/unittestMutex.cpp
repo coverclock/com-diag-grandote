@@ -47,23 +47,23 @@
  *
  *  @author Chip Overclock (coverclock@diag.com)
  *
- *	Since Desperado doesn't provide any threading mechanism, this can't really
+ *	Since Grandote doesn't provide any threading mechanism, this can't really
  *	be tested here. Most of the functional testing for this class was done in
- *	the Hayloft unit test suite, uses the Desperado Mutex and CriticalSection
+ *	the Hayloft unit test suite, uses the Grandote Mutex and CriticalSection
  *	classes and does implement threading (Thread) and also condition variables
  *	(Condition).
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/Mutex.h"
-#include "com/diag/desperado/Mutex.h"
-#include "com/diag/desperado/CriticalSection.h"
-#include "com/diag/desperado/CriticalSection.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/Mutex.h"
+#include "com/diag/grandote/Mutex.h"
+#include "com/diag/grandote/CriticalSection.h"
+#include "com/diag/grandote/CriticalSection.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 static Mutex staticMutex;
 

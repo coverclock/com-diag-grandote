@@ -10,15 +10,15 @@
 #include <new>
 #include <cstdio>
 #include <cstring>
-#include "com/diag/desperado/Packet.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/errno.h"
+#include "com/diag/grandote/Packet.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/errno.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /*******************************************************************************
  * PacketData
@@ -263,7 +263,7 @@ void Packet::show(int level, Output * display, int indent) const {
     printf("%s%s(%p)[%lu]:\n",
         sp, pl.component(__FILE__, component, sizeof(component)),
         this, sizeof(*this));
-    com::diag::desperado::InputOutput::show(level, display, indent + 1);
+    com::diag::grandote::InputOutput::show(level, display, indent + 1);
     printf("%s allocation=%zu\n", sp, allocation);
     printf("%s head=%p\n", sp, head);
     if (0 < level) {
@@ -356,7 +356,7 @@ ssize_t PacketInput::operator() (void * buffer, size_t minimum, size_t maximum) 
 	return total;
 }
 
-void PacketInput::show(int level, com::diag::desperado::Output * display, int indent) const {
+void PacketInput::show(int level, com::diag::grandote::Output * display, int indent) const {
     Platform& pl = Platform::instance();
     Print printf(display);
     const char* sp = printf.output().indentation(indent);
@@ -364,7 +364,7 @@ void PacketInput::show(int level, com::diag::desperado::Output * display, int in
     printf("%s%s(%p)[%lu]:\n",
         sp, pl.component(__FILE__, component, sizeof(component)),
         this, sizeof(*this));
-    com::diag::desperado::Input::show(level, display, indent + 1);
+    com::diag::grandote::Input::show(level, display, indent + 1);
     printf("%s packet=%p\n", sp, &packet);
 }
 
@@ -398,7 +398,7 @@ int PacketOutput::operator() () {
 	return 0;
 }
 
-void PacketOutput::show(int level, com::diag::desperado::Output * display, int indent) const {
+void PacketOutput::show(int level, com::diag::grandote::Output * display, int indent) const {
 	Platform& pl = Platform::instance();
     Print printf(display);
     const char* sp = printf.output().indentation(indent);
@@ -406,7 +406,7 @@ void PacketOutput::show(int level, com::diag::desperado::Output * display, int i
     printf("%s%s(%p)[%lu]:\n",
         sp, pl.component(__FILE__, component, sizeof(component)),
         this, sizeof(*this));
-    com::diag::desperado::Output::show(level, display, indent + 1);
+    com::diag::grandote::Output::show(level, display, indent + 1);
     printf("%s packet=%p\n", sp, &packet);
 }
 

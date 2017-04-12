@@ -53,8 +53,8 @@
  */
 
 
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Grandote.h"
 
 
 CXXCAPI void* heap_malloc(Heap* heap, size_t size) {

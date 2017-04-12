@@ -7,13 +7,13 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/Thread.h"
-#include "com/diag/desperado/MaskableLogger.h"
-#include "com/diag/desperado/errno.h"
+#include "com/diag/grandote/Thread.h"
+#include "com/diag/grandote/MaskableLogger.h"
+#include "com/diag/grandote/errno.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /*******************************************************************************
  * CLASS VARIABLES
@@ -237,7 +237,7 @@ int Thread::join(void * & result) {
 	int rc;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	// It's okay to invoke a Desperado Thread join even if the thread of control
+	// It's okay to invoke a Grandote Thread join even if the thread of control
 	// is not running. It is not okay for a thread of control to try to join
 	// with itself.
 	if (!running) {

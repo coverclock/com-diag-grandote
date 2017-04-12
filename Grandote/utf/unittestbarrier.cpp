@@ -53,18 +53,18 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/barrier.h"
-#include "com/diag/desperado/barrier.h"
-#include "com/diag/desperado/MemoryBarrier.h"
-#include "com/diag/desperado/MemoryBarrier.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/barrier.h"
+#include "com/diag/grandote/barrier.h"
+#include "com/diag/grandote/MemoryBarrier.h"
+#include "com/diag/grandote/MemoryBarrier.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Grandote.h"
 
 CXXCAPI int unittestbarrier(void) {
     Print printf;
@@ -84,42 +84,42 @@ CXXCAPI int unittestbarrier(void) {
     //  call is still much more expensive (21us vs 3us).
 
     dbbefore = dbplatform.time();
-    dbrc = desperado_portable_barrier();
+    dbrc = grandote_portable_barrier();
     dbafter = dbplatform.time();
     if (0 != dbrc) {
         errorf("%s[%d]: (%d!=%d)!\n",
             __FILE__, __LINE__, 0, dbrc);
         ++errors;
     }
-    printf("%s[%d]: desperado_portable_barrier(): %llu ticks\n",
+    printf("%s[%d]: grandote_portable_barrier(): %llu ticks\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
     dbbefore = dbplatform.time();
-    dbrc = desperado_portable_barrier();
+    dbrc = grandote_portable_barrier();
     dbafter = dbplatform.time();
     if (0 != dbrc) {
         errorf("%s[%d]: (%d!=%d)!\n",
             __FILE__, __LINE__, 0, dbrc);
         ++errors;
     }
-    printf("%s[%d]: desperado_portable_barrier(): %llu ticks (second try)\n",
+    printf("%s[%d]: grandote_portable_barrier(): %llu ticks (second try)\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
     dbbefore = dbplatform.time();
-    dbrc = desperado_native_barrier();
+    dbrc = grandote_native_barrier();
     dbafter = dbplatform.time();
     if (0 != dbrc) {
         errorf("%s[%d]: (%d!=%d)!\n",
             __FILE__, __LINE__, 0, dbrc);
         ++errors;
     }
-    printf("%s[%d]: desperado_native_barrier(): %llu ticks\n",
+    printf("%s[%d]: grandote_native_barrier(): %llu ticks\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
     dbbefore = dbplatform.time();
-    desperado_memory_barrier();
+    grandote_memory_barrier();
     dbafter = dbplatform.time();
-    printf("%s[%d]: desperado_memory_barrier(): %llu ticks\n",
+    printf("%s[%d]: grandote_memory_barrier(): %llu ticks\n",
         __FILE__, __LINE__, dbafter - dbbefore);
 
     dbbefore = dbplatform.time();

@@ -53,39 +53,39 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/littleendian.h"
-#include "com/diag/desperado/littleendian.h"
-#include "com/diag/desperado/lowtohigh.h"
-#include "com/diag/desperado/lowtohigh.h"
-#include "com/diag/desperado/bool.h"
-#include "com/diag/desperado/bool.h"
-#undef DESPERADO_HAS_DEBUGGING
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/debug.h"
-#define DESPERADO_HAS_DEBUGGING
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/debug.h"
-#undef DESPERADO_HAS_DEBUGGING
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/reads.h"
-#include "com/diag/desperado/reads.h"
-#include "com/diag/desperado/writes.h"
-#include "com/diag/desperado/writes.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/assert.h"
-#include "com/diag/desperado/assert.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/littleendian.h"
+#include "com/diag/grandote/littleendian.h"
+#include "com/diag/grandote/lowtohigh.h"
+#include "com/diag/grandote/lowtohigh.h"
+#include "com/diag/grandote/bool.h"
+#include "com/diag/grandote/bool.h"
+#undef GRANDOTE_HAS_DEBUGGING
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/debug.h"
+#define GRANDOTE_HAS_DEBUGGING
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/debug.h"
+#undef GRANDOTE_HAS_DEBUGGING
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/reads.h"
+#include "com/diag/grandote/reads.h"
+#include "com/diag/grandote/writes.h"
+#include "com/diag/grandote/writes.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/assert.h"
+#include "com/diag/grandote/assert.h"
 
 int unittesttarget2() {
     int errors = 0;
@@ -116,13 +116,13 @@ int unittesttarget2() {
     little = littleendian();
     print_f(platform_output(), "%s endian\n", little ? "little" : "big");
 
-#if defined(DESPERADO_HAS_LITTLE_ENDIAN)
+#if defined(GRANDOTE_HAS_LITTLE_ENDIAN)
     if (!little) {
         print_f(platform_error(), "%s[%d]: (%d!=%d)\n",
             __FILE__, __LINE__, little, 1);
         ++errors;
     }
-#elif defined(DESPERADO_HAS_BIG_ENDIAN)
+#elif defined(GRANDOTE_HAS_BIG_ENDIAN)
     if (little) {
         print_f(platform_error(), "%s[%d]: (%d!=%d)\n",
             __FILE__, __LINE__, little, 0);
@@ -139,13 +139,13 @@ int unittesttarget2() {
     low = lowtohigh();
     print_f(platform_output(), "%s\n", low ? "low to high" : "high to low");
 
-#if defined(DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH)
+#if defined(GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH)
     if (!low) {
         print_f(platform_error(), "%s[%d]: (%d!=%d)\n",
             __FILE__, __LINE__, low, 1);
         ++errors;
     }
-#elif defined(DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW)
+#elif defined(GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW)
     if (low) {
         print_f(platform_error(), "%s[%d]: (%d!=%d)\n",
             __FILE__, __LINE__, low, 0);

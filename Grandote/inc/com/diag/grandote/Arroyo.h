@@ -58,10 +58,10 @@
 
 #if defined(GRANDOTE_PLATFORM_IS_Arroyo)
 
-#include "com/diag/desperado/Linux.h"
+#include "com/diag/grandote/Linux.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements the Platform interface to the Arroyo Linux operating system.
@@ -130,7 +130,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

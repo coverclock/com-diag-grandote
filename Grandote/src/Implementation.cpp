@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/Implementation.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/Implementation.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -69,7 +69,7 @@ Implementation::Implementation() :
     Abstract(),
     field(this)
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Implementation(%p)::Implementation()\n", this);
 #endif
 }
@@ -82,7 +82,7 @@ Implementation::Implementation(void* f) :
     Abstract(),
     field(f)
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Implementation(%p)::Implementation(%p)\n", this, f);
 #endif
 }
@@ -92,7 +92,7 @@ Implementation::Implementation(void* f) :
 //  Destructor.
 //
 Implementation::~Implementation() {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Implementation(%p)::~Implementation()\n", this);
 #endif
     if (this->field) {
@@ -107,7 +107,7 @@ Implementation::~Implementation() {
 Implementation::Implementation(const Implementation& that) :
     Abstract(that)
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Implementation(%p)::Implementation(%p)\n", this, &that);
 #endif
     this->field = that.field;
@@ -118,7 +118,7 @@ Implementation::Implementation(const Implementation& that) :
 //  Assignment operator.
 //
 Implementation& Implementation::operator=(const Implementation& that) {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Implementation(%p)::operator=(%p)\n", this, &that);
 #endif
     if (&that != this) {
@@ -144,4 +144,4 @@ void Implementation::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

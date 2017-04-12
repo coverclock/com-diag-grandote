@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ASSERT_H_
-#define _COM_DIAG_DESPERADO_ASSERT_H_
+#ifndef _COM_DIAG_GRANDOTE_ASSERT_H_
+#define _COM_DIAG_GRANDOTE_ASSERT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -45,24 +45,24 @@
 /**
  *  @file
  *
- *  Implements an assert macro that interfaces with the Desperado platform
+ *  Implements an assert macro that interfaces with the Grandote platform
  *  object. Note that POSIX has some explicit requirements of how multiple
  *  inclusion of the assert.h header file works, which this file endevours
  *  to implement. Hence this header file does not follow the typical pattern.
  *  Also, we jump through some hoops to avoid including other header files,
  *  which vastly simplifies the use of this header file outside of the
- *  Desperado library implementation.
+ *  Grandote library implementation.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  *
  *
  */
 
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 CXXCAPI void platform_fatal(const char*, int, const char*, int, const char*);
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the assert unit test.
  *
@@ -73,40 +73,40 @@ CXXCAPI int unittestassert(void);
 
 #else
 
-#undef DESPERADO_ASSERT_VOID
-#undef DESPERADO_ASSERT_FUNCTION
-#undef desperado_assert
+#undef GRANDOTE_ASSERT_VOID
+#undef GRANDOTE_ASSERT_FUNCTION
+#undef grandote_assert
 #undef assert
 
 #endif
 
 
 #if defined(__cplusplus)
-#   define DESPERADO_ASSERT_VOID        static_cast<void>(0)
+#   define GRANDOTE_ASSERT_VOID        static_cast<void>(0)
 #else
-#   define DESPERADO_ASSERT_VOID        ((void)0)
+#   define GRANDOTE_ASSERT_VOID        ((void)0)
 #endif
 
 
 #if defined(__USE_GNU)
-#   define DESPERADO_ASSERT_FUNCTION    __PRETTY_FUNCTION__
+#   define GRANDOTE_ASSERT_FUNCTION    __PRETTY_FUNCTION__
 #elif defined(__cplusplus)
-#   define DESPERADO_ASSERT_FUNCTION    __func__
+#   define GRANDOTE_ASSERT_FUNCTION    __func__
 #else
-#   define DESPERADO_ASSERT_FUNCTION    ((char *)0)
+#   define GRANDOTE_ASSERT_FUNCTION    ((char *)0)
 #endif
 
 
 /**
- *  @def    desperado_assert(_ASSERTION_)
+ *  @def    grandote_assert(_ASSERTION_)
  *
  *  Generates a call to the platform fatal function if and only if
  *  @a _ASSERTION_ is false.
  */
-#define desperado_assert(_ASSERTION_) \
-    ((_ASSERTION_) ? DESPERADO_ASSERT_VOID : \
+#define grandote_assert(_ASSERTION_) \
+    ((_ASSERTION_) ? GRANDOTE_ASSERT_VOID : \
         platform_fatal("Assertion (" #_ASSERTION_ ") failed", \
-            0, __FILE__, __LINE__, DESPERADO_ASSERT_FUNCTION))
+            0, __FILE__, __LINE__, GRANDOTE_ASSERT_FUNCTION))
 
 
 #if defined(assert)
@@ -120,7 +120,7 @@ CXXCAPI int unittestassert(void);
      *
      *  Does nothing regardless of whether @a _ASSERTION_ is true of false.
      */
-#   define assert(_ASSERTION_)      DESPERADO_ASSERT_VOID
+#   define assert(_ASSERTION_)      GRANDOTE_ASSERT_VOID
 #else
     /**
      *  @def    assert(_ASSERTION_)
@@ -129,5 +129,5 @@ CXXCAPI int unittestassert(void);
      *  Typically the assert failure function invokes the platform fatal
      *  function. This usually ends badly for the caller.
      */
-#   define assert(_ASSERTION_)      desperado_assert(_ASSERTION_)
+#   define assert(_ASSERTION_)      grandote_assert(_ASSERTION_)
 #endif

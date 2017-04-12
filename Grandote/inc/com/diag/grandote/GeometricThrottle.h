@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_GEOMETRICTHROTTLE_H_
-#define _COM_DIAG_DESPERADO_GEOMETRICTHROTTLE_H_
+#ifndef _COM_DIAG_GRANDOTE_GEOMETRICTHROTTLE_H_
+#define _COM_DIAG_GRANDOTE_GEOMETRICTHROTTLE_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,10 +56,10 @@
  */
 
 
-#include "com/diag/desperado/Throttle.h"
+#include "com/diag/grandote/Throttle.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a throttle that decays geometrically by admitting
@@ -272,11 +272,11 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the GeometricThrottle unit test. This may
  *  take a while on a typical system.

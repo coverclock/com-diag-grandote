@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_LOWTOHIGH_H_
-#define _COM_DIAG_DESPERADO_LOWTOHIGH_H_
+#ifndef _COM_DIAG_GRANDOTE_LOWTOHIGH_H_
+#define _COM_DIAG_GRANDOTE_LOWTOHIGH_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -55,8 +55,8 @@
  */
 
 
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/generics.h"
 
 
 /**

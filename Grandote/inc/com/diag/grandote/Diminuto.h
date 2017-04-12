@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DIMINUTO_H_
-#define _COM_DIAG_DESPERADO_DIMINUTO_H_
+#ifndef _COM_DIAG_GRANDOTE_DIMINUTO_H_
+#define _COM_DIAG_GRANDOTE_DIMINUTO_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,12 +56,12 @@
  */
 
 
-#if defined(DESPERADO_PLATFORM_IS_Diminuto)
+#if defined(GRANDOTE_PLATFORM_IS_Diminuto)
 
-#include "com/diag/desperado/Linux.h"
+#include "com/diag/grandote/Linux.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements the Platform interface to the Diminuto Linux operating system.
@@ -130,7 +130,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

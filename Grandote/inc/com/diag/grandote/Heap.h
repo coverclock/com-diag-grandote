@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_HEAP_H_
-#define _COM_DIAG_DESPERADO_HEAP_H_
+#ifndef _COM_DIAG_GRANDOTE_HEAP_H_
+#define _COM_DIAG_GRANDOTE_HEAP_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,18 +56,18 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implement the interfaces to the C standard library malloc(3), free(3),
@@ -388,7 +388,7 @@ inline size_t Heap::getFrees() const {
     return this->frees;
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #else
@@ -417,7 +417,7 @@ typedef struct Heap Heap;
  *  @return a pointer to the suitably aligned memory block of
  *          at least the requested size, or null if an error occurred.
  */
-CXXCAPI void* heap_malloc(CXXCTYPE(::com::diag::desperado::, Heap)* h, size_t size);
+CXXCAPI void* heap_malloc(CXXCTYPE(::com::diag::grandote::, Heap)* h, size_t size);
 
 
 /**
@@ -433,7 +433,7 @@ CXXCAPI void* heap_malloc(CXXCTYPE(::com::diag::desperado::, Heap)* h, size_t si
  *                      realloc(), or calloc().
  *                      It is not an error for this pointer to be null.
  */
-CXXCAPI void heap_free(CXXCTYPE(::com::diag::desperado::, Heap)* h, void* ptr);
+CXXCAPI void heap_free(CXXCTYPE(::com::diag::grandote::, Heap)* h, void* ptr);
 
 
 /**
@@ -463,7 +463,7 @@ CXXCAPI void heap_free(CXXCTYPE(::com::diag::desperado::, Heap)* h, void* ptr);
  *  @return a pointer to the suitably aligned memory block of
  *          at least the requested size, or null if an error occurred.
  */
-CXXCAPI void* heap_realloc(CXXCTYPE(::com::diag::desperado::, Heap)* h, void* ptr, size_t size);
+CXXCAPI void* heap_realloc(CXXCTYPE(::com::diag::grandote::, Heap)* h, void* ptr, size_t size);
 
 
 /**
@@ -482,10 +482,10 @@ CXXCAPI void* heap_realloc(CXXCTYPE(::com::diag::desperado::, Heap)* h, void* pt
  *  @return a pointer to the suitably aligned and zeroed memory block of
  *          at least the requested size, or null if an error occurred.
  */
-CXXCAPI void* heap_calloc(CXXCTYPE(::com::diag::desperado::, Heap)* h, size_t nmemb, size_t size);
+CXXCAPI void* heap_calloc(CXXCTYPE(::com::diag::grandote::, Heap)* h, size_t nmemb, size_t size);
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the Heap unit test.
  *  

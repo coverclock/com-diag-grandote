@@ -53,16 +53,16 @@
  */
 
 
-#include "com/diag/desperado/DstUs.h"
-#include "com/diag/desperado/DstNever.h"
-#include "com/diag/desperado/DstUs1966.h"
-#include "com/diag/desperado/DstUs1986.h"
-#include "com/diag/desperado/DstUs2007.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/DstUs.h"
+#include "com/diag/grandote/DstNever.h"
+#include "com/diag/grandote/DstUs1966.h"
+#include "com/diag/grandote/DstUs1986.h"
+#include "com/diag/grandote/DstUs2007.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 static DstNever dstnever;
@@ -123,4 +123,4 @@ void DstUs::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_STDINT_H_
-#define _COM_DIAG_DESPERADO_STDINT_H_
+#ifndef _COM_DIAG_GRANDOTE_STDINT_H_
+#define _COM_DIAG_GRANDOTE_STDINT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 

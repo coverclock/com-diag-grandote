@@ -1,6 +1,6 @@
 /* vi: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_THREAD_
-#define _H_COM_DIAG_DESPERADO_THREAD_
+#ifndef _H_COM_DIAG_GRANDOTE_THREAD_
+#define _H_COM_DIAG_GRANDOTE_THREAD_
 
 /**
  * @file
@@ -15,7 +15,7 @@
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * Thread implements a POSIX thread which can be associated with a thread of
@@ -35,7 +35,7 @@ public:
 
 	/**
 	 * Returns a reference to the Thread that represents the calling thread
-	 * of control. Desperado guarantees that all calls to this class method
+	 * of control. Grandote guarantees that all calls to this class method
 	 * will return the same Thread object when called by the same calling
 	 * thread of control.
 	 *

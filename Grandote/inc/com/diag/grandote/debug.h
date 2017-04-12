@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DEBUG_H_
-#define _COM_DIAG_DESPERADO_DEBUG_H_
+#ifndef _COM_DIAG_GRANDOTE_DEBUG_H_
+#define _COM_DIAG_GRANDOTE_DEBUG_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -48,7 +48,7 @@
  *
  *  Defines some useful debugging macros. Similar to assert.h, this
  *  header file can be included more than once, and may generate
- *  different code depending on whether or not DESPERADO_HAS_DEBUGGING
+ *  different code depending on whether or not GRANDOTE_HAS_DEBUGGING
  *  is defined.
  *
  *  @author Chip Overclock (coverclock@diag.com)
@@ -57,17 +57,17 @@
  */
 
 
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/errno.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/errno.h"
 
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
 #   include "Platform.h"
 #   include "Dump.h"
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Debug unit test.
  *
@@ -86,7 +86,7 @@ CXXCAPI int unittestDebug(void);
 #   undef DEBUG_SHOW_IF
 #   undef DEBUG_DUMP
 #   undef DEBUG_DUMP_IF
-#   undef DESPERADO_FATAL_FUNCTION
+#   undef GRANDOTE_FATAL_FUNCTION
 #   undef DEBUG_FATAL
 #   undef DEBUG_FATAL_IF
 #   undef DEBUG_TRACE
@@ -95,7 +95,7 @@ CXXCAPI int unittestDebug(void);
 #endif
 
 
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
 
 
 /**
@@ -167,11 +167,11 @@ CXXCAPI int unittestDebug(void);
 
 
 #if defined(__USE_GNU)
-#   define DESPERADO_FATAL_FUNCTION __PRETTY_FUNCTION__
+#   define GRANDOTE_FATAL_FUNCTION __PRETTY_FUNCTION__
 #elif defined(__cplusplus)
-#   define DESPERADO_FATAL_FUNCTION __func__
+#   define GRANDOTE_FATAL_FUNCTION __func__
 #else
-#   define DESPERADO_FATAL_FUNCTION ((char *)0)
+#   define GRANDOTE_FATAL_FUNCTION ((char *)0)
 #endif
 
 
@@ -182,7 +182,7 @@ CXXCAPI int unittestDebug(void);
  *  @a _EVENT_ if debugging is enabled.
  */
 #define DEBUG_FATAL(_EVENT_) \
-    platform_fatal(_EVENT_, errno, __FILE__, __LINE__, DESPERADO_FATAL_FUNCTION)
+    platform_fatal(_EVENT_, errno, __FILE__, __LINE__, GRANDOTE_FATAL_FUNCTION)
 
 
 /**
@@ -193,7 +193,7 @@ CXXCAPI int unittestDebug(void);
  *  is enabled.
  */
 #define DEBUG_FATAL_IF(_CONDITION_, _EVENT_) \
-    ((_CONDITION_) ? (platform_fatal(_EVENT_, errno, __FILE__, __LINE__, DESPERADO_FATAL_FUNCTION)) : staticcastto(void, 0)) 
+    ((_CONDITION_) ? (platform_fatal(_EVENT_, errno, __FILE__, __LINE__, GRANDOTE_FATAL_FUNCTION)) : staticcastto(void, 0)) 
 
 
 /**

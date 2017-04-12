@@ -47,14 +47,14 @@
  *
  *  This unit test is a little confusing: the calls to
  *  malloc() etc. are mapped via inline functions to
- *  the Desperado CXXCAPI heap calls. There is no way
+ *  the Grandote CXXCAPI heap calls. There is no way
  *  (and this is the intent) for the original malloc() etc.
  *  calls to be invoked. So this unit test compares the
- *  mapped malloc() against the native Desperado CXXCAPI
+ *  mapped malloc() against the native Grandote CXXCAPI
  *  calls, not against the actual underlying malloc() calls.
  *
  *  You will probably get some warnings from the compiler since
- *  the Desperado malloc.h header file prototypes malloc() etc. as
+ *  the Grandote malloc.h header file prototypes malloc() etc. as
  *  inline after it is likely someone has included a system
  *  header file that prototypes the same functions as extern.
  *
@@ -66,23 +66,23 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/malloc.h"
-#include "com/diag/desperado/malloc.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/malloc.h"
+#include "com/diag/grandote/malloc.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
 
 #define MALLOC(b)       heap_malloc(platform_heap(), b)
 #define REALLOC(p, b)   heap_realloc(platform_heap(), p, b)

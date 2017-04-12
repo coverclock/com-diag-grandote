@@ -53,15 +53,15 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/DateTime.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/DateTime.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -158,4 +158,4 @@ void DateTime::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

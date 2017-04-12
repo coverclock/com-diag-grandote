@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_MEMORYBARRIER_H_
-#define _COM_DIAG_DESPERADO_MEMORYBARRIER_H_
+#ifndef _COM_DIAG_GRANDOTE_MEMORYBARRIER_H_
+#define _COM_DIAG_GRANDOTE_MEMORYBARRIER_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,13 +56,13 @@
  */
 
 
-#include "com/diag/desperado/barrier.h"
+#include "com/diag/grandote/barrier.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
- *  Invokes the Desperado memory barrier function
+ *  Invokes the Grandote memory barrier function
  *  upon construction (for acquire semantics) and
  *  destruction (for release semantics).
  *
@@ -93,7 +93,7 @@ public:
 //  Constructor.
 //
 inline MemoryBarrier::MemoryBarrier() {
-    desperado_memory_barrier();
+    grandote_memory_barrier();
 }
 
 
@@ -101,10 +101,10 @@ inline MemoryBarrier::MemoryBarrier() {
 //  Destructor.
 //
 inline MemoryBarrier::~MemoryBarrier() {
-    desperado_memory_barrier();
+    grandote_memory_barrier();
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

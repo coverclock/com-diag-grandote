@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_VOLATILE_H_
-#define _COM_DIAG_DESPERADO_VOLATILE_H_
+#ifndef _COM_DIAG_GRANDOTE_VOLATILE_H_
+#define _COM_DIAG_GRANDOTE_VOLATILE_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -44,7 +44,7 @@
 /**
  *  @file
  *
- *  Defines the Desperado Volatile class that provides helper
+ *  Defines the Grandote Volatile class that provides helper
  *  functions for volatile accesses. The following C functions
  *  are defined.
  *
@@ -79,27 +79,27 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
-#define DESPERADO_VOLATILE_VALUE_C_DECL(_TYPE_) \
+#define GRANDOTE_VOLATILE_VALUE_C_DECL(_TYPE_) \
 CXXCAPI _TYPE_ volatile_value_##_TYPE_(volatile _TYPE_ * vp);
 
-#define DESPERADO_VOLATILE_ADDRESS_C_DECL(_TYPE_) \
+#define GRANDOTE_VOLATILE_ADDRESS_C_DECL(_TYPE_) \
 CXXCAPI volatile _TYPE_ * volatile_address_##_TYPE_(volatile _TYPE_ * vp);
 
-#define DESPERADO_VOLATILE_VALUE_C_IMPL(_TYPE_) \
+#define GRANDOTE_VOLATILE_VALUE_C_IMPL(_TYPE_) \
 CXXCAPI _TYPE_ volatile_value_##_TYPE_(volatile _TYPE_ * vp) { \
     return *vp; \
 }
 
-#define DESPERADO_VOLATILE_ADDRESS_C_IMPL(_TYPE_) \
+#define GRANDOTE_VOLATILE_ADDRESS_C_IMPL(_TYPE_) \
 CXXCAPI volatile _TYPE_ * volatile_address_##_TYPE_(volatile _TYPE_ * vp) { \
     return vp; \
 }
 
-#define DESPERADO_VOLATILE_VALUE_CXX(_TYPE_) \
+#define GRANDOTE_VOLATILE_VALUE_CXX(_TYPE_) \
 static inline _TYPE_ value(volatile _TYPE_ * vp) { \
     return volatile_value_##_TYPE_(vp); \
 } \
@@ -107,7 +107,7 @@ static inline _TYPE_ value(volatile _TYPE_ & vr) { \
     return volatile_value_##_TYPE_(&vr); \
 }
 
-#define DESPERADO_VOLATILE_ADDRESS_CXX(_TYPE_) \
+#define GRANDOTE_VOLATILE_ADDRESS_CXX(_TYPE_) \
 static inline volatile _TYPE_ * address(volatile _TYPE_ * vp) { \
     return volatile_address_##_TYPE_(vp); \
 } \
@@ -115,7 +115,7 @@ static inline volatile _TYPE_ * address(volatile _TYPE_ & vr) { \
     return volatile_address_##_TYPE_(&vr); \
 }
 
-#define DESPERADO_VOLATILE_REFERENCE_CXX(_TYPE_) \
+#define GRANDOTE_VOLATILE_REFERENCE_CXX(_TYPE_) \
 static inline volatile _TYPE_ & reference(volatile _TYPE_ * vp) { \
     return *volatile_address_##_TYPE_(vp); \
 } \
@@ -123,23 +123,23 @@ static inline volatile _TYPE_ & reference(volatile _TYPE_ & vr) { \
     return *volatile_address_##_TYPE_(&vr); \
 }
 
-DESPERADO_VOLATILE_VALUE_C_DECL(int8_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(int16_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(int32_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(int64_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(uint8_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(uint16_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(uint32_t)
-DESPERADO_VOLATILE_VALUE_C_DECL(uint64_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(int8_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(int16_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(int32_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(int64_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(uint8_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(uint16_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(uint32_t)
+GRANDOTE_VOLATILE_VALUE_C_DECL(uint64_t)
 
-DESPERADO_VOLATILE_ADDRESS_C_DECL(int8_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(int16_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(int32_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(int64_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(uint8_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(uint16_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(uint32_t)
-DESPERADO_VOLATILE_ADDRESS_C_DECL(uint64_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(int8_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(int16_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(int32_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(int64_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(uint8_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(uint16_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(uint32_t)
+GRANDOTE_VOLATILE_ADDRESS_C_DECL(uint64_t)
 
 
 #if defined(__cplusplus)
@@ -154,40 +154,40 @@ class Volatile {
 
 public:
 
-    DESPERADO_VOLATILE_VALUE_CXX(int8_t)
-    DESPERADO_VOLATILE_VALUE_CXX(int16_t)
-    DESPERADO_VOLATILE_VALUE_CXX(int32_t)
-    DESPERADO_VOLATILE_VALUE_CXX(int64_t)
-    DESPERADO_VOLATILE_VALUE_CXX(uint8_t)
-    DESPERADO_VOLATILE_VALUE_CXX(uint16_t)
-    DESPERADO_VOLATILE_VALUE_CXX(uint32_t)
-    DESPERADO_VOLATILE_VALUE_CXX(uint64_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(int8_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(int16_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(int32_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(int64_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(uint8_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(uint16_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(uint32_t)
+    GRANDOTE_VOLATILE_VALUE_CXX(uint64_t)
 
-    DESPERADO_VOLATILE_ADDRESS_CXX(int8_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(int16_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(int32_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(int64_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(uint8_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(uint16_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(uint32_t)
-    DESPERADO_VOLATILE_ADDRESS_CXX(uint64_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(int8_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(int16_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(int32_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(int64_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(uint8_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(uint16_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(uint32_t)
+    GRANDOTE_VOLATILE_ADDRESS_CXX(uint64_t)
 
-    DESPERADO_VOLATILE_REFERENCE_CXX(int8_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(int16_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(int32_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(int64_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(uint8_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(uint16_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(uint32_t)
-    DESPERADO_VOLATILE_REFERENCE_CXX(uint64_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(int8_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(int16_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(int32_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(int64_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(uint8_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(uint16_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(uint32_t)
+    GRANDOTE_VOLATILE_REFERENCE_CXX(uint64_t)
 
 };
 
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Volatile unit test.
  *  

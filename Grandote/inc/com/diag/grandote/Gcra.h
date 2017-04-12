@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_GCRA_H_
-#define _COM_DIAG_DESPERADO_GCRA_H_
+#ifndef _COM_DIAG_GRANDOTE_GCRA_H_
+#define _COM_DIAG_GRANDOTE_GCRA_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -57,10 +57,10 @@
 
 
 
-#include "com/diag/desperado/Throttle.h"
+#include "com/diag/grandote/Throttle.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  This class implements a throttle that enforces a traffic contract
@@ -297,7 +297,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

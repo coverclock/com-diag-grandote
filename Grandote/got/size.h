@@ -15,20 +15,20 @@
 #include <fcntl.h>
 #include "gtest/gtest.h"
 #include "Fixture.h"
-#include "com/diag/desperado/size.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/BufferInput.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/Packet.h"
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/size.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/BufferInput.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/Packet.h"
+#include "com/diag/grandote/stdlib.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture SizeTest;
 
@@ -46,11 +46,11 @@ TEST_F(SizeTest, Size) {
 	Size fpsize = size(fp);
 	EXPECT_EQ(fpsize, namesize);
 	/**/
-	::com::diag::desperado::DescriptorInput descriptorinput(fd);
+	::com::diag::grandote::DescriptorInput descriptorinput(fd);
 	Size descriptorsize = size(descriptorinput);
 	EXPECT_EQ(descriptorsize, namesize);
 	/**/
-	::com::diag::desperado::PathInput pathinput("unittest.txt");
+	::com::diag::grandote::PathInput pathinput("unittest.txt");
 	Size pathsize = size(pathinput);
 	EXPECT_EQ(pathsize, namesize);
 	/**/
@@ -65,15 +65,15 @@ TEST_F(SizeTest, Size) {
 	/**/
 	char * buffer = new char [sourcesize];
 	EXPECT_NE(buffer, (char *)0);
-	::com::diag::desperado::BufferOutput bufferoutput(buffer, sourcesize);
+	::com::diag::grandote::BufferOutput bufferoutput(buffer, sourcesize);
 	Size sinksize = packet.sink(bufferoutput);
 	EXPECT_EQ(sinksize, namesize);
 	/**/
-	::com::diag::desperado::BufferInput bufferinput(bufferoutput.getBuffer(), bufferoutput.getOffset());
+	::com::diag::grandote::BufferInput bufferinput(bufferoutput.getBuffer(), bufferoutput.getOffset());
 	Size buffersize = size(bufferinput);
 	EXPECT_EQ(buffersize, namesize);
 	/**/
-	::com::diag::desperado::DataInput datainput(bufferoutput.getBuffer(), bufferoutput.getOffset());
+	::com::diag::grandote::DataInput datainput(bufferoutput.getBuffer(), bufferoutput.getOffset());
 	Size datasize = size(datainput);
 	EXPECT_EQ(datasize, namesize);
 	/**/
@@ -90,7 +90,7 @@ TEST_F(SizeTest, Size) {
 	EXPECT_EQ(size(stdin), EOF);
 	EXPECT_EQ(size(stdout), EOF);
 	EXPECT_EQ(size(stderr), EOF);
-	::com::diag::desperado::Input input;
+	::com::diag::grandote::Input input;
 	EXPECT_EQ(size(input), EOF);
 }
 

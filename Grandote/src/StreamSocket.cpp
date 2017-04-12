@@ -53,12 +53,12 @@
  */
 
 
-#include "com/diag/desperado/StreamSocket.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
+#include "com/diag/grandote/StreamSocket.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -123,4 +123,4 @@ void StreamSocket::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

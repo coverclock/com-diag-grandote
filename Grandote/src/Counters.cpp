@@ -53,15 +53,15 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Counters.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Counters.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -357,4 +357,4 @@ Counters::Functor::~Functor() {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

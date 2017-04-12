@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_OUTPUT_H_
-#define _COM_DIAG_DESPERADO_OUTPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_OUTPUT_H_
+#define _COM_DIAG_GRANDOTE_OUTPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,19 +56,19 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/generics.h"
 
 
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
+#include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Defines the interface to an output functor, an object, called
@@ -228,7 +228,7 @@ public:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #else
@@ -254,7 +254,7 @@ typedef struct Output Output;
  *
  *  @return the output character if successful, EOF otherwise.
  */
-CXXCAPI ssize_t output_c(CXXCTYPE(::com::diag::desperado::, Output)* o, int c);
+CXXCAPI ssize_t output_c(CXXCTYPE(::com::diag::grandote::, Output)* o, int c);
 
 
 /**
@@ -267,7 +267,7 @@ CXXCAPI ssize_t output_c(CXXCTYPE(::com::diag::desperado::, Output)* o, int c);
  *
  *  @return a non-negative number if successful, EOF otherwise.
  */
-CXXCAPI ssize_t output_s(CXXCTYPE(::com::diag::desperado::, Output)* o, const char* s);
+CXXCAPI ssize_t output_s(CXXCTYPE(::com::diag::grandote::, Output)* o, const char* s);
 
 
 /**
@@ -286,7 +286,7 @@ CXXCAPI ssize_t output_s(CXXCTYPE(::com::diag::desperado::, Output)* o, const ch
  *  @return the number of octets output if successful (which
  *          may be zero), EOF otherwise.
  */
-CXXCAPI ssize_t output_n(CXXCTYPE(::com::diag::desperado::, Output)* o, const char* s, size_t size);
+CXXCAPI ssize_t output_n(CXXCTYPE(::com::diag::grandote::, Output)* o, const char* s, size_t size);
 
 
 /**
@@ -302,7 +302,7 @@ CXXCAPI ssize_t output_n(CXXCTYPE(::com::diag::desperado::, Output)* o, const ch
  *
  *  @return a non-negative number if successful, EOF otherwise.
  */
-CXXCAPI ssize_t output_v(CXXCTYPE(::com::diag::desperado::, Output)* o, const char* format, va_list ap);
+CXXCAPI ssize_t output_v(CXXCTYPE(::com::diag::grandote::, Output)* o, const char* format, va_list ap);
 
 
 /**
@@ -327,7 +327,7 @@ CXXCAPI ssize_t output_v(CXXCTYPE(::com::diag::desperado::, Output)* o, const ch
  *          than maximum including zero) if successful, EOF otherwise.
  */
 CXXCAPI ssize_t output_b(
-	CXXCTYPE(::com::diag::desperado::, Output)* o,
+	CXXCTYPE(::com::diag::grandote::, Output)* o,
     const void* buffer,
     size_t minimum,
     size_t maximum
@@ -343,7 +343,7 @@ CXXCAPI ssize_t output_b(
  *
  *  @return a non-negative number if successful, EOF otherwise.
  */
-CXXCAPI int output_flush(CXXCTYPE(::com::diag::desperado::, Output)* o);
+CXXCAPI int output_flush(CXXCTYPE(::com::diag::grandote::, Output)* o);
 
 
 #if !defined(EOF)

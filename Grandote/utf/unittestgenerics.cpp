@@ -74,29 +74,29 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/generics.h"
-#if !defined(DESPERADO_HAS_DEBUGGING)
-#define DESPERADO_HAS_DEBUGGING
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/generics.h"
+#if !defined(GRANDOTE_HAS_DEBUGGING)
+#define GRANDOTE_HAS_DEBUGGING
 #endif
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/debug.h"
-#include "com/diag/desperado/reinitializeobject.h"
-#include "com/diag/desperado/reinitializeobject.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/debug.h"
+#include "com/diag/grandote/reinitializeobject.h"
+#include "com/diag/grandote/reinitializeobject.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Grandote.h"
 
 #if 0
 #undef offsetof
-#define offsetof(_STRUCT_, _MEMBER_) desperado_offsetof(_STRUCT_, _MEMBER_)
+#define offsetof(_STRUCT_, _MEMBER_) grandote_offsetof(_STRUCT_, _MEMBER_)
 #endif
 
 CXXCAPI int unittestgenerics(void) {
@@ -135,7 +135,7 @@ CXXCAPI int unittestgenerics(void) {
     psizeof(int64_t);
     psizeof(uint64_t);
 
-    printf("%s[%d]: desperado_offsetof\n", __FILE__, __LINE__);
+    printf("%s[%d]: grandote_offsetof\n", __FILE__, __LINE__);
 
     struct Type {
         uint8_t cc;
@@ -145,7 +145,7 @@ CXXCAPI int unittestgenerics(void) {
     };
 
 #define poffsetof(_FIELD_) \
-    printf("%s[%d]: desperado_offsetof(" #_FIELD_ ")=%u\n", __FILE__, __LINE__, desperado_offsetof(Type, _FIELD_))
+    printf("%s[%d]: grandote_offsetof(" #_FIELD_ ")=%u\n", __FILE__, __LINE__, grandote_offsetof(Type, _FIELD_))
 
     poffsetof(cc);
     poffsetof(ss);
@@ -156,28 +156,28 @@ CXXCAPI int unittestgenerics(void) {
 
     size_t offset;
 
-    offset = desperado_offsetof(Type, dd);
+    offset = grandote_offsetof(Type, dd);
     if (8 != offset) {
         errorf("%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 8, offset);
         ++errors;
     }
 
-    offset = desperado_offsetof(Type, ll);
+    offset = grandote_offsetof(Type, ll);
     if (4 != offset) {
         errorf("%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 4, offset);
         ++errors;
     }
 
-    offset = desperado_offsetof(Type, ss);
+    offset = grandote_offsetof(Type, ss);
     if (2 != offset) {
         errorf("%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 2, offset);
         ++errors;
     }
 
-    offset = desperado_offsetof(Type, cc);
+    offset = grandote_offsetof(Type, cc);
     if (0 != offset) {
         errorf("%s[%d]: (%u!=%u)!\n",
             __FILE__, __LINE__, 0, offset);

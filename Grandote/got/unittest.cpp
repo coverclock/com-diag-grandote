@@ -18,12 +18,12 @@
 
 // Hooks to clean up singletons just for valgrind.
 
-class Platform : public ::com::diag::desperado::Platform {
+class Platform : public ::com::diag::grandote::Platform {
 public:
 	static void finalize() { delete singleton; singleton = 0; }
 };
 
-class MaskableLogger : public ::com::diag::desperado::MaskableLogger {
+class MaskableLogger : public ::com::diag::grandote::MaskableLogger {
 public:
 	static void finalize() { delete singleton; singleton = 0; }
 };

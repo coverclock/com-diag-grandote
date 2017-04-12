@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Indexes a table of various names for eight-bit ASCII characters indexed
@@ -188,11 +188,11 @@ inline const Ascii::Entry& Ascii::operator[] (unsigned char index) const {
     return this->table[index];
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Ascii unit test.
  *  

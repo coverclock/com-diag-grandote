@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _COM_DIAG_DESPERADO_UCLIBC_H_
-#define _COM_DIAG_DESPERADO_UCLIBC_H_
+#ifndef _COM_DIAG_GRANDOTE_UCLIBC_H_
+#define _COM_DIAG_GRANDOTE_UCLIBC_H_
 
 /******************************************************************************
 
@@ -54,9 +54,9 @@
 
 
 #if defined(__UCLIBC_MAJOR__) && defined(__UCLIBC_MINOR__) && defined(__UCLIBC_SUBLEVEL__)
-#	define DESPERADO_HAS_UCLIBC COM_DIAG_DIMINUTO_PLATFORM_UCLIBC (1000000 + ((__UCLIBC_MAJOR__) * 10000) + ((__UCLIBC_MINOR__) * 100) + (__UCLIBC_SUBLEVEL__))
+#	define GRANDOTE_HAS_UCLIBC COM_DIAG_DIMINUTO_PLATFORM_UCLIBC (1000000 + ((__UCLIBC_MAJOR__) * 10000) + ((__UCLIBC_MINOR__) * 100) + (__UCLIBC_SUBLEVEL__))
 #else
-#	undef DESPERADO_HAS_UCLIBC
+#	undef GRANDOTE_HAS_UCLIBC
 #endif
 
 

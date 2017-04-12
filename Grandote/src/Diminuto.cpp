@@ -53,13 +53,13 @@
  */
 
 
-#if defined(DESPERADO_PLATFORM_IS_Diminuto)
+#if defined(GRANDOTE_PLATFORM_IS_Diminuto)
 
 
-#include "com/diag/desperado/Diminuto.h"
+#include "com/diag/grandote/Diminuto.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -96,7 +96,7 @@ void Diminuto::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

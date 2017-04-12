@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Argument.h"
-#include "com/diag/desperado/Argument.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Argument.h"
+#include "com/diag/grandote/Argument.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 static Argument staticArgument;
 

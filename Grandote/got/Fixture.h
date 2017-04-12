@@ -12,34 +12,34 @@
  */
 
 #include "gtest/gtest.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/LogOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/MaskableLogger.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/LogOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/MaskableLogger.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 class Test : public ::testing::Test {
 
 protected:
 
-	::com::diag::desperado::FileOutput errput;
-	::com::diag::desperado::LogOutput logput;
-	::com::diag::desperado::Output * output;
+	::com::diag::grandote::FileOutput errput;
+	::com::diag::grandote::LogOutput logput;
+	::com::diag::grandote::Output * output;
 	MaskableLogger::Mask mask;
 
 public:
 
 	MaskableLogger & logger;
-	::com::diag::desperado::Platform & platform;
-	::com::diag::desperado::Print printf;
-	::com::diag::desperado::Dump dump;
+	::com::diag::grandote::Platform & platform;
+	::com::diag::grandote::Print printf;
+	::com::diag::grandote::Dump dump;
 
 	explicit Test()
 	: errput(::stderr)
@@ -47,7 +47,7 @@ public:
 	, output(0)
 	, mask(0)
 	, logger(MaskableLogger::instance())
-	, platform(::com::diag::desperado::Platform::instance())
+	, platform(::com::diag::grandote::Platform::instance())
 	, printf(errput)
 	, dump(errput)
 	{}

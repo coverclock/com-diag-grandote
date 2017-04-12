@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_MINIMUM_H_
-#define _COM_DIAG_DESPERADO_MINIMUM_H_
+#ifndef _COM_DIAG_GRANDOTE_MINIMUM_H_
+#define _COM_DIAG_GRANDOTE_MINIMUM_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,7 +56,7 @@
  */
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Generates a class containing functors to find the maximum from a
@@ -411,11 +411,11 @@ inline _TYPE_ Minimum<_TYPE_>::operator() (
     return (*this)((*this)(one, two, three, four, five, six, seven), eight);
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Minimum and Maximum unit test.
  *

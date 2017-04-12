@@ -53,10 +53,10 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Throttle.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Throttle.h"
 
 int main(int, char**) {
     exit(unittestThrottle());

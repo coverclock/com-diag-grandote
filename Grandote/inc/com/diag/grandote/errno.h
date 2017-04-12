@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ERRNO_H_
-#define _COM_DIAG_DESPERADO_ERRNO_H_
+#ifndef _COM_DIAG_GRANDOTE_ERRNO_H_
+#define _COM_DIAG_GRANDOTE_ERRNO_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -62,7 +62,7 @@
 #endif
 
 
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
 CXXCAPI int* platform_errornumber(void);

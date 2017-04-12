@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/uint32_Number.h"
+#include "com/diag/grandote/uint32_Number.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 Number<uint32_t> uint32_Number;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

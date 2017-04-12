@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/Ram.h"
+#include "com/diag/grandote/Ram.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 template class Ram<uint8_t>;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

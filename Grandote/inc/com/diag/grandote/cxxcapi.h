@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_CXXCAPI_H_
-#define _COM_DIAG_DESPERADO_CXXCAPI_H_
+#ifndef _COM_DIAG_GRANDOTE_CXXCAPI_H_
+#define _COM_DIAG_GRANDOTE_CXXCAPI_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -44,7 +44,7 @@
 /**
  *  @file
  *
- *  Defines the symbols and macros necessary for the Desperado
+ *  Defines the symbols and macros necessary for the Grandote
  *  C++/C-language Application Programming Interface (CXXCAPI).
  *  The CXXCAPI provides tools to make it easier for C and C++
  *  applications to interoperate, and for inline functions and
@@ -209,7 +209,7 @@
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the cxxcapi unit test.
  *

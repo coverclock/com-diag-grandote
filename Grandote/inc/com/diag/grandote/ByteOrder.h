@@ -48,10 +48,10 @@
  */
 
 
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/target.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Template defines a generalized method for swapping bytes.
@@ -170,15 +170,15 @@ public:
 
 GRANDOTE_BYTEORDER_INTEGER(unsigned long long)
 GRANDOTE_BYTEORDER_INTEGER(unsigned long)
-DESPERADO_BYTEORDER_INTEGER(unsigned int)
-DESPERADO_BYTEORDER_INTEGER(unsigned short)
-DESPERADO_BYTEORDER_INTEGER(unsigned char)
+GRANDOTE_BYTEORDER_INTEGER(unsigned int)
+GRANDOTE_BYTEORDER_INTEGER(unsigned short)
+GRANDOTE_BYTEORDER_INTEGER(unsigned char)
 
-DESPERADO_BYTEORDER_INTEGER(signed long long)
-DESPERADO_BYTEORDER_INTEGER(signed long)
-DESPERADO_BYTEORDER_INTEGER(signed int)
-DESPERADO_BYTEORDER_INTEGER(signed short)
-DESPERADO_BYTEORDER_INTEGER(signed char)
+GRANDOTE_BYTEORDER_INTEGER(signed long long)
+GRANDOTE_BYTEORDER_INTEGER(signed long)
+GRANDOTE_BYTEORDER_INTEGER(signed int)
+GRANDOTE_BYTEORDER_INTEGER(signed short)
+GRANDOTE_BYTEORDER_INTEGER(signed char)
 
 /*
  * Here we need to have integer types the same bit width as the
@@ -189,14 +189,14 @@ DESPERADO_BYTEORDER_INTEGER(signed char)
  * from platform to platform.
  */
 
-DESPERADO_BYTEORDER_FLOAT(float64_t, uint64_t)
-DESPERADO_BYTEORDER_FLOAT(float32_t, uint32_t)
+GRANDOTE_BYTEORDER_FLOAT(float64_t, uint64_t)
+GRANDOTE_BYTEORDER_FLOAT(float32_t, uint32_t)
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the ByteOrder unit test.
  *  

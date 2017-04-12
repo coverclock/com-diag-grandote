@@ -48,10 +48,10 @@
 
 
 #include <unistd.h>
-#include "com/diag/desperado/writes.h"
+#include "com/diag/grandote/writes.h"
 
 
-CXXCAPI ssize_t desperado_writes(
+CXXCAPI ssize_t grandote_writes(
     int fd,
     const void* pointer,
     size_t atleast,

@@ -53,13 +53,13 @@
  */
 
 
-#if defined(DESPERADO_PLATFORM_IS_Arroyo)
+#if defined(GRANDOTE_PLATFORM_IS_Arroyo)
 
 
-#include "com/diag/desperado/Arroyo.h"
+#include "com/diag/grandote/Arroyo.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -95,7 +95,7 @@ void Arroyo::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

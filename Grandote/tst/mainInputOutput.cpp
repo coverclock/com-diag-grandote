@@ -49,51 +49,51 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdlib.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/FileInput.h"
-#include "com/diag/desperado/FileInput.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/BufferInput.h"
-#include "com/diag/desperado/BufferInput.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/DumpInput.h"
-#include "com/diag/desperado/DumpInput.h"
-#include "com/diag/desperado/DumpOutput.h"
-#include "com/diag/desperado/DumpOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/reads.h"
-#include "com/diag/desperado/reads.h"
-#include "com/diag/desperado/writes.h"
-#include "com/diag/desperado/writes.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/FileInput.h"
+#include "com/diag/grandote/FileInput.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/BufferInput.h"
+#include "com/diag/grandote/BufferInput.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/DumpInput.h"
+#include "com/diag/grandote/DumpInput.h"
+#include "com/diag/grandote/DumpOutput.h"
+#include "com/diag/grandote/DumpOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/reads.h"
+#include "com/diag/grandote/reads.h"
+#include "com/diag/grandote/writes.h"
+#include "com/diag/grandote/writes.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/Grandote.h"
 
 #define USAGE   \
     "[ -d(ebug) ] [ -v(erbose) ]" \
@@ -307,12 +307,12 @@ int main(int argc, char **argv, char **) {
                     ++errors;
                     break;
                 }
-                fc = ::desperado_reads(insocket, const_cast<char*>(static_cast<const char*>(bi->getData())),
+                fc = ::grandote_reads(insocket, const_cast<char*>(static_cast<const char*>(bi->getData())),
                 		bi->getSize(), bi->getSize());
                 if (static_cast<ssize_t>(size) != fc) {
                     heap.free(instring);
                     instring = 0;
-                    std::perror("desperado_reads(insocket,instring,size,size)");
+                    std::perror("grandote_reads(insocket,instring,size,size)");
                     ++errors;
                     break;
                 }
@@ -407,12 +407,12 @@ int main(int argc, char **argv, char **) {
                     ++errors;
                     break;
                 }
-                fc = ::desperado_reads(insocket, si->getBuffer(),
+                fc = ::grandote_reads(insocket, si->getBuffer(),
                         si->getSize(), si->getSize());
                 if (static_cast<ssize_t>(size) != fc) {
                     heap.free(instring);
                     instring = 0;
-                    std::perror("desperado_reads(insocket,instring,size,size)");
+                    std::perror("grandote_reads(insocket,instring,size,size)");
                     ++errors;
                     break;
                 }
@@ -456,10 +456,10 @@ int main(int argc, char **argv, char **) {
         }
 
         if (0 != outstring) {
-            fc = ::desperado_writes(outsocket, so->getBuffer(),
+            fc = ::grandote_writes(outsocket, so->getBuffer(),
                     so->getOffset(), so->getOffset());
             if (static_cast<ssize_t>(so->getOffset()) != fc) {
-                std::perror("desperado_writes(outoutsocket,outstring,size)");
+                std::perror("grandote_writes(outoutsocket,outstring,size)");
                 ++errors;
             }
             delete outputp;

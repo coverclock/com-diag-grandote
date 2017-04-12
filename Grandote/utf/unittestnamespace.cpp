@@ -47,38 +47,38 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Dump.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Dump.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Output.h"
 
 CXXCAPI int unittestnamespace(void);
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 static int function1() {
 	return 1;
 }
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 static int function2() {
-	return com::diag::desperado::function1() + 1;
+	return com::diag::grandote::function1() + 1;
 }
 
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 static int function3() {
 	return function1() + 2;
 }
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 static int function4() {
 	return ::function2() + 2;
 }
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 CXXCAPI int unittestnamespace(void) {
     Print printf(Platform::instance().output());

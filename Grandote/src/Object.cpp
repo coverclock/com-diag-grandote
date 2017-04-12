@@ -53,10 +53,10 @@
  */
 
 
-#include "com/diag/desperado/Object.h"
+#include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -66,4 +66,4 @@ Object::~Object() {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

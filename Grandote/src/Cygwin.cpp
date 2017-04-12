@@ -53,11 +53,11 @@
  */
 
 
-#if defined(DESPERADO_PLATFORM_IS_Cygwin)
+#if defined(GRANDOTE_PLATFORM_IS_Cygwin)
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/stdlib.h"
 #include <ctime>
 #include <syslog.h>
 #include <sys/time.h>
@@ -66,23 +66,23 @@
 #include <unistd.h>
 #include <sched.h>
 #include <pthread.h>
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Cygwin.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/Ticks.h"
-#include "com/diag/desperado/TimeZone.h"
-#include "com/diag/desperado/DstNever.h"
-#include "com/diag/desperado/DstUs.h"
-#include "com/diag/desperado/LeapSeconds.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Cygwin.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/Ticks.h"
+#include "com/diag/grandote/TimeZone.h"
+#include "com/diag/grandote/DstNever.h"
+#include "com/diag/grandote/DstUs.h"
+#include "com/diag/grandote/LeapSeconds.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/generics.h"
 
 extern long timezone;
 extern int daylight;
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 static DstNever dstnever;           // Used if no Daylight Saving Time.
@@ -189,7 +189,7 @@ Cygwin::~Cygwin() {
 //  Return the name of this platform.
 //
 const char* Cygwin::platform() {
-    return DESPERADO_PLATFORM_NAME;
+    return GRANDOTE_PLATFORM_NAME;
 }
 
 
@@ -197,7 +197,7 @@ const char* Cygwin::platform() {
 //  Return the name of the target on which this platform is running.
 //
 const char* Cygwin::target() {
-    return DESPERADO_TARGET_NAME;
+    return GRANDOTE_TARGET_NAME;
 }
 
 
@@ -551,7 +551,7 @@ void Cygwin::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_STRING_H_
-#define _COM_DIAG_DESPERADO_STRING_H_
+#ifndef _COM_DIAG_GRANDOTE_STRING_H_
+#define _COM_DIAG_GRANDOTE_STRING_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -46,7 +46,7 @@
 /**
  *  @file
  *
- *  Defines the Desperado string functions for those platforms
+ *  Defines the Grandote string functions for those platforms
  *  which do not implement these common GNU and BSD extensions.
  * 
  *  This can be included from either a C or a C++ translation unit.
@@ -65,12 +65,12 @@
 #else
 #   include <string.h>
 #endif
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
 /*
- *  Define the prototypes for the Desperado string functions. These
+ *  Define the prototypes for the Grandote string functions. These
  *  functions are available no matter what platform we are building
  *  for, but they might be redundant, duplicating functionality that
  *  the platform already has.
@@ -91,7 +91,7 @@
  *  @return the string length not including its terminating NUL,
  *          or the count, whichever is smaller.
  */
-CXXCAPI size_t desperado_strnlen(const char* s, size_t maxlen);
+CXXCAPI size_t grandote_strnlen(const char* s, size_t maxlen);
 
 
 /**
@@ -114,7 +114,7 @@ CXXCAPI size_t desperado_strnlen(const char* s, size_t maxlen);
  *          Safe, String Copy and Concatenation", Proceedings of the
  *          1999 USENIX Annual Technical Conference, 1999
  */
-CXXCAPI size_t desperado_strlcpy(char* dst, const char* src, size_t size);
+CXXCAPI size_t grandote_strlcpy(char* dst, const char* src, size_t size);
 
 
 /**
@@ -137,7 +137,7 @@ CXXCAPI size_t desperado_strlcpy(char* dst, const char* src, size_t size);
  *          Safe, String Copy and Concatenation", Proceedings of the
  *          1999 USENIX Annual Technical Conference, 1999
  */
-CXXCAPI size_t desperado_strlcat(char* dst, const char* src, size_t size);
+CXXCAPI size_t grandote_strlcat(char* dst, const char* src, size_t size);
 
 
 /**
@@ -155,7 +155,7 @@ CXXCAPI size_t desperado_strlcat(char* dst, const char* src, size_t size);
  *  @return a pointer to the first occurance of the desired character
  *          from the left or 0 if not found.
  */
-CXXCAPI char* desperado_strnchr(const char* s, size_t count, int c);
+CXXCAPI char* grandote_strnchr(const char* s, size_t count, int c);
 
 
 /**
@@ -172,7 +172,7 @@ CXXCAPI char* desperado_strnchr(const char* s, size_t count, int c);
  *  @return a pointer to the first occurance of the desired character
  *          from the right or 0 if not found.
  */
-CXXCAPI char* desperado_strnrchr(const char* s, size_t count, int c);
+CXXCAPI char* grandote_strnrchr(const char* s, size_t count, int c);
 
 
 /*
@@ -182,25 +182,25 @@ CXXCAPI char* desperado_strnrchr(const char* s, size_t count, int c);
  
 
 #if defined(__CYGWIN__)
-#   define DESPERADO_NEEDS_STRNCHR
+#   define GRANDOTE_NEEDS_STRNCHR
 #elif defined(__CYGWIN32__)
-#   define DESPERADO_NEEDS_STRNCHR
+#   define GRANDOTE_NEEDS_STRNCHR
 #elif defined(__USE_GNU)
-#   define DESPERADO_NEEDS_STRNCHR
+#   define GRANDOTE_NEEDS_STRNCHR
 #elif defined(__OpenBSD__)
 #else
 #   if !defined(__HAVE_ARCH_STRNLEN)
-#       define DESPERADO_NEEDS_STRNLEN
+#       define GRANDOTE_NEEDS_STRNLEN
 #   endif
 #   if !defined(__HAVE_ARCH_STRLCPY)
-#       define DESPERADO_NEEDS_STRLCPY
+#       define GRANDOTE_NEEDS_STRLCPY
 #   endif
 #   if !defined(__HAVE_ARCH_STRLCAT)
-#       define DESPERADO_NEEDS_STRLCAT
+#       define GRANDOTE_NEEDS_STRLCAT
 #   endif
-#   define DESPERADO_NEEDS_STRNCHR
+#   define GRANDOTE_NEEDS_STRNCHR
 #endif
-#define DESPERADO_NEEDS_STRNRCHR
+#define GRANDOTE_NEEDS_STRNRCHR
 
 
 /*
@@ -210,7 +210,7 @@ CXXCAPI char* desperado_strnrchr(const char* s, size_t count, int c);
  */
 
 
-#if defined(DESPERADO_NEEDS_STRNLEN)
+#if defined(GRANDOTE_NEEDS_STRNLEN)
 
 /**
  *  Return the length of a character string, or a maximum value
@@ -227,13 +227,13 @@ CXXCAPI char* desperado_strnrchr(const char* s, size_t count, int c);
  *          or the count, whichever is smaller.
  */
 CXXCINLINE size_t strnlen(const char* s, size_t maxlen) {
-    return desperado_strnlen(s, maxlen);
+    return grandote_strnlen(s, maxlen);
 }
 
 #endif
 
 
-#if defined(DESPERADO_NEEDS_STRLCPY)
+#if defined(GRANDOTE_NEEDS_STRLCPY)
 
 /**
  *  Implements the OpenBSD strlcpy function that is used similarly to
@@ -256,13 +256,13 @@ CXXCINLINE size_t strnlen(const char* s, size_t maxlen) {
  *          1999 USENIX Annual Technical Conference, 1999
  */
 CXXCINLINE size_t strlcpy(char* dst, const char* src, size_t count) {
-    return desperado_strlcpy(dst, src, count);
+    return grandote_strlcpy(dst, src, count);
 }
 
 #endif
 
 
-#if defined(DESPERADO_NEEDS_STRLCAT)
+#if defined(GRANDOTE_NEEDS_STRLCAT)
 
 /**
  *  Implements the OpenBSD strlcat function that is used similarly to
@@ -285,13 +285,13 @@ CXXCINLINE size_t strlcpy(char* dst, const char* src, size_t count) {
  *          1999 USENIX Annual Technical Conference, 1999
  */
 CXXCINLINE size_t strlcat(char* dst, const char* src, size_t count) {
-    return desperado_strlcat(dst, src, count);
+    return grandote_strlcat(dst, src, count);
 }
 
 #endif
 
 
-#if defined(DESPERADO_NEEDS_STRNCHR)
+#if defined(GRANDOTE_NEEDS_STRNCHR)
 
 /**
  *  Search for the first occurance of a character in a string of limited length.
@@ -306,13 +306,13 @@ CXXCINLINE size_t strlcat(char* dst, const char* src, size_t count) {
  *          from the left or 0 if not found.
  */
 CXXCINLINE char* strnchr(const char* s, size_t count, int c) {
-    return desperado_strnchr(s, count, c);
+    return grandote_strnchr(s, count, c);
 }
 
 #endif
 
 
-#if defined(DESPERADO_NEEDS_STRNRCHR)
+#if defined(GRANDOTE_NEEDS_STRNRCHR)
 
 /**
  *  Search for the last occurance of a character in a string of limited length.
@@ -327,7 +327,7 @@ CXXCINLINE char* strnchr(const char* s, size_t count, int c) {
  *          from the right or 0 if not found.
  */
 CXXCINLINE char* strnrchr(const char* s, size_t count, int c) {
-    return desperado_strnrchr(s, count, c);
+    return grandote_strnrchr(s, count, c);
 }
 
 #endif
@@ -367,8 +367,8 @@ inline const char* _s(const std::string * sp) { return sp->c_str(); }
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the string unit test.
  *  

@@ -53,27 +53,27 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Exception.h"
-#include "com/diag/desperado/Exception.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathInput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/PathOutput.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Exception.h"
+#include "com/diag/grandote/Exception.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathInput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/PathOutput.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Grandote.h"
 
-#if defined(DESPERADO_HAS_EXCEPTIONS)
+#if defined(GRANDOTE_HAS_EXCEPTIONS)
 
 static void exceptional(int type) {
     std::exception e1;
     Exception e2;
     int e3 = 3;
-    Exception* e4 = new DESPERADO_EXCEPTION("e4");
-    Exception e5("e5", -1, __FILE__, __LINE__, DESPERADO_EXCEPTION_FUNCTION);
+    Exception* e4 = new GRANDOTE_EXCEPTION("e4");
+    Exception e5("e5", -1, __FILE__, __LINE__, GRANDOTE_EXCEPTION_FUNCTION);
 
     switch (type) {
     case 0:
@@ -132,7 +132,7 @@ CXXCAPI int unittestException(void) {
 
     printf("%s[%d]: begin\n", __FILE__, __LINE__);
 
-#if defined(DESPERADO_HAS_EXCEPTIONS)
+#if defined(GRANDOTE_HAS_EXCEPTIONS)
 
     int caught;
 
@@ -168,7 +168,7 @@ CXXCAPI int unittestException(void) {
         ++errors;
     }
 
-    printf("%s[%d]: DESPERADO_EXCEPTION\n", __FILE__, __LINE__);
+    printf("%s[%d]: GRANDOTE_EXCEPTION\n", __FILE__, __LINE__);
 
     errno = 4;
     caught = exceptioning(4);
@@ -232,7 +232,7 @@ CXXCAPI int unittestException(void) {
 
 #else
 
-    printf("%s[%d]: !defined(DESPERADO_HAS_EXCEPTIONS)\n",
+    printf("%s[%d]: !defined(GRANDOTE_HAS_EXCEPTIONS)\n",
         __FILE__, __LINE__);
 
 #endif

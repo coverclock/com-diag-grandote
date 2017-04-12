@@ -49,14 +49,14 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Primes.h"
-#include "com/diag/desperado/Primes.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Primes.h"
+#include "com/diag/grandote/Primes.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 CXXCAPI int unittestPrimes(void) {
     Print printf(Platform::instance().output());

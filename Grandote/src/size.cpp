@@ -9,19 +9,19 @@
 
 #include <sys/stat.h>
 #include <unistd.h>
-#include "com/diag/desperado/size.h"
-#include "com/diag/desperado/BufferInput.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/DataInput.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/DescriptorOutput.h"
-#include "com/diag/desperado/FileInput.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/Packet.h"
+#include "com/diag/grandote/size.h"
+#include "com/diag/grandote/BufferInput.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/DataInput.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/DescriptorOutput.h"
+#include "com/diag/grandote/FileInput.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/Packet.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 Size size(const char * path) {
 	Size result = EOF;

@@ -49,17 +49,17 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/ready.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/ready.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -233,7 +233,7 @@ ssize_t FileOutput::operator() (
 				break; // Already have maximum.
 			}
 			maximum -= fc;
-			size_t effective = ::desperado_file_writeable(this->file);
+			size_t effective = ::grandote_file_writeable(this->file);
 			if (effective < maximum) {
 				maximum = effective;
 			}
@@ -304,7 +304,7 @@ void FileOutput::show(int level, Output* display, int indent) const {
         printf("%s  fileno=%d\n", sp, fileno(this->file));
         printf("%s  feof=%d\n", sp, std::feof(this->file));
         printf("%s  ferror=%d\n", sp, std::ferror(this->file));
-        printf("%s  writeable=%zu\n", sp, ::desperado_file_writeable(this->file));
+        printf("%s  writeable=%zu\n", sp, ::grandote_file_writeable(this->file));
     }
     if (0 < this->error) {
         printf("%s error=%d=\"%s\"\n", sp, this->error, ::strerror(this->error));
@@ -312,4 +312,4 @@ void FileOutput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

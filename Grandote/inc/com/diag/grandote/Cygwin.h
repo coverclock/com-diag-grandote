@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_CYGWIN_H_
-#define _COM_DIAG_DESPERADO_CYGWIN_H_
+#ifndef _COM_DIAG_GRANDOTE_CYGWIN_H_
+#define _COM_DIAG_GRANDOTE_CYGWIN_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,13 +56,13 @@
  */
 
 
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/FileInput.h"
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/Logger.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/FileInput.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/Logger.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements the Platform interface to the Windows operating system
@@ -133,7 +133,7 @@ public:
     virtual ticks_t yield(ticks_t ticks = 0, bool premature = true);
 
     /**
-     *  Returns the identity of the caller. Since Desperado requires
+     *  Returns the identity of the caller. Since Grandote requires
      *  a POSIX interface including POSIX Threads, this is typically
      *  the process ID from getpid(2) appended with the thread ID
      *  from pthread_self(3). However, other platforms may implement
@@ -396,7 +396,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

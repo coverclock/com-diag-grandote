@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_SET_
-#define _H_COM_DIAG_DESPERADO_SET_
+#ifndef _H_COM_DIAG_GRANDOTE_SET_
+#define _H_COM_DIAG_GRANDOTE_SET_
 
 /**
  * @file
@@ -11,11 +11,11 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdlib.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * Gets a C string, typically to use as an argument, from a provided C string,

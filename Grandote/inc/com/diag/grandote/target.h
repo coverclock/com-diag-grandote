@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_TARGET_H_
-#define _COM_DIAG_DESPERADO_TARGET_H_
+#ifndef _COM_DIAG_GRANDOTE_TARGET_H_
+#define _COM_DIAG_GRANDOTE_TARGET_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -62,7 +62,7 @@
 
 /* (As required per ISO C99 for limits of integral types to be defined...) */
 #define __STDC_LIMIT_MACROS (1)
-#include "com/diag/desperado/stdint.h"
+#include "com/diag/grandote/stdint.h"
 /* (... except it does not define these useful ones.) */
 #if !defined(UINT8_MIN)
 #   define UINT8_MIN   (0)
@@ -83,7 +83,7 @@
 
 
 /*
- *  Desperado expects at least the following integral types to be defined
+ *  Grandote expects at least the following integral types to be defined
  *  at this point:
  *
  *      int16_t
@@ -104,43 +104,43 @@
  * Knowing what floats are available would be good.
  */
 
-#if !defined(DESPERADO_TARGET_FLOAT32)
-#   define DESPERADO_TARGET_FLOAT32  float
+#if !defined(GRANDOTE_TARGET_FLOAT32)
+#   define GRANDOTE_TARGET_FLOAT32  float
 #endif
 
-typedef DESPERADO_TARGET_FLOAT32 float32_t;
+typedef GRANDOTE_TARGET_FLOAT32 float32_t;
 
-#if !defined(DESPERADO_TARGET_FLOAT64)
-#   define DESPERADO_TARGET_FLOAT64  double
+#if !defined(GRANDOTE_TARGET_FLOAT64)
+#   define GRANDOTE_TARGET_FLOAT64  double
 #endif
 
-typedef DESPERADO_TARGET_FLOAT64 float64_t;
+typedef GRANDOTE_TARGET_FLOAT64 float64_t;
 
 /*
  *  Establish byte ordering for this target.
  */
 
-#if !defined(DESPERADO_HAS_LITTLE_ENDIAN)
-#   if !defined(DESPERADO_HAS_BIG_ENDIAN)
+#if !defined(GRANDOTE_HAS_LITTLE_ENDIAN)
+#   if !defined(GRANDOTE_HAS_BIG_ENDIAN)
 #       if defined(__GNUC__)
 #           if (__BYTE_ORDER == __LITTLE_ENDIAN)
-#               define DESPERADO_HAS_LITTLE_ENDIAN
+#               define GRANDOTE_HAS_LITTLE_ENDIAN
 #           elif (__BYTE_ORDER == __BIG_ENDIAN)
-#               define DESPERADO_HAS_BIG_ENDIAN
+#               define GRANDOTE_HAS_BIG_ENDIAN
 #           endif
 #       endif
 #   endif
 #endif
 
-#if !defined(DESPERADO_HAS_LITTLE_ENDIAN)
-#   if !defined(DESPERADO_HAS_BIG_ENDIAN)
-#       error "desperado: define either DESPERADO_HAS_LITTLE_ENDIAN or DESPERADO_HAS_BIG_ENDIAN but not both!"
+#if !defined(GRANDOTE_HAS_LITTLE_ENDIAN)
+#   if !defined(GRANDOTE_HAS_BIG_ENDIAN)
+#       error "grandote: define either GRANDOTE_HAS_LITTLE_ENDIAN or GRANDOTE_HAS_BIG_ENDIAN but not both!"
 #   endif
 #endif
 
-#if defined(DESPERADO_HAS_LITTLE_ENDIAN)
-#   if defined(DESPERADO_HAS_BIG_ENDIAN)
-#       error "desperado: define either DESPERADO_HAS_LITTLE_ENDIAN or DESPERADO_HAS_BIG_ENDIAN but not both!"
+#if defined(GRANDOTE_HAS_LITTLE_ENDIAN)
+#   if defined(GRANDOTE_HAS_BIG_ENDIAN)
+#       error "grandote: define either GRANDOTE_HAS_LITTLE_ENDIAN or GRANDOTE_HAS_BIG_ENDIAN but not both!"
 #   endif
 #endif
 
@@ -161,33 +161,33 @@ typedef DESPERADO_TARGET_FLOAT64 float64_t;
  *  of bitfields taking up multiple words.
  */
 
-#if !defined(DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH)
-#   if !defined(DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW)
+#if !defined(GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH)
+#   if !defined(GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW)
 #       if defined(__GNUC__)
 #           if (__BYTE_ORDER == __LITTLE_ENDIAN)
-#               define DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH
+#               define GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH
 #           elif (__BYTE_ORDER == __BIG_ENDIAN)
-#               define DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW
+#               define GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW
 #           endif
 #       endif
 #   endif
 #endif
 
-#if !defined(DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH)
-#   if !defined(DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW)
-#       error "desperado: define either DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH or DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW but not both!"
+#if !defined(GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH)
+#   if !defined(GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW)
+#       error "grandote: define either GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH or GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW but not both!"
 #   endif
 #endif
 
-#if defined(DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH)
-#   if defined(DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW)
-#       error "desperado: define either DESPERADO_HAS_BITFIELDS_LOW_TO_HIGH or DESPERADO_HAS_BITFIELDS_HIGH_TO_LOW but not both!"
+#if defined(GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH)
+#   if defined(GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW)
+#       error "grandote: define either GRANDOTE_HAS_BITFIELDS_LOW_TO_HIGH or GRANDOTE_HAS_BITFIELDS_HIGH_TO_LOW but not both!"
 #   endif
 #endif
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the target unit test.
  *

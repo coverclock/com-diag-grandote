@@ -53,16 +53,16 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Time.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Time.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 static const char* MERIDIEMS[] = {
@@ -199,4 +199,4 @@ void Time::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

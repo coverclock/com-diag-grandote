@@ -44,7 +44,7 @@
 /**
  *  @file
  *
- *  Brackets the beginning of the Desperado namespace.
+ *  Brackets the beginning of the Grandote namespace.
  *
  *  @author Chip Overclock (coverclock@diag.com)
  */
@@ -57,10 +57,10 @@
 
 namespace com {
 	namespace diag {
-		namespace desperado {
+		namespace grandote {
 		
 #endif
 
 #else
-#error Duplicate Desperado Begin!
+#error Duplicate Grandote Begin!
 #endif

@@ -56,16 +56,16 @@
  */
 
 
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/CompoundThrottle.h"
-#include "com/diag/desperado/Gcra.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/CompoundThrottle.h"
+#include "com/diag/grandote/Gcra.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  This class implements a throttle based on the Generic Cell
@@ -205,11 +205,11 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the BandwidthThrottle unit test. This may take a while on a typical
  *  system.

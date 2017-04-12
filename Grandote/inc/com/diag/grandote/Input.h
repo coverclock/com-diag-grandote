@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_INPUT_H_
-#define _COM_DIAG_DESPERADO_INPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_INPUT_H_
+#define _COM_DIAG_GRANDOTE_INPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -53,11 +53,11 @@
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Defines the interface to an input functor, an object, called
@@ -172,11 +172,11 @@ public:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Input/Output Static unit test.
  *  
@@ -203,8 +203,8 @@ CXXCAPI int unittestInputOutputStatic(void);
 CXXCAPI int unittestInputOutput(
     void* pVM,
     char mechanism,
-    CXXCTYPE(::com::diag::desperado::, Input)* inputp,
-    CXXCTYPE(::com::diag::desperado::, Output)* outputp,
+    CXXCTYPE(::com::diag::grandote::, Input)* inputp,
+    CXXCTYPE(::com::diag::grandote::, Output)* outputp,
     bool verbose
 );
 #endif

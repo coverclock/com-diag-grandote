@@ -41,7 +41,7 @@
 #include "com/diag/grandote/Platform.h"
 #include "com/diag/grandote/Print.h"
 #include "com/diag/grandote/CommonEra.h"
-#include "com/diag/grandote/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
 int main(int, char **, char **) {
     Print printf(Platform::instance().output());

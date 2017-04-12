@@ -49,10 +49,10 @@
  */
 
 
-#include "com/diag/desperado/CriticalSection.h"
+#include "com/diag/grandote/CriticalSection.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 //
 //  Constructor.
@@ -86,4 +86,4 @@ CriticalSection::~CriticalSection() {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

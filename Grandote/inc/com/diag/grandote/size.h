@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_SIZE_
-#define _H_COM_DIAG_DESPERADO_SIZE_
+#ifndef _H_COM_DIAG_GRANDOTE_SIZE_
+#define _H_COM_DIAG_GRANDOTE_SIZE_
 
 /**
  * @file
@@ -11,12 +11,12 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/stdio.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/stdio.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 class BufferInput;
 class BufferOutput;
 class DataInput;
@@ -32,7 +32,7 @@ class Output;
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 class Packet;
 class PacketData;

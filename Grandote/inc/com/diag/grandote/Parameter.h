@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_PARAMETER_
-#define _H_COM_DIAG_DESPERADO_PARAMETER_
+#ifndef _H_COM_DIAG_GRANDOTE_PARAMETER_
+#define _H_COM_DIAG_GRANDOTE_PARAMETER_
 
 /**
  * @file
@@ -12,12 +12,12 @@
  */
 
 #include <string>
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 class Input;
 }
 }
@@ -25,11 +25,11 @@ class Input;
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * Parameter implements a general mechanism to map C strings, C++ strings, and
- * Desperado Input functors, into a C string that can be used as a parameter
+ * Grandote Input functors, into a C string that can be used as a parameter
  * to a method or function.
  */
 class Parameter {
@@ -57,7 +57,7 @@ public:
 	/**
 	 * Ctor.
 	 *
-	 * @param input refers to a Desperado Input functor.
+	 * @param input refers to a Grandote Input functor.
 	 * @param maximum is the maximum number of characters to consume from the
 	 *        functor.
 	 */
@@ -66,7 +66,7 @@ public:
 	/**
 	 * Ctor.
 	 *
-	 * @param input points to a Desperado Input functor. The functor is TAKEN
+	 * @param input points to a Grandote Input functor. The functor is TAKEN
 	 *        and deleted after the object is finished with it. (This actually
 	 *        occurs in the constructor, not the destructor.)
 	 * @param maximum is the maximum number of characters to consume from the

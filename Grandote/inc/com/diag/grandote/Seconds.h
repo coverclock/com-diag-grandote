@@ -1,6 +1,6 @@
 /* vi: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_SECONDS_
-#define _H_COM_DIAG_HDESPERADO_SECONDS_
+#ifndef _H_COM_DIAG_GRANDOTE_SECONDS_
+#define _H_COM_DIAG_HGRANDOTE_SECONDS_
 
 /**
  * @file
@@ -11,12 +11,12 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/TimeStamp.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/TimeStamp.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * Date and time of day in seconds past the UNIX Epoch.
@@ -25,17 +25,17 @@ typedef int64_t Epochalseconds;
 
 /**
  * Seconds implements mechanisms to convert between Epochalseconds and a date
- * and time of day expressed in calendar notation. Seconds uses the Desperado
- * date and time classes and depends on the Desperado Platform Epoch being set
+ * and time of day expressed in calendar notation. Seconds uses the Grandote
+ * date and time classes and depends on the Grandote Platform Epoch being set
  * correctly. If you are using an operating system based on Linux and GNU,
  * which seems likely, this is already done for you. To use local time, it
- * also depends on the Desperado Platform Time Zone being set correctly. If
- * you are using Linux and GNU, by default Desperado infers this from your
+ * also depends on the Grandote Platform Time Zone being set correctly. If
+ * you are using Linux and GNU, by default Grandote infers this from your
  * underlying system configuration.
  *
  * Remarkably, according to time(2) and POSIX.1 Annex B 2.2.2, the Linux/GNU
  * system clock does not take Leap Seconds into account. This seems wrong, and
- * has seemed wrong since I first visited this issue in 2006 for the Desperado
+ * has seemed wrong since I first visited this issue in 2006 for the Grandote
  * library. To add insult to injury, the Radiocommunications Sector of the
  * International Telecommunications Union (ITU-R) proposes to stop adding
  * Leap Seconds to Atomic Time to get Universal Coordinated Time (UTC) in

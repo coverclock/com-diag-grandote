@@ -53,15 +53,15 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Heap.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Heap.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Grandote.h"
 
 static inline bool null(void* ptr) {
     return 0 != ptr;
@@ -148,7 +148,7 @@ CXXCAPI int unittestHeap(void) {
     sizes[jj] = heap.size(test[jj]);
     ++jj;
 
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     //
     //  There appears to be some ambiguity as to what it means
     //  if both arguments to realloc() are zero. If the second
@@ -158,7 +158,7 @@ CXXCAPI int unittestHeap(void) {
     //  is null, it is supposed to be equivalent to calling
     //  malloc(), and calling malloc() with a zero size is
     //  also allowed by POSIX. Both Linux and Cygwin seem to
-    //  take the latter interpretation, so Desperado does too.
+    //  take the latter interpretation, so Grandote does too.
     //
     errorf("%s[%d]: std::realloc(0x%x,0x%x)=0x%x\n",
         __FILE__, __LINE__, 0, expected[jj-1], baseline[jj-1]);
@@ -181,7 +181,7 @@ CXXCAPI int unittestHeap(void) {
     ++jj;
     ++kk;
 
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     //
     //  Cygwin doesn't seem to implement realloc() the way both
     //  POSIX and its own man page describes.

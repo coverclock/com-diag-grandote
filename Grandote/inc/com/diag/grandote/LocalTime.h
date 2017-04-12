@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_LOCALTIME_H_
-#define _COM_DIAG_DESPERADO_LOCALTIME_H_
+#ifndef _COM_DIAG_GRANDOTE_LOCALTIME_H_
+#define _COM_DIAG_GRANDOTE_LOCALTIME_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,16 +56,16 @@
  */
 
 
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/DateTime.h"
-#include "com/diag/desperado/TimeZone.h"
-#include "com/diag/desperado/DaylightSavingTime.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/DateTime.h"
+#include "com/diag/grandote/TimeZone.h"
+#include "com/diag/grandote/DaylightSavingTime.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a DataTime in local civilian time (LCT), taking into
@@ -294,7 +294,7 @@ inline bool LocalTime::getDst() const {
     return this->dst;
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

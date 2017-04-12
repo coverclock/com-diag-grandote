@@ -42,7 +42,7 @@
 #include <ctime>
 #include <sys/time.h>
 #include "com/diag/grandote/Platform.h"
-#include "com/diag/grandote/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
 extern long timezone;
 extern int daylight;

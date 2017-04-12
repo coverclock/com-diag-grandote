@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DUMPOUTPUT_H_
-#define _COM_DIAG_DESPERADO_DUMPOUTPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_DUMPOUTPUT_H_
+#define _COM_DIAG_GRANDOTE_DUMPOUTPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Dump.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Dump.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an output functor that uses Dump to display its output stream
@@ -222,7 +222,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

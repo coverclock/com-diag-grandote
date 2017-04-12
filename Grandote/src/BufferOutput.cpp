@@ -53,16 +53,16 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/BufferOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/BufferOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 //
 //  Constructor. The buffer has a specified size.
@@ -201,4 +201,4 @@ void BufferOutput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

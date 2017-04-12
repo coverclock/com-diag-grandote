@@ -7,12 +7,12 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/Parameter.h"
-#include "com/diag/desperado/Input.h"
+#include "com/diag/grandote/Parameter.h"
+#include "com/diag/grandote/Input.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 Parameter::Parameter(const char * pa)
 : parameter(pa)

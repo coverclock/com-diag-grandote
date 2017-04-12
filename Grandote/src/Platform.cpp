@@ -53,38 +53,38 @@
  */
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/littleendian.h"
-#include "com/diag/desperado/lowtohigh.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/CriticalSection.h"
-#include "com/diag/desperado/Vintage.h"
-#include "com/diag/desperado/Ticks.h"
-#include "com/diag/desperado/TimeZone.h"
-#include "com/diag/desperado/DstNever.h"
-#include "com/diag/desperado/LeapSeconds.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/littleendian.h"
+#include "com/diag/grandote/lowtohigh.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/CriticalSection.h"
+#include "com/diag/grandote/Vintage.h"
+#include "com/diag/grandote/Ticks.h"
+#include "com/diag/grandote/TimeZone.h"
+#include "com/diag/grandote/DstNever.h"
+#include "com/diag/grandote/LeapSeconds.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 
-#if defined(DESPERADO_PLATFORM_IS_Linux)
-#include "com/diag/desperado/Linux.h"
-typedef CXXCTYPE(::com::diag::desperado::, Linux) OperatingSystem;
-#elif defined(DESPERADO_PLATFORM_IS_Cygwin)
-#include "com/diag/desperado/Cygwin.h"
-typedef CXXCTYPE(::com::diag::desperado::, Cygwin) OperatingSystem;
-#elif defined(DESPERADO_PLATFORM_IS_Diminuto)
-#include "com/diag/desperado/Diminuto.h"
-typedef CXXCTYPE(::com::diag::desperado::, Diminuto) OperatingSystem;
-#elif defined(DESPERADO_PLATFORM_IS_Arroyo)
-#include "com/diag/desperado/Arroyo.h"
-typedef CXXCTYPE(::com::diag::desperado::, Arroyo) OperatingSystem;
+#if defined(GRANDOTE_PLATFORM_IS_Linux)
+#include "com/diag/grandote/Linux.h"
+typedef CXXCTYPE(::com::diag::grandote::, Linux) OperatingSystem;
+#elif defined(GRANDOTE_PLATFORM_IS_Cygwin)
+#include "com/diag/grandote/Cygwin.h"
+typedef CXXCTYPE(::com::diag::grandote::, Cygwin) OperatingSystem;
+#elif defined(GRANDOTE_PLATFORM_IS_Diminuto)
+#include "com/diag/grandote/Diminuto.h"
+typedef CXXCTYPE(::com::diag::grandote::, Diminuto) OperatingSystem;
+#elif defined(GRANDOTE_PLATFORM_IS_Arroyo)
+#include "com/diag/grandote/Arroyo.h"
+typedef CXXCTYPE(::com::diag::grandote::, Arroyo) OperatingSystem;
 #else
-#error DESPERADO_PLATFORM_IS_* not defined!
+#error GRANDOTE_PLATFORM_IS_* not defined!
 #endif
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 static Mutex mutex;
 
@@ -215,4 +215,4 @@ void Platform::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

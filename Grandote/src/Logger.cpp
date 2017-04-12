@@ -53,16 +53,16 @@
  */
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Logger.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/TimeStamp.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Logger.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/TimeStamp.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 const char* Logger::labels[] = {
@@ -235,7 +235,7 @@ ssize_t Logger::emit(const char* buffer, size_t size) {
 //	fact that the PRINT level is logged unconditionally regardless of
 //	the value returned by the isEnabled() method.
 //
-#define DESPERADO_LOGGER_BODY(_LEVEL_) \
+#define GRANDOTE_LOGGER_BODY(_LEVEL_) \
 	do { \
 		if ((this->PRINT == _LEVEL_) || this->isEnabled(_LEVEL_)) { \
 			char buffer[Output::minimum_buffer_size]; \
@@ -247,7 +247,7 @@ ssize_t Logger::emit(const char* buffer, size_t size) {
 
 ssize_t Logger::vlog(Level level, const char* format, va_list ap) {
     ssize_t rc = 0;
-    DESPERADO_LOGGER_BODY(level);
+    GRANDOTE_LOGGER_BODY(level);
     return rc;
 }
 
@@ -259,39 +259,39 @@ ssize_t Logger::log(Level level, const char* format, ...) {
 	ssize_t rc = 0;
     va_list ap;
     va_start(ap, format);
-    DESPERADO_LOGGER_BODY(level);
+    GRANDOTE_LOGGER_BODY(level);
     va_end(ap);
     return rc;
 }
 
 
-#define DESPERADO_LOGGER(_FUNCTION_, _LEVEL_) \
+#define GRANDOTE_LOGGER(_FUNCTION_, _LEVEL_) \
 ssize_t Logger::_FUNCTION_(const char* format, ...) { \
     ssize_t rc = 0; \
     va_list ap; \
     va_start(ap, format); \
-    DESPERADO_LOGGER_BODY(_LEVEL_); \
+    GRANDOTE_LOGGER_BODY(_LEVEL_); \
     va_end(ap); \
     return rc; \
 }
 
 
-DESPERADO_LOGGER(   finest,         FINEST          )
-DESPERADO_LOGGER(   finer,          FINER           )
-DESPERADO_LOGGER(   fine,           FINE            )
-DESPERADO_LOGGER(   trace,          TRACE           )
-DESPERADO_LOGGER(   debug,          DEBUG           )
-DESPERADO_LOGGER(   information,    INFORMATION     )
-DESPERADO_LOGGER(   configuration,  CONFIGURATION   )
-DESPERADO_LOGGER(   notice,         NOTICE          )
-DESPERADO_LOGGER(   warning,        WARNING         )
-DESPERADO_LOGGER(   error,          ERROR           )
-DESPERADO_LOGGER(   severe,         SEVERE          )
-DESPERADO_LOGGER(   critical,       CRITICAL        )
-DESPERADO_LOGGER(   alert,          ALERT           )
-DESPERADO_LOGGER(   fatal,          FATAL           )
-DESPERADO_LOGGER(   emergency,      EMERGENCY       )
-DESPERADO_LOGGER(   print,          PRINT           )
+GRANDOTE_LOGGER(   finest,         FINEST          )
+GRANDOTE_LOGGER(   finer,          FINER           )
+GRANDOTE_LOGGER(   fine,           FINE            )
+GRANDOTE_LOGGER(   trace,          TRACE           )
+GRANDOTE_LOGGER(   debug,          DEBUG           )
+GRANDOTE_LOGGER(   information,    INFORMATION     )
+GRANDOTE_LOGGER(   configuration,  CONFIGURATION   )
+GRANDOTE_LOGGER(   notice,         NOTICE          )
+GRANDOTE_LOGGER(   warning,        WARNING         )
+GRANDOTE_LOGGER(   error,          ERROR           )
+GRANDOTE_LOGGER(   severe,         SEVERE          )
+GRANDOTE_LOGGER(   critical,       CRITICAL        )
+GRANDOTE_LOGGER(   alert,          ALERT           )
+GRANDOTE_LOGGER(   fatal,          FATAL           )
+GRANDOTE_LOGGER(   emergency,      EMERGENCY       )
+GRANDOTE_LOGGER(   print,          PRINT           )
 
 
 //
@@ -312,4 +312,4 @@ void Logger::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

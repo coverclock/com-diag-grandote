@@ -56,10 +56,10 @@
  */
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a simple parser using strtok_r(3) to break up a character
@@ -171,11 +171,11 @@ public:
 inline Argument::Argument() {
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Argument unit test.
  *  

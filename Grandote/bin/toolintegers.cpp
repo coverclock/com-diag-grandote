@@ -34,7 +34,7 @@
 #include "com/diag/grandote/stdio.h"
 #include "com/diag/grandote/target.h"
 #include "com/diag/grandote/integers.h"
-#include "com/diag/grandote/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
 int main() {
 

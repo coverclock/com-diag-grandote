@@ -53,12 +53,12 @@
  */
 
 
-#include "com/diag/desperado/Derivation.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
+#include "com/diag/grandote/Derivation.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -68,7 +68,7 @@ Derivation::Derivation() :
     Implementation(),
     field(this)
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Derivation(%p)::Derivation()\n", this);
 #endif
 }
@@ -81,7 +81,7 @@ Derivation::Derivation(void* f) :
     Implementation(f),
     field(f)
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Derivation(%p)::Derivation(%p)\n", this, f);
 #endif
 }
@@ -91,7 +91,7 @@ Derivation::Derivation(void* f) :
 //  Destructor.
 //
 Derivation::~Derivation() {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Derivation(%p)::~Derivation()\n", this);
 #endif
     if (this->field) {
@@ -106,7 +106,7 @@ Derivation::~Derivation() {
 Derivation::Derivation(const Derivation& that) :
     Implementation(that)
 {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Derivation(%p)::Derivation(%p)\n", this, &that);
 #endif
     this->field = that.field;
@@ -117,7 +117,7 @@ Derivation::Derivation(const Derivation& that) :
 //  Assignment operator.
 //
 Derivation& Derivation::operator=(const Derivation& that) {
-#if defined(DESPERADO_HAS_DEBUGGING)
+#if defined(GRANDOTE_HAS_DEBUGGING)
     fprintf(stderr, "Derivation(%p)::operator=(%p)\n", this, &that);
 #endif
     if (&that != this) {
@@ -144,4 +144,4 @@ void Derivation::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

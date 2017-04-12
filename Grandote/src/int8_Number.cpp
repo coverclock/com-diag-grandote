@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/int8_Number.h"
+#include "com/diag/grandote/int8_Number.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 Number<int8_t> int8_Number;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

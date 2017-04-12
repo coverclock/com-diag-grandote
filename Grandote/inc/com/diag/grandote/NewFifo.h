@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_NEWFIFO_H_
-#define _COM_DIAG_DESPERADO_NEWFIFO_H_
+#ifndef _COM_DIAG_GRANDOTE_NEWFIFO_H_
+#define _COM_DIAG_GRANDOTE_NEWFIFO_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/Fifo.h"
-#include "com/diag/desperado/exceptions.h"
+#include "com/diag/grandote/Fifo.h"
+#include "com/diag/grandote/exceptions.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a Fifo object in which the queue is dynamically allocated.
@@ -184,7 +184,7 @@ void NewFifo<_TYPE_>::show(int level, Output* display, int indent) const {
     this->Fifo<_TYPE_>::show(level, display, indent + 1);
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

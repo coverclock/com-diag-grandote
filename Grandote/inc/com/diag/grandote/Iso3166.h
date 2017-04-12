@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_ISO3166_H_
-#define _COM_DIAG_DESPERADO_ISO3166_H_
+#ifndef _COM_DIAG_GRANDOTE_ISO3166_H_
+#define _COM_DIAG_GRANDOTE_ISO3166_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Contains a table of country names, abbreviations, and country numbers
@@ -1158,11 +1158,11 @@ inline const Iso3166::Entry& Iso3166::operator[] (Index index)
     return this->table[index];
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Iso3166 unit test.
  *  

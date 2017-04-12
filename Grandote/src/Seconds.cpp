@@ -7,15 +7,15 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/Seconds.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/LocalTime.h"
-#include "com/diag/desperado/Epoch.h"
+#include "com/diag/grandote/Seconds.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/LocalTime.h"
+#include "com/diag/grandote/Epoch.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 unsigned int Seconds::dontcare;
 

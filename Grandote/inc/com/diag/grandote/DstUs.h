@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DSTUS_H_
-#define _COM_DIAG_DESPERADO_DSTUS_H_
+#ifndef _COM_DIAG_GRANDOTE_DSTUS_H_
+#define _COM_DIAG_GRANDOTE_DSTUS_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,10 +56,10 @@
  */
 
 
-#include "com/diag/desperado/DaylightSavingTime.h"
+#include "com/diag/grandote/DaylightSavingTime.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Encodes a rule to decide whether a given DateTime falls within
@@ -127,7 +127,7 @@ public:
 inline DstUs::DstUs() {
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

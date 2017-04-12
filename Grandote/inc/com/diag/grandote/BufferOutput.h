@@ -56,10 +56,10 @@
  */
 
 
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an output functor that writes data into a buffer in
@@ -254,11 +254,11 @@ inline size_t BufferOutput::getLength() const {
 	return (this->size - this->offset);
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the BufferOutput unit test.
  *  

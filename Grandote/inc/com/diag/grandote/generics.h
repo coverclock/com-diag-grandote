@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_GENERICS_H_
-#define _COM_DIAG_DESPERADO_GENERICS_H_
+#ifndef _COM_DIAG_GRANDOTE_GENERICS_H_
+#define _COM_DIAG_GRANDOTE_GENERICS_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -53,7 +53,7 @@
  *  convention of the standard sizeof() operator. None of these macros
  *  implement rocket science, but they sure are handy to have around.
  *
- *  What's the deal with desperado_offsetof()? Decades ago (no, really)
+ *  What's the deal with grandote_offsetof()? Decades ago (no, really)
  *  the offsetof() macro didn't exist. So we wrote our own, But at the
  *  time we were working at place that pretty much had one of everything.
  *  Fun to play, nightmare to write portable code. Epecially, for the
@@ -98,7 +98,7 @@
 #else
 #   include <stddef.h>
 #endif
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/target.h"
 
 
 #if defined(__cplusplus)
@@ -148,7 +148,7 @@
 
 
 /**
- *  @def    desperado_offsetof(_STRUCT_, _MEMBER_)
+ *  @def    grandote_offsetof(_STRUCT_, _MEMBER_)
  *
  *  Generates the byte offset of the member @a _MEMBER_ within the class or
  *  struct @a _STRUCT_, working, unlike many other implementations of the
@@ -157,10 +157,10 @@
  *  starts at offset zero; this is not the case on some architectures.
  */
 #if 0
-#define desperado_offsetof(_STRUCT_, _MEMBER_) \
+#define grandote_offsetof(_STRUCT_, _MEMBER_) \
     reinterpretcastto(size_t, staticcastto(char*, &(nullpointerto(_STRUCT_)->_MEMBER_)) - staticcastto(char*, nullpointerto(_STRUCT_)))
 #else
-#define desperado_offsetof(_STRUCT_, _MEMBER_) \
+#define grandote_offsetof(_STRUCT_, _MEMBER_) \
     staticcastto(size_t, reinterpretcastto(uintptr_t, &(nullpointerto(_STRUCT_)->_MEMBER_)) - reinterpretcastto(uintptr_t, nullpointerto(_STRUCT_)))
 #endif
 
@@ -172,7 +172,7 @@
  *  given the pointer @a _POINTER_ of a member of that type @a _MEMBER_.
  */
 #define originof(_STRUCT_, _MEMBER_, _POINTER_) \
-     reinterpretcastto(_STRUCT_*, reinterpretcastto(char*, (_POINTER_)) - desperado_offsetof(_STRUCT_, _MEMBER_))
+     reinterpretcastto(_STRUCT_*, reinterpretcastto(char*, (_POINTER_)) - grandote_offsetof(_STRUCT_, _MEMBER_))
 
 
 /**
@@ -411,8 +411,8 @@
         + staticcastto(_RESULT_, 1))
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the generics unit test.
  *

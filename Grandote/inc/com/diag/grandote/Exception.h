@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_EXCEPTION_H_
-#define _COM_DIAG_DESPERADO_EXCEPTION_H_
+#ifndef _COM_DIAG_GRANDOTE_EXCEPTION_H_
+#define _COM_DIAG_GRANDOTE_EXCEPTION_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,15 +56,15 @@
  */
 
 
-#include "com/diag/desperado/exceptions.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/Object.h"
+#include "com/diag/grandote/exceptions.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
- *  This is the base class for Desperado classes which define exceptions.
+ *  This is the base class for Grandote classes which define exceptions.
  *  It is inspired by std::exception but does not extend it. This is so
  *  that it can extend Object without requiring multiple inheritance.
  *
@@ -168,32 +168,32 @@ public:
     
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #if defined(__USE_GNU)
-#   define DESPERADO_EXCEPTION_FUNCTION    __PRETTY_FUNCTION__
+#   define GRANDOTE_EXCEPTION_FUNCTION    __PRETTY_FUNCTION__
 #elif defined(__cplusplus)
-#   define DESPERADO_EXCEPTION_FUNCTION    __func__
+#   define GRANDOTE_EXCEPTION_FUNCTION    __func__
 #else
-#   define DESPERADO_EXCEPTION_FUNCTION    ((char *)0)
+#   define GRANDOTE_EXCEPTION_FUNCTION    ((char *)0)
 #endif
 
 
 /**
- *  @def    DESPERADO_EXCEPTION(_EVENTMESSAGE_)
+ *  @def    GRANDOTE_EXCEPTION(_EVENTMESSAGE_)
  *
- *  Calls the constructor for a Desperado Exception using the provided
+ *  Calls the constructor for a Grandote Exception using the provided
  *  @a _EVENTMESSAGE_ and automatically filling in error, file, line,
  *  and function fields.
  */
-#define DESPERADO_EXCEPTION(_EVENTMESSAGE_) \
+#define GRANDOTE_EXCEPTION(_EVENTMESSAGE_) \
     Exception(_EVENTMESSAGE_, errno, __FILE__, __LINE__, \
-        DESPERADO_EXCEPTION_FUNCTION)
+        GRANDOTE_EXCEPTION_FUNCTION)
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
-#include "com/diag/desperado/cxxcapi.h"
+#if defined(GRANDOTE_HAS_UNITTESTS)
+#include "com/diag/grandote/cxxcapi.h"
 /**
  *  Run the Exception unit test.
  *  

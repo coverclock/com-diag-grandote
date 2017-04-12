@@ -1,7 +1,7 @@
-#ifndef _COM_DIAG_DESPERADO_END_H_
-#define _COM_DIAG_DESPERADO_END_H_
-#ifdef _COM_DIAG_DESPERADO_BEGIN_H_
-#undef _COM_DIAG_DESPERADO_BEGIN_H_
+#ifndef _COM_DIAG_GRANDOTE_END_H_
+#define _COM_DIAG_GRANDOTE_END_H_
+#ifdef _COM_DIAG_GRANDOTE_BEGIN_H_
+#undef _COM_DIAG_GRANDOTE_BEGIN_H_
 #ifdef __cplusplus
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
@@ -47,7 +47,7 @@
 /**
  *  @file
  *
- *  Brackets the ending of the Desperado namespace.
+ *  Brackets the ending of the Grandote namespace.
  *
  *  @see    Arroyo
  *
@@ -61,8 +61,8 @@
 
 #endif
 #else
-#error Missing Desperado Begin!
+#error Missing Grandote Begin!
 #endif
 #else
-#error Duplicate Desperado End!
+#error Duplicate Grandote End!
 #endif

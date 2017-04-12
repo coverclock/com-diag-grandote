@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/AtomicSeconds.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/AtomicSeconds.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -103,4 +103,4 @@ void AtomicSeconds::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _COM_DIAG_DESPERADO_INTEGERS_H_
-#define _COM_DIAG_DESPERADO_INTEGERS_H_
+#ifndef _COM_DIAG_GRANDOTE_INTEGERS_H_
+#define _COM_DIAG_GRANDOTE_INTEGERS_H_
 
 /******************************************************************************
 
@@ -52,9 +52,9 @@
  *  @author Chip Overclock (coverclock@diag.com)
  */
 
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/target.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 template <typename _TYPE_> inline size_t widthOf() {
 	return sizeof(_TYPE_) * 8;
@@ -112,7 +112,7 @@ template <typename _TYPE_> inline _TYPE_ intminOf(_TYPE_) {
 	return intminOf<_TYPE_>();
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

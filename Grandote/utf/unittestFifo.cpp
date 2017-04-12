@@ -53,16 +53,16 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Fifo.h"
-#include "com/diag/desperado/Fifo.h"
-#include "com/diag/desperado/NewFifo.h"
-#include "com/diag/desperado/NewFifo.h"
-#include "com/diag/desperado/FifoType.h"
-#include "com/diag/desperado/FifoType.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Fifo.h"
+#include "com/diag/grandote/Fifo.h"
+#include "com/diag/grandote/NewFifo.h"
+#include "com/diag/grandote/NewFifo.h"
+#include "com/diag/grandote/FifoType.h"
+#include "com/diag/grandote/FifoType.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Grandote.h"
 
 struct Datum { uint32_t one; uint32_t two; };
 

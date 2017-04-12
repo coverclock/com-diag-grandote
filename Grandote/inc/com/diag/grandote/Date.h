@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DATE_H_
-#define _COM_DIAG_DESPERADO_DATE_H_
+#ifndef _COM_DIAG_GRANDOTE_DATE_H_
+#define _COM_DIAG_GRANDOTE_DATE_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,14 +56,14 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/Object.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/Object.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an object that contains a date with fields
@@ -532,7 +532,7 @@ inline uint16_t Date::julian() const {
     return this->julian(this->year, this->month, this->day);
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

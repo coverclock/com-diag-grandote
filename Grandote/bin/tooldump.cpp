@@ -47,7 +47,7 @@
 #include "com/diag/grandote/Print.h"
 #include "com/diag/grandote/PathInput.h"
 #include "com/diag/grandote/PathOutput.h"
-#include "com/diag/grandote/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
 #define USAGE \
     "[ -b(ytes) | -w(ords) ]" \

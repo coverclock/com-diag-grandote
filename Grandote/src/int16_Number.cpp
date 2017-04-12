@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/int16_Number.h"
+#include "com/diag/grandote/int16_Number.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 Number<int16_t> int16_Number;
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

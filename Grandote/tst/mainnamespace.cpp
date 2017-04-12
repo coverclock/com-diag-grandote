@@ -51,10 +51,10 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Platform.h"
 
 CXXCAPI int unittestnamespace();
 

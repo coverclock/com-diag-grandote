@@ -46,9 +46,9 @@
  *  @author Chip Overclock (coverclock@diag.com)
  */
 
-#include "com/diag/desperado/Primes.h"
+#include "com/diag/grandote/Primes.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 Primes::Vector Primes::primes;
 
@@ -83,4 +83,4 @@ void Primes::generate(Type limit)
 
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

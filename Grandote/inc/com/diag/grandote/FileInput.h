@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_FILEINPUT_H_
-#define _COM_DIAG_DESPERADO_FILEINPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_FILEINPUT_H_
+#define _COM_DIAG_GRANDOTE_FILEINPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -50,12 +50,12 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/Input.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/Input.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an input functor that returns data from a pre-existing
@@ -204,7 +204,7 @@ inline FILE* FileInput::getFile() const {
     return this->file;
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

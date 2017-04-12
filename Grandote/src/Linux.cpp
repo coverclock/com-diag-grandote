@@ -53,11 +53,11 @@
  */
 
 
-#if defined(DESPERADO_PLATFORM_IS_Linux) || defined(DESPERADO_PLATFORM_IS_Diminuto) || defined(DESPERADO_PLATFORM_IS_Arroyo)
+#if defined(GRANDOTE_PLATFORM_IS_Linux) || defined(GRANDOTE_PLATFORM_IS_Diminuto) || defined(GRANDOTE_PLATFORM_IS_Arroyo)
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/stdlib.h"
 #include <ctime>
 #include <syslog.h>
 #include <sys/time.h>
@@ -66,23 +66,23 @@
 #include <unistd.h>
 #include <sched.h>
 #include <pthread.h>
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Linux.h"
-#include "com/diag/desperado/CommonEra.h"
-#include "com/diag/desperado/Ticks.h"
-#include "com/diag/desperado/TimeZone.h"
-#include "com/diag/desperado/DstNever.h"
-#include "com/diag/desperado/DstUs.h"
-#include "com/diag/desperado/LeapSeconds.h"
-#include "com/diag/desperado/Constant.h"
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Linux.h"
+#include "com/diag/grandote/CommonEra.h"
+#include "com/diag/grandote/Ticks.h"
+#include "com/diag/grandote/TimeZone.h"
+#include "com/diag/grandote/DstNever.h"
+#include "com/diag/grandote/DstUs.h"
+#include "com/diag/grandote/LeapSeconds.h"
+#include "com/diag/grandote/Constant.h"
+#include "com/diag/grandote/generics.h"
 
 extern long timezone;
 extern int daylight;
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 static DstNever dstnever;           	// Used if no Daylight Saving Time.
@@ -183,7 +183,7 @@ Linux::~Linux() {
 //  Return the name of this platform.
 //
 const char* Linux::platform() {
-    return DESPERADO_PLATFORM_NAME;
+    return GRANDOTE_PLATFORM_NAME;
 }
 
 
@@ -191,7 +191,7 @@ const char* Linux::platform() {
 //  Return the name of the target on which this platform is running.
 //
 const char* Linux::target() {
-    return DESPERADO_TARGET_NAME;
+    return GRANDOTE_TARGET_NAME;
 }
 
 
@@ -546,7 +546,7 @@ void Linux::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

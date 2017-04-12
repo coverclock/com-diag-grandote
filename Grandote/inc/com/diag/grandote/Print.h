@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_PRINT_H_
-#define _COM_DIAG_DESPERADO_PRINT_H_
+#ifndef _COM_DIAG_GRANDOTE_PRINT_H_
+#define _COM_DIAG_GRANDOTE_PRINT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,18 +56,18 @@
  */
 
 
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/cxxcapi.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/cxxcapi.h"
+#include "com/diag/grandote/Output.h"
 
 
 #if defined(__cplusplus)
 
 
-#include "com/diag/desperado/Object.h"
+#include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a printf(3)-style functor that can be used to format
@@ -150,7 +150,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif
@@ -169,10 +169,10 @@ private:
  *  @return the number of characters written to its output
  *          object, or a negative number if error.
  */
-CXXCAPI size_t print_f(CXXCTYPE(::com::diag::desperado::, Output)* o, const char* format, ...);
+CXXCAPI size_t print_f(CXXCTYPE(::com::diag::grandote::, Output)* o, const char* format, ...);
 
 
-#if defined(DESPERADO_HAS_UNITTESTS)
+#if defined(GRANDOTE_HAS_UNITTESTS)
 /**
  *  Run the Print unit test.
  *  

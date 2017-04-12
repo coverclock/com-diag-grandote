@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DSTALWAYS_H_
-#define _COM_DIAG_DESPERADO_DSTALWAYS_H_
+#ifndef _COM_DIAG_GRANDOTE_DSTALWAYS_H_
+#define _COM_DIAG_GRANDOTE_DSTALWAYS_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,10 +56,10 @@
  */
 
 
-#include "com/diag/desperado/DaylightSavingTime.h"
+#include "com/diag/grandote/DaylightSavingTime.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements a daylight saving time rule in which DST is always in effect.
@@ -126,7 +126,7 @@ public:
 inline DstAlways::DstAlways() {
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

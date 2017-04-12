@@ -53,18 +53,18 @@
  */
 
 
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Logger.h"
-#include "com/diag/desperado/Logger.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/LogOutput.h"
-#include "com/diag/desperado/LogOutput.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Logger.h"
+#include "com/diag/grandote/Logger.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/LogOutput.h"
+#include "com/diag/grandote/LogOutput.h"
+#include "com/diag/grandote/Grandote.h"
 
 static int leveltest(const char* ff, ...) {
     Print printf(Platform::instance().output());
@@ -132,7 +132,7 @@ CXXCAPI int unittestLogger(void) {
 
     logger1.show();
 
-#define DESPERADO_LOGGER_TEST_1(_FUNCTION_) \
+#define GRANDOTE_LOGGER_TEST_1(_FUNCTION_) \
     rc = logger1._FUNCTION_("%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "logger1", #_FUNCTION_); \
     if (0 >= rc) { \
@@ -141,22 +141,22 @@ CXXCAPI int unittestLogger(void) {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_1(finest)
-    DESPERADO_LOGGER_TEST_1(finer)
-    DESPERADO_LOGGER_TEST_1(fine)
-    DESPERADO_LOGGER_TEST_1(trace)
-    DESPERADO_LOGGER_TEST_1(debug)
-    DESPERADO_LOGGER_TEST_1(information)
-    DESPERADO_LOGGER_TEST_1(configuration)
-    DESPERADO_LOGGER_TEST_1(notice)
-    DESPERADO_LOGGER_TEST_1(warning)
-    DESPERADO_LOGGER_TEST_1(error)
-    DESPERADO_LOGGER_TEST_1(severe)
-    DESPERADO_LOGGER_TEST_1(critical)
-    DESPERADO_LOGGER_TEST_1(alert)
-    DESPERADO_LOGGER_TEST_1(fatal)
-    DESPERADO_LOGGER_TEST_1(emergency)
-    DESPERADO_LOGGER_TEST_1(print)
+    GRANDOTE_LOGGER_TEST_1(finest)
+    GRANDOTE_LOGGER_TEST_1(finer)
+    GRANDOTE_LOGGER_TEST_1(fine)
+    GRANDOTE_LOGGER_TEST_1(trace)
+    GRANDOTE_LOGGER_TEST_1(debug)
+    GRANDOTE_LOGGER_TEST_1(information)
+    GRANDOTE_LOGGER_TEST_1(configuration)
+    GRANDOTE_LOGGER_TEST_1(notice)
+    GRANDOTE_LOGGER_TEST_1(warning)
+    GRANDOTE_LOGGER_TEST_1(error)
+    GRANDOTE_LOGGER_TEST_1(severe)
+    GRANDOTE_LOGGER_TEST_1(critical)
+    GRANDOTE_LOGGER_TEST_1(alert)
+    GRANDOTE_LOGGER_TEST_1(fatal)
+    GRANDOTE_LOGGER_TEST_1(emergency)
+    GRANDOTE_LOGGER_TEST_1(print)
 
     printf("%s[%d]: platform\n", __FILE__, __LINE__);
 
@@ -164,7 +164,7 @@ CXXCAPI int unittestLogger(void) {
 
     logger2.show();
 
-#define DESPERADO_LOGGER_TEST_2(_FUNCTION_) \
+#define GRANDOTE_LOGGER_TEST_2(_FUNCTION_) \
     rc = logger2._FUNCTION_("%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "logger2", #_FUNCTION_); \
     if (0 >= rc) { \
@@ -173,22 +173,22 @@ CXXCAPI int unittestLogger(void) {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_2(finest)
-    DESPERADO_LOGGER_TEST_2(finer)
-    DESPERADO_LOGGER_TEST_2(fine)
-    DESPERADO_LOGGER_TEST_2(trace)
-    DESPERADO_LOGGER_TEST_2(debug)
-    DESPERADO_LOGGER_TEST_2(information)
-    DESPERADO_LOGGER_TEST_2(configuration)
-    DESPERADO_LOGGER_TEST_2(notice)
-    DESPERADO_LOGGER_TEST_2(warning)
-    DESPERADO_LOGGER_TEST_2(error)
-    DESPERADO_LOGGER_TEST_2(severe)
-    DESPERADO_LOGGER_TEST_2(critical)
-    DESPERADO_LOGGER_TEST_2(alert)
-    DESPERADO_LOGGER_TEST_2(fatal)
-    DESPERADO_LOGGER_TEST_2(emergency)
-    DESPERADO_LOGGER_TEST_2(print)
+    GRANDOTE_LOGGER_TEST_2(finest)
+    GRANDOTE_LOGGER_TEST_2(finer)
+    GRANDOTE_LOGGER_TEST_2(fine)
+    GRANDOTE_LOGGER_TEST_2(trace)
+    GRANDOTE_LOGGER_TEST_2(debug)
+    GRANDOTE_LOGGER_TEST_2(information)
+    GRANDOTE_LOGGER_TEST_2(configuration)
+    GRANDOTE_LOGGER_TEST_2(notice)
+    GRANDOTE_LOGGER_TEST_2(warning)
+    GRANDOTE_LOGGER_TEST_2(error)
+    GRANDOTE_LOGGER_TEST_2(severe)
+    GRANDOTE_LOGGER_TEST_2(critical)
+    GRANDOTE_LOGGER_TEST_2(alert)
+    GRANDOTE_LOGGER_TEST_2(fatal)
+    GRANDOTE_LOGGER_TEST_2(emergency)
+    GRANDOTE_LOGGER_TEST_2(print)
 
     printf("%s[%d]: output\n", __FILE__, __LINE__);
 
@@ -196,7 +196,7 @@ CXXCAPI int unittestLogger(void) {
 
     logger3.show();
 
-#define DESPERADO_LOGGER_TEST_3(_FUNCTION_) \
+#define GRANDOTE_LOGGER_TEST_3(_FUNCTION_) \
     rc = logger2._FUNCTION_("%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "logger3", #_FUNCTION_); \
     if (0 >= rc) { \
@@ -205,22 +205,22 @@ CXXCAPI int unittestLogger(void) {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_3(finest)
-    DESPERADO_LOGGER_TEST_3(finer)
-    DESPERADO_LOGGER_TEST_3(fine)
-    DESPERADO_LOGGER_TEST_3(trace)
-    DESPERADO_LOGGER_TEST_3(debug)
-    DESPERADO_LOGGER_TEST_3(information)
-    DESPERADO_LOGGER_TEST_3(configuration)
-    DESPERADO_LOGGER_TEST_3(notice)
-    DESPERADO_LOGGER_TEST_3(warning)
-    DESPERADO_LOGGER_TEST_3(error)
-    DESPERADO_LOGGER_TEST_3(severe)
-    DESPERADO_LOGGER_TEST_3(critical)
-    DESPERADO_LOGGER_TEST_3(alert)
-    DESPERADO_LOGGER_TEST_3(fatal)
-    DESPERADO_LOGGER_TEST_3(emergency)
-    DESPERADO_LOGGER_TEST_3(print)
+    GRANDOTE_LOGGER_TEST_3(finest)
+    GRANDOTE_LOGGER_TEST_3(finer)
+    GRANDOTE_LOGGER_TEST_3(fine)
+    GRANDOTE_LOGGER_TEST_3(trace)
+    GRANDOTE_LOGGER_TEST_3(debug)
+    GRANDOTE_LOGGER_TEST_3(information)
+    GRANDOTE_LOGGER_TEST_3(configuration)
+    GRANDOTE_LOGGER_TEST_3(notice)
+    GRANDOTE_LOGGER_TEST_3(warning)
+    GRANDOTE_LOGGER_TEST_3(error)
+    GRANDOTE_LOGGER_TEST_3(severe)
+    GRANDOTE_LOGGER_TEST_3(critical)
+    GRANDOTE_LOGGER_TEST_3(alert)
+    GRANDOTE_LOGGER_TEST_3(fatal)
+    GRANDOTE_LOGGER_TEST_3(emergency)
+    GRANDOTE_LOGGER_TEST_3(print)
 
     printf("%s[%d]: cxxcapi\n", __FILE__, __LINE__);
 
@@ -228,7 +228,7 @@ CXXCAPI int unittestLogger(void) {
 
     logger4->show();
 
-#define DESPERADO_LOGGER_TEST_4(_FUNCTION_) \
+#define GRANDOTE_LOGGER_TEST_4(_FUNCTION_) \
     rc = logger_##_FUNCTION_(logger4, "%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "logger4", #_FUNCTION_); \
     if (0 >= rc) { \
@@ -237,22 +237,22 @@ CXXCAPI int unittestLogger(void) {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_4(finest)
-    DESPERADO_LOGGER_TEST_4(finer)
-    DESPERADO_LOGGER_TEST_4(fine)
-    DESPERADO_LOGGER_TEST_4(trace)
-    DESPERADO_LOGGER_TEST_4(debug)
-    DESPERADO_LOGGER_TEST_4(information)
-    DESPERADO_LOGGER_TEST_4(configuration)
-    DESPERADO_LOGGER_TEST_4(notice)
-    DESPERADO_LOGGER_TEST_4(warning)
-    DESPERADO_LOGGER_TEST_4(error)
-    DESPERADO_LOGGER_TEST_4(severe)
-    DESPERADO_LOGGER_TEST_4(critical)
-    DESPERADO_LOGGER_TEST_4(alert)
-    DESPERADO_LOGGER_TEST_4(fatal)
-    DESPERADO_LOGGER_TEST_4(emergency)
-    DESPERADO_LOGGER_TEST_4(print)
+    GRANDOTE_LOGGER_TEST_4(finest)
+    GRANDOTE_LOGGER_TEST_4(finer)
+    GRANDOTE_LOGGER_TEST_4(fine)
+    GRANDOTE_LOGGER_TEST_4(trace)
+    GRANDOTE_LOGGER_TEST_4(debug)
+    GRANDOTE_LOGGER_TEST_4(information)
+    GRANDOTE_LOGGER_TEST_4(configuration)
+    GRANDOTE_LOGGER_TEST_4(notice)
+    GRANDOTE_LOGGER_TEST_4(warning)
+    GRANDOTE_LOGGER_TEST_4(error)
+    GRANDOTE_LOGGER_TEST_4(severe)
+    GRANDOTE_LOGGER_TEST_4(critical)
+    GRANDOTE_LOGGER_TEST_4(alert)
+    GRANDOTE_LOGGER_TEST_4(fatal)
+    GRANDOTE_LOGGER_TEST_4(emergency)
+    GRANDOTE_LOGGER_TEST_4(print)
 
     printf("%s[%d]: log\n", __FILE__, __LINE__);
 
@@ -260,7 +260,7 @@ CXXCAPI int unittestLogger(void) {
 
     logger5.show();
 
-#define DESPERADO_LOGGER_TEST_5(_LEVEL_) \
+#define GRANDOTE_LOGGER_TEST_5(_LEVEL_) \
     rc = logger5.log(Logger::_LEVEL_, "%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "logger5", #_LEVEL_); \
     if (0 >= rc) { \
@@ -269,22 +269,22 @@ CXXCAPI int unittestLogger(void) {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_5(FINEST)
-    DESPERADO_LOGGER_TEST_5(FINER)
-    DESPERADO_LOGGER_TEST_5(FINE)
-    DESPERADO_LOGGER_TEST_5(TRACE)
-    DESPERADO_LOGGER_TEST_5(DEBUG)
-    DESPERADO_LOGGER_TEST_5(INFORMATION)
-    DESPERADO_LOGGER_TEST_5(CONFIGURATION)
-    DESPERADO_LOGGER_TEST_5(NOTICE)
-    DESPERADO_LOGGER_TEST_5(WARNING)
-    DESPERADO_LOGGER_TEST_5(ERROR)
-    DESPERADO_LOGGER_TEST_5(SEVERE)
-    DESPERADO_LOGGER_TEST_5(CRITICAL)
-    DESPERADO_LOGGER_TEST_5(ALERT)
-    DESPERADO_LOGGER_TEST_5(FATAL)
-    DESPERADO_LOGGER_TEST_5(EMERGENCY)
-    DESPERADO_LOGGER_TEST_5(PRINT)
+    GRANDOTE_LOGGER_TEST_5(FINEST)
+    GRANDOTE_LOGGER_TEST_5(FINER)
+    GRANDOTE_LOGGER_TEST_5(FINE)
+    GRANDOTE_LOGGER_TEST_5(TRACE)
+    GRANDOTE_LOGGER_TEST_5(DEBUG)
+    GRANDOTE_LOGGER_TEST_5(INFORMATION)
+    GRANDOTE_LOGGER_TEST_5(CONFIGURATION)
+    GRANDOTE_LOGGER_TEST_5(NOTICE)
+    GRANDOTE_LOGGER_TEST_5(WARNING)
+    GRANDOTE_LOGGER_TEST_5(ERROR)
+    GRANDOTE_LOGGER_TEST_5(SEVERE)
+    GRANDOTE_LOGGER_TEST_5(CRITICAL)
+    GRANDOTE_LOGGER_TEST_5(ALERT)
+    GRANDOTE_LOGGER_TEST_5(FATAL)
+    GRANDOTE_LOGGER_TEST_5(EMERGENCY)
+    GRANDOTE_LOGGER_TEST_5(PRINT)
 
     Logger logger7;
 
@@ -297,7 +297,7 @@ CXXCAPI int unittestLogger(void) {
 #define KERN_INFO       "<6>"
 #define KERN_DEBUG      "<7>"
 
-#define DESPERADO_LOGGER_TEST_7(_LEVEL_, _KERNEL_) { \
+#define GRANDOTE_LOGGER_TEST_7(_LEVEL_, _KERNEL_) { \
     const char * message = _KERNEL_ #_KERNEL_; \
     size_t level; \
     logger7.level(message, std::strlen(message), level); \
@@ -309,14 +309,14 @@ CXXCAPI int unittestLogger(void) {
     } \
 }
 
-    DESPERADO_LOGGER_TEST_7(EMERGENCY,		KERN_EMERG);
-    DESPERADO_LOGGER_TEST_7(ALERT,	    	KERN_ALERT);
-    DESPERADO_LOGGER_TEST_7(CRITICAL,		KERN_CRIT);
-    DESPERADO_LOGGER_TEST_7(ERROR,	    	KERN_ERR);
-    DESPERADO_LOGGER_TEST_7(WARNING,		KERN_WARNING);
-    DESPERADO_LOGGER_TEST_7(NOTICE,	    	KERN_NOTICE);
-    DESPERADO_LOGGER_TEST_7(INFORMATION,	KERN_INFO);
-    DESPERADO_LOGGER_TEST_7(DEBUG,		    KERN_DEBUG);
+    GRANDOTE_LOGGER_TEST_7(EMERGENCY,		KERN_EMERG);
+    GRANDOTE_LOGGER_TEST_7(ALERT,	    	KERN_ALERT);
+    GRANDOTE_LOGGER_TEST_7(CRITICAL,		KERN_CRIT);
+    GRANDOTE_LOGGER_TEST_7(ERROR,	    	KERN_ERR);
+    GRANDOTE_LOGGER_TEST_7(WARNING,		KERN_WARNING);
+    GRANDOTE_LOGGER_TEST_7(NOTICE,	    	KERN_NOTICE);
+    GRANDOTE_LOGGER_TEST_7(INFORMATION,	KERN_INFO);
+    GRANDOTE_LOGGER_TEST_7(DEBUG,		    KERN_DEBUG);
 
     FileOutput file(stderr);
     Logger logger8;
@@ -326,7 +326,7 @@ CXXCAPI int unittestLogger(void) {
 
     logger8.show();
 
-#define DESPERADO_LOGGER_TEST_8(_FUNCTION_) \
+#define GRANDOTE_LOGGER_TEST_8(_FUNCTION_) \
     rc = logger8._FUNCTION_("%s[%d]: %s %s\n", \
         __FILE__, __LINE__, "logger8", #_FUNCTION_); \
     if (0 >= rc) { \
@@ -335,22 +335,22 @@ CXXCAPI int unittestLogger(void) {
         ++errors; \
     }
 
-    DESPERADO_LOGGER_TEST_8(finest)
-    DESPERADO_LOGGER_TEST_8(finer)
-    DESPERADO_LOGGER_TEST_8(fine)
-    DESPERADO_LOGGER_TEST_8(trace)
-    DESPERADO_LOGGER_TEST_8(debug)
-    DESPERADO_LOGGER_TEST_8(information)
-    DESPERADO_LOGGER_TEST_8(configuration)
-    DESPERADO_LOGGER_TEST_8(notice)
-    DESPERADO_LOGGER_TEST_8(warning)
-    DESPERADO_LOGGER_TEST_8(error)
-    DESPERADO_LOGGER_TEST_8(severe)
-    DESPERADO_LOGGER_TEST_8(critical)
-    DESPERADO_LOGGER_TEST_8(alert)
-    DESPERADO_LOGGER_TEST_8(fatal)
-    DESPERADO_LOGGER_TEST_8(emergency)
-    DESPERADO_LOGGER_TEST_8(print)
+    GRANDOTE_LOGGER_TEST_8(finest)
+    GRANDOTE_LOGGER_TEST_8(finer)
+    GRANDOTE_LOGGER_TEST_8(fine)
+    GRANDOTE_LOGGER_TEST_8(trace)
+    GRANDOTE_LOGGER_TEST_8(debug)
+    GRANDOTE_LOGGER_TEST_8(information)
+    GRANDOTE_LOGGER_TEST_8(configuration)
+    GRANDOTE_LOGGER_TEST_8(notice)
+    GRANDOTE_LOGGER_TEST_8(warning)
+    GRANDOTE_LOGGER_TEST_8(error)
+    GRANDOTE_LOGGER_TEST_8(severe)
+    GRANDOTE_LOGGER_TEST_8(critical)
+    GRANDOTE_LOGGER_TEST_8(alert)
+    GRANDOTE_LOGGER_TEST_8(fatal)
+    GRANDOTE_LOGGER_TEST_8(emergency)
+    GRANDOTE_LOGGER_TEST_8(print)
 
     printf("%s[%d]: end errors=%d\n",
         __FILE__, __LINE__, errors);

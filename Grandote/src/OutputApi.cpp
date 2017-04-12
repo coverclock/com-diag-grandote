@@ -53,8 +53,8 @@
  */
 
 
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/Grandote.h"
 
 
 CXXCAPI ssize_t output_c(Output* o, int c) {

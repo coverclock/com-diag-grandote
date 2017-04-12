@@ -46,11 +46,11 @@
  *  @author Chip Overclock (coverclock@diag.com)
  */
 
-#include "com/diag/desperado/Root.h"
-#include "com/diag/desperado/Primes.h"
-#include "com/diag/desperado/Ratio.h"
+#include "com/diag/grandote/Root.h"
+#include "com/diag/grandote/Primes.h"
+#include "com/diag/grandote/Ratio.h"
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /*
  * We take care of all the special cases before the complicated stuff.
@@ -123,4 +123,4 @@ Ratio * Ratio::normalize()
     return this;	
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

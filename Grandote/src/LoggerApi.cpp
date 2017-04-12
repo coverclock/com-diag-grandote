@@ -49,12 +49,12 @@
  */
 
 
-#include "com/diag/desperado/Logger.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/Logger.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 
-#define DESPERADO_LOGGER_API(_FUNCTION_, _LEVEL_) \
+#define GRANDOTE_LOGGER_API(_FUNCTION_, _LEVEL_) \
 CXXCAPI ssize_t logger_##_FUNCTION_(Logger* logger, const char* format, ...) { \
     va_list ap; \
     va_start(ap, format); \
@@ -64,19 +64,19 @@ CXXCAPI ssize_t logger_##_FUNCTION_(Logger* logger, const char* format, ...) { \
 }
 
 
-DESPERADO_LOGGER_API(   finest,         FINEST          )
-DESPERADO_LOGGER_API(   finer,          FINER           )
-DESPERADO_LOGGER_API(   fine,           FINE            )
-DESPERADO_LOGGER_API(   trace,          TRACE           )
-DESPERADO_LOGGER_API(   debug,          DEBUG           )
-DESPERADO_LOGGER_API(   information,    INFORMATION     )
-DESPERADO_LOGGER_API(   configuration,  CONFIGURATION   )
-DESPERADO_LOGGER_API(   notice,         NOTICE          )
-DESPERADO_LOGGER_API(   warning,        WARNING         )
-DESPERADO_LOGGER_API(   error,          ERROR           )
-DESPERADO_LOGGER_API(   severe,         SEVERE          )
-DESPERADO_LOGGER_API(   critical,       CRITICAL        )
-DESPERADO_LOGGER_API(   alert,          ALERT           )
-DESPERADO_LOGGER_API(   fatal,          FATAL           )
-DESPERADO_LOGGER_API(   emergency,      EMERGENCY       )
-DESPERADO_LOGGER_API(   print,          PRINT           )
+GRANDOTE_LOGGER_API(   finest,         FINEST          )
+GRANDOTE_LOGGER_API(   finer,          FINER           )
+GRANDOTE_LOGGER_API(   fine,           FINE            )
+GRANDOTE_LOGGER_API(   trace,          TRACE           )
+GRANDOTE_LOGGER_API(   debug,          DEBUG           )
+GRANDOTE_LOGGER_API(   information,    INFORMATION     )
+GRANDOTE_LOGGER_API(   configuration,  CONFIGURATION   )
+GRANDOTE_LOGGER_API(   notice,         NOTICE          )
+GRANDOTE_LOGGER_API(   warning,        WARNING         )
+GRANDOTE_LOGGER_API(   error,          ERROR           )
+GRANDOTE_LOGGER_API(   severe,         SEVERE          )
+GRANDOTE_LOGGER_API(   critical,       CRITICAL        )
+GRANDOTE_LOGGER_API(   alert,          ALERT           )
+GRANDOTE_LOGGER_API(   fatal,          FATAL           )
+GRANDOTE_LOGGER_API(   emergency,      EMERGENCY       )
+GRANDOTE_LOGGER_API(   print,          PRINT           )

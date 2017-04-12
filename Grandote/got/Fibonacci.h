@@ -13,13 +13,13 @@
 
 #include "gtest/gtest.h"
 #include "Fixture.h"
-#include "com/diag/desperado/Fibonacci.h"
+#include "com/diag/grandote/Fibonacci.h"
 
 namespace com {
 namespace diag {
 namespace unittest {
 
-using namespace ::com::diag::desperado;
+using namespace ::com::diag::grandote;
 
 typedef Fixture FibonacciTest;
 

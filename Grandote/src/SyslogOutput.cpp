@@ -53,20 +53,20 @@
  */
 
 
-#include "com/diag/desperado/stdarg.h"
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/SyslogOutput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Logger.h"
+#include "com/diag/grandote/stdarg.h"
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/SyslogOutput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Logger.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 int SyslogOutput::priorities[] = {
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
 	LOG_DEBUG,			// FINEST
 	LOG_DEBUG,			// FINER
 	LOG_DEBUG,			// FINE
@@ -88,7 +88,7 @@ int SyslogOutput::priorities[] = {
 #endif
 };
 
-#if !defined(DESPERADO_HAS_SYSLOG)
+#if !defined(GRANDOTE_HAS_SYSLOG)
 /**
  *	This is the output functor used to print log messages to stderr.
  */
@@ -104,7 +104,7 @@ SyslogOutput::SyslogOutput(const char* id, int opt, int fac)
 , option(opt)
 , facility(fac)
 {
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     ::openlog(id, opt, fac);
 #endif
 }
@@ -114,7 +114,7 @@ SyslogOutput::SyslogOutput(const char* id, int opt, int fac)
 //  Destructor.
 //
 SyslogOutput::~SyslogOutput() {
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     ::closelog();
 #endif
 }
@@ -138,7 +138,7 @@ const char* SyslogOutput::priority(const char* buffer, size_t size, int& pri) {
 //  Output a character.
 //
 int SyslogOutput::operator() (int c) {
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     ::syslog(LOG_INFO, "%c", c);
 #else
     error(c);
@@ -156,7 +156,7 @@ ssize_t SyslogOutput::operator() (const char* format, va_list ap) {
     int pri;
     const char* e = this->priority(buffer, size, pri);
     size -= e - buffer;
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     ::syslog(pri, "%s", e);
     return size;
 #else
@@ -172,7 +172,7 @@ ssize_t SyslogOutput::operator() (const char* s, size_t size) {
 	int pri;
     const char* e = this->priority(s, size, pri);
     size -= e - s;
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     ::syslog(pri, "%.*s", size, e);
     return size;
 #else
@@ -186,7 +186,7 @@ ssize_t SyslogOutput::operator() (const char* s, size_t size) {
 //
 ssize_t SyslogOutput::operator() (
     const void* buffer,
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     size_t,
 #else
     size_t minimum,
@@ -197,7 +197,7 @@ ssize_t SyslogOutput::operator() (
 	const char* s = static_cast<const char*>(buffer);
     const char* e = this->priority(s, maximum, pri);
     maximum -= e - s;
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
    ::syslog(pri, "%.*s", maximum, e);
     return maximum;
 #else
@@ -210,7 +210,7 @@ ssize_t SyslogOutput::operator() (
 //  Flush buffered data.
 //
 int SyslogOutput::operator() () {
-#if defined(DESPERADO_HAS_SYSLOG)
+#if defined(GRANDOTE_HAS_SYSLOG)
     return 0;
 #else
     return error();
@@ -236,4 +236,4 @@ void SyslogOutput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

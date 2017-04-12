@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_DSTGENERIC_H_
-#define _COM_DIAG_DESPERADO_DSTGENERIC_H_
+#ifndef _COM_DIAG_GRANDOTE_DSTGENERIC_H_
+#define _COM_DIAG_GRANDOTE_DSTGENERIC_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,11 +56,11 @@
  */
 
 
-#include "com/diag/desperado/DaylightSavingTime.h"
-#include "com/diag/desperado/Date.h"
+#include "com/diag/grandote/DaylightSavingTime.h"
+#include "com/diag/grandote/Date.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Encodes a rule to decide whether a given DateTime falls within
@@ -200,7 +200,7 @@ inline DstGeneric::DstGeneric(const Event& bs, const Event& es) :
 {
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

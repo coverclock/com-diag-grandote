@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_PATHINPUT_H_
-#define _COM_DIAG_DESPERADO_PATHINPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_PATHINPUT_H_
+#define _COM_DIAG_GRANDOTE_PATHINPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,10 +56,10 @@
  */
 
 
-#include "com/diag/desperado/FileInput.h"
+#include "com/diag/grandote/FileInput.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an input functor that returns data from a C standard
@@ -126,7 +126,7 @@ private:
 
 };
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

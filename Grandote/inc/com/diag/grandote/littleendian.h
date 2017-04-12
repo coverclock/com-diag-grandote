@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_LITTLEENDIAN_H_
-#define _COM_DIAG_DESPERADO_LITTLEENDIAN_H_
+#ifndef _COM_DIAG_GRANDOTE_LITTLEENDIAN_H_
+#define _COM_DIAG_GRANDOTE_LITTLEENDIAN_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -62,11 +62,11 @@
  */
 
 
-#include "com/diag/desperado/cxxcapi.h"
+#include "com/diag/grandote/cxxcapi.h"
 
 #if 0
 
-#include "com/diag/desperado/generics.h"
+#include "com/diag/grandote/generics.h"
 
 /**
  *  Returns non-zero if the target is little endian, zero if big endian.
@@ -86,7 +86,7 @@ CXXCINLINE int littleendian(void) {
 
 #else
 
-#include "com/diag/desperado/target.h"
+#include "com/diag/grandote/target.h"
 
 /**
  *  Returns non-zero if the target is little endian, zero if big endian.

@@ -1,5 +1,5 @@
-#ifndef _COM_DIAG_DESPERADO_SYSLOGOUTPUT_H_
-#define _COM_DIAG_DESPERADO_SYSLOGOUTPUT_H_
+#ifndef _COM_DIAG_GRANDOTE_SYSLOGOUTPUT_H_
+#define _COM_DIAG_GRANDOTE_SYSLOGOUTPUT_H_
 
 /* vim: set ts=4 expandtab shiftwidth=4: */
 
@@ -56,9 +56,9 @@
  */
 
 
-#include "com/diag/desperado/stdio.h"
-#include "com/diag/desperado/Platform.h"
-#if defined(DESPERADO_HAS_SYSLOG)
+#include "com/diag/grandote/stdio.h"
+#include "com/diag/grandote/Platform.h"
+#if defined(GRANDOTE_HAS_SYSLOG)
 #include <syslog.h>
 #define SYSLOG_OUTPUT_OPT	(LOG_CONS | LOG_NDELAY | LOG_PERROR | LOG_PID)
 #define SYSLOG_OUTPUT_FAC	(LOG_USER)
@@ -66,11 +66,11 @@
 #define SYSLOG_OUTPUT_OPT	(0)
 #define SYSLOG_OUTPUT_FAC	(0)
 #endif
-#include "com/diag/desperado/FileOutput.h"
-#include "com/diag/desperado/Output.h"
+#include "com/diag/grandote/FileOutput.h"
+#include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Implements an output functor that writes to the Linux system log file
@@ -275,7 +275,7 @@ inline int SyslogOutput::getFacility() const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

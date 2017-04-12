@@ -49,17 +49,17 @@
  */
 
 
-#include "com/diag/desperado/generics.h"
-#include "com/diag/desperado/errno.h"
-#include "com/diag/desperado/target.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/ready.h"
-#include "com/diag/desperado/DescriptorInput.h"
-#include "com/diag/desperado/Print.h"
-#include "com/diag/desperado/Platform.h"
+#include "com/diag/grandote/generics.h"
+#include "com/diag/grandote/errno.h"
+#include "com/diag/grandote/target.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/ready.h"
+#include "com/diag/grandote/DescriptorInput.h"
+#include "com/diag/grandote/Print.h"
+#include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 
 //
@@ -198,7 +198,7 @@ ssize_t DescriptorInput::operator() (
         errno = 0;
     } else if (0 == maximum) {
         rc = 0;
-    } else if ((0 == minimum) && (0 == (::desperado_descriptor_ready(this->active) & DESPERADO_DESCRIPTOR_READY_READ))) {
+    } else if ((0 == minimum) && (0 == (::grandote_descriptor_ready(this->active) & GRANDOTE_DESCRIPTOR_READY_READ))) {
     	rc = 0;
     } else {
         ssize_t fc;
@@ -270,13 +270,13 @@ void DescriptorInput::show(int level, Output* display, int indent) const {
         sp, this->saved,
         (EOF == this->saved) ? "=EOF" : "");
     if (0 <= this->active) {
-    	int ready = ::desperado_descriptor_ready(this->active);
+    	int ready = ::grandote_descriptor_ready(this->active);
         printf("%s ready=0x%02x%s%s%s%s\n",
         	sp, ready,
-        	(0 != (ready & DESPERADO_DESCRIPTOR_READY_READ)) ? " READ": "",
-        	(0 != (ready & DESPERADO_DESCRIPTOR_READY_WRITE)) ? " WRITE": "",
-        	(0 != (ready & DESPERADO_DESCRIPTOR_READY_EXCEPTION)) ? " EXCEPTION": "",
-        	(0 != (ready & DESPERADO_DESCRIPTOR_READY_ERROR)) ? " ERROR": ""
+        	(0 != (ready & GRANDOTE_DESCRIPTOR_READY_READ)) ? " READ": "",
+        	(0 != (ready & GRANDOTE_DESCRIPTOR_READY_WRITE)) ? " WRITE": "",
+        	(0 != (ready & GRANDOTE_DESCRIPTOR_READY_EXCEPTION)) ? " EXCEPTION": "",
+        	(0 != (ready & GRANDOTE_DESCRIPTOR_READY_ERROR)) ? " ERROR": ""
         );
     }
     if (0 < this->error) {
@@ -285,4 +285,4 @@ void DescriptorInput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"

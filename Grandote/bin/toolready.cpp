@@ -28,9 +28,9 @@
  *  Implements the ready command line tool that tests the functions to handle
  *  non-blocking polling I/O.
  *
- *  @see    desperado_descriptor_ready
- *  @see    desperado_file_readable
- *  @see    desperado_file_writeable
+ *  @see    grandote_descriptor_ready
+ *  @see    grandote_file_readable
+ *  @see    grandote_file_writeable
  *
  *  @author Chip Overclock (coverclock@diag.com)
  */
@@ -51,7 +51,7 @@
 #include "com/diag/grandote/PathOutput.h"
 #include "com/diag/grandote/ready.h"
 #include "com/diag/grandote/errno.h"
-#include "com/diag/grandote/Desperado.h"
+#include "com/diag/grandote/Grandote.h"
 
 
 int main(int argc, char **argv, char **) {
@@ -188,9 +188,9 @@ int main(int argc, char **argv, char **) {
     while (true) {
 
     	if (debug) {
-			ready = desperado_descriptor_ready(infd);
-			readable = desperado_file_readable(infp);
-			writeable = desperado_file_writeable(infp);
+			ready = grandote_descriptor_ready(infd);
+			readable = grandote_file_readable(infp);
+			writeable = grandote_file_writeable(infp);
 			errorf("input: ready=0x%x%s%s%s%s readable=%zu writeable=%u\n",
 				ready,
 				((ready & GRANDOTE_DESCRIPTOR_READY_READ) != 0) ? " READ": "",
@@ -213,9 +213,9 @@ int main(int argc, char **argv, char **) {
     	}
 
     	if (debug) {
-			ready = desperado_descriptor_ready(outfd);
-			readable = desperado_file_readable(outfp);
-			writeable = desperado_file_writeable(outfp);
+			ready = grandote_descriptor_ready(outfd);
+			readable = grandote_file_readable(outfp);
+			writeable = grandote_file_writeable(outfp);
 			errorf("output: ready=0x%x%s%s%s%s readable=%zu writeable=%zu\n",
 				ready,
 				((ready & GRANDOTE_DESCRIPTOR_READY_READ) != 0) ? " READ": "",

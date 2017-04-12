@@ -1,6 +1,6 @@
 /* vi: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_DESPERADO_UNCANCELLABLE_
-#define _H_COM_DIAG_DESPERADO_UNCANCELLABLE_
+#ifndef _H_COM_DIAG_GRANDOTE_UNCANCELLABLE_
+#define _H_COM_DIAG_GRANDOTE_UNCANCELLABLE_
 
 /**
  * @file
@@ -13,7 +13,7 @@
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 /**
  * Uncancellable causes the current thread to become uncancellable while an

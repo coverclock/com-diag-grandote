@@ -53,13 +53,13 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
+#include "com/diag/grandote/stdlib.h"
 #include <signal.h>
 #include <unistd.h>
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/string.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/string.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Grandote.h"
 
 static void handler(int signal) {
     Print& printf = Platform::instance().print();

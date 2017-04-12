@@ -53,10 +53,10 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Heap.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Heap.h"
 
 int main(int, char**) {
     exit(unittestHeap() + unittestHeap2() + unittestHeap3());

@@ -53,11 +53,11 @@
  */
 
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/UnitTest.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/Word.h"
-#include "com/diag/desperado/Desperado.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/UnitTest.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/Word.h"
+#include "com/diag/grandote/Grandote.h"
 
 int main(int argc, char**) {
     exit(unittestWord(0, 1 < argc ? 1 : 0));

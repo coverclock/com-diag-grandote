@@ -56,13 +56,13 @@
  */
 
 
-#include "com/diag/desperado/types.h"
-#include "com/diag/desperado/LeapSeconds.h"
-#include "com/diag/desperado/Output.h"
-#include "com/diag/desperado/CommonEra.h"
+#include "com/diag/grandote/types.h"
+#include "com/diag/grandote/LeapSeconds.h"
+#include "com/diag/grandote/Output.h"
+#include "com/diag/grandote/CommonEra.h"
 
 
-#include "com/diag/desperado/Begin.h"
+#include "com/diag/grandote/Begin.h"
 
 /**
  *  Duplicates the interface of LeapSeconds but never returns any
@@ -175,7 +175,7 @@ public:
 inline AtomicSeconds::AtomicSeconds() {
 }
 
-#include "com/diag/desperado/End.h"
+#include "com/diag/grandote/End.h"
 
 
 #endif

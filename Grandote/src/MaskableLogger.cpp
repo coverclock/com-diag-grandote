@@ -7,17 +7,17 @@
  * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
  */
 
-#include "com/diag/desperado/stdlib.h"
-#include "com/diag/desperado/MaskableLogger.h"
-#include "com/diag/desperado/Mutex.h"
-#include "com/diag/desperado/CancellableCriticalSection.h"
-#include "com/diag/desperado/LogOutput.h"
-#include "com/diag/desperado/Platform.h"
-#include "com/diag/desperado/uint16_Number.h"
+#include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/MaskableLogger.h"
+#include "com/diag/grandote/Mutex.h"
+#include "com/diag/grandote/CancellableCriticalSection.h"
+#include "com/diag/grandote/LogOutput.h"
+#include "com/diag/grandote/Platform.h"
+#include "com/diag/grandote/uint16_Number.h"
 
 namespace com {
 namespace diag {
-namespace desperado {
+namespace grandote {
 
 static Mutex mutex;
 
@@ -68,7 +68,7 @@ MaskableLogger & MaskableLogger::setMask() {
 	if (string != 0) {
 		Mask value;
 		size_t length;
-		if (::com::diag::desperado::uint16_Number(string, value, length)) {
+		if (::com::diag::grandote::uint16_Number(string, value, length)) {
 			mask = value;
 		}
 	}
@@ -82,9 +82,9 @@ ssize_t MaskableLogger::emit(const char* buffer, size_t size) {
 	return rc;
 }
 
-void MaskableLogger::show(int level, ::com::diag::desperado::Output * display, int indent) const {
-	::com::diag::desperado::Platform& pl = ::com::diag::desperado::Platform::instance();
-	::com::diag::desperado::Print printf(display);
+void MaskableLogger::show(int level, ::com::diag::grandote::Output * display, int indent) const {
+	::com::diag::grandote::Platform& pl = ::com::diag::grandote::Platform::instance();
+	::com::diag::grandote::Print printf(display);
     const char* sp = printf.output().indentation(indent);
     char component[sizeof(__FILE__)];
     printf("%s%s(%p)[%lu]:\n",
