@@ -53,6 +53,7 @@
  */
 
 
+#include "com/diag/diminuto/diminuto_platform.h"
 #include "com/diag/grandote/stdarg.h"
 #include "com/diag/grandote/littleendian.h"
 #include "com/diag/grandote/lowtohigh.h"
@@ -67,18 +68,21 @@
 #include "com/diag/grandote/cxxcapi.h"
 
 
+#if defined(COM_DIAG_DIMINUTO_PLATFORM_GLIBC)
+#   define GRANDOTE_PLATFORM_IS_Linux
+#elif defined(COM_DIAG_DIMINUTO_PLATFORM_CYGWIN)
+#   define GRANDOTE_PLATFORM_IS_Cygwin
+#else
+#   warning Diminuto does not specify a platform!
+#endif
+
+
 #if defined(GRANDOTE_PLATFORM_IS_Linux)
 #include "com/diag/grandote/Linux.h"
 typedef CXXCTYPE(::com::diag::grandote::, Linux) OperatingSystem;
 #elif defined(GRANDOTE_PLATFORM_IS_Cygwin)
 #include "com/diag/grandote/Cygwin.h"
 typedef CXXCTYPE(::com::diag::grandote::, Cygwin) OperatingSystem;
-#elif defined(GRANDOTE_PLATFORM_IS_Diminuto)
-#include "com/diag/grandote/Diminuto.h"
-typedef CXXCTYPE(::com::diag::grandote::, Diminuto) OperatingSystem;
-#elif defined(GRANDOTE_PLATFORM_IS_Arroyo)
-#include "com/diag/grandote/Arroyo.h"
-typedef CXXCTYPE(::com::diag::grandote::, Arroyo) OperatingSystem;
 #else
 #error GRANDOTE_PLATFORM_IS_* not defined!
 #endif

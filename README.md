@@ -11,6 +11,7 @@ Licensed under the terms of FSF LGPL v2.1.
 ABSTRACT
 
 Grandote is a C++ layer on top of the Diminuto C library.
+THIS IS A WORK IN PROGRESS.
 
 CONTACT
 
