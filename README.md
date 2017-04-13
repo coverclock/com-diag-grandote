@@ -32,7 +32,7 @@ of Diminuto are shipping in a number of commercial products from several
 of my clients.
 
 I have written hundreds of thousands of lines of C++ for embedded
-products, mostly during my time at Bell Labs and its verious offshoots. At
+products, mostly during my time at Bell Labs and its various offshoots. At
 one time I was a strong advocate for the use of C++ in embedded
 products. But over the years, I have seen a decline in the use of C++
 in this way, and an increase in the use of C for the systems layer,
