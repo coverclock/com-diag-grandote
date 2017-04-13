@@ -4,7 +4,7 @@
  * Copyright 2011 Digital Aggregates Corporation, Colorado, USA<BR>
  * Licensed under the terms in README.h<BR>
  * Chip Overclock (coverclock@diag.com)<BR>
- * http://www.diag.com/navigation/downloads/Desperadito.html<BR>
+ * http://www.diag.com/navigation/downloads/Grandote.html<BR>
  */
 
 #include "com/diag/grandote/Uncancellable.h"

@@ -48,18 +48,18 @@ License along with this library; if not, contact
 
 ABSTRACT
 
-This file is part of the Digital Aggregates Corporation Desperadito package.
-Desperadito is an open source library of object-oriented software components
+This file is part of the Digital Aggregates Corporation Grandote package.
+Grandote is an open source library of object-oriented software components
 written in C++. It implements design patterns that the author has found to be
 both useful in embedded applications, both Linux-based and otherwise. Code from
-Desperadito (and it's pre-fork predecessor Desperado) has legitimately found its
+Grandote (and it's pre-fork predecessor Desperado) has legitimately found its
 way into the commercial products of several of the Corporation's clients. So
 don't be surprised if you see this code popping up elsewhere in your travels.
 
-Desperadito is a mashup of code from the Digital Aggregates projects Desperado
+Grandote is a mashup of code from the Digital Aggregates projects Desperado
 and Hayloft with the build framework from Diminuto. Desperado, Hayloft, and
 Diminuto each have very different unit test frameworks; I have not made any
-attempt to reconcile or rationalize them in Desperadito.
+attempt to reconcile or rationalize them in Grandote.
 
 It is licensed under a modified GNU Lesser General Public License to allow it
 to be incorporated into proprietary software or firmware without restriction or

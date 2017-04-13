@@ -3,7 +3,7 @@
 /******************************************************************************
 
     Copyright 2005-2011 Digital Aggregates Corporation, Colorado, USA.
-    This file is part of the Digital Aggregates Desperadito library.
+    This file is part of the Digital Aggregates Grandote library.
     
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public

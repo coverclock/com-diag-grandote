@@ -3,7 +3,7 @@
 /******************************************************************************
 
     Copyright 2005-2011 Digital Aggregates Corporation, Colorado, USA.
-    This file is part of the Digital Aggregates Desperadito library.
+    This file is part of the Digital Aggregates Grandote library.
     
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -51,6 +51,10 @@
  *
  *
  */
+
+
+#include "platform.h"
+#include "target.h"
 
 
 #if defined(GRANDOTE_PLATFORM_IS_Linux) || defined(GRANDOTE_PLATFORM_IS_Diminuto) || defined(GRANDOTE_PLATFORM_IS_Arroyo)
@@ -335,10 +339,14 @@ ticks_t Linux::yield(ticks_t ticks, bool premature) {
 //  Construct and return the identity of the caller.
 //
 identity_t Linux::identity() {
+#if 0
     pid_t pid = ::getpid();
     pthread_t self = pthread_self();
     identity_t identity = pid;
     return (identity << widthof(self)) | self;
+#else
+    return pthread_self();
+#endif
 }
 
 

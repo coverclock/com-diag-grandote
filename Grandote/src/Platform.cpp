@@ -3,7 +3,7 @@
 /******************************************************************************
 
     Copyright 2005-2011 Digital Aggregates Corporation, Colorado, USA.
-    This file is part of the Digital Aggregates Desperadito library.
+    This file is part of the Digital Aggregates Grandote library.
     
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -53,7 +53,7 @@
  */
 
 
-#include "com/diag/diminuto/diminuto_platform.h"
+#include "platform.h"
 #include "com/diag/grandote/stdarg.h"
 #include "com/diag/grandote/littleendian.h"
 #include "com/diag/grandote/lowtohigh.h"
@@ -68,23 +68,14 @@
 #include "com/diag/grandote/cxxcapi.h"
 
 
-#if defined(COM_DIAG_DIMINUTO_PLATFORM_GLIBC)
-#   define GRANDOTE_PLATFORM_IS_Linux
-#elif defined(COM_DIAG_DIMINUTO_PLATFORM_CYGWIN)
-#   define GRANDOTE_PLATFORM_IS_Cygwin
-#else
-#   warning Diminuto does not specify a platform!
-#endif
-
-
 #if defined(GRANDOTE_PLATFORM_IS_Linux)
-#include "com/diag/grandote/Linux.h"
+#   include "com/diag/grandote/Linux.h"
 typedef CXXCTYPE(::com::diag::grandote::, Linux) OperatingSystem;
-#elif defined(GRANDOTE_PLATFORM_IS_Cygwin)
-#include "com/diag/grandote/Cygwin.h"
+#   elif defined(GRANDOTE_PLATFORM_IS_Cygwin)
+#   include "com/diag/grandote/Cygwin.h"
 typedef CXXCTYPE(::com::diag::grandote::, Cygwin) OperatingSystem;
 #else
-#error GRANDOTE_PLATFORM_IS_* not defined!
+#   error GRANDOTE_PLATFORM_IS_* not defined!
 #endif
 
 

@@ -6,7 +6,7 @@
 # http://www.diag.com/navigation/downloads/Grandote.html
 # "Chip Overclock" is a registered trademark.
 # "Digital Aggregates Corporation" is a registered trademark.
-# Grandote is a fork of Desperadito, which itself is a fork of Desperado.
+# Grandote is a fork of Grandote, which itself is a fork of Desperado.
 #
 #	make all TARGET=<target>		# Build libraries, unit tests, executable programs.
 #
@@ -95,7 +95,7 @@ ROOT_DIR			:=	$(HOME_DIR)/$(TARGET)
 GITURL				:=	https://github.com/coverclock/com-diag-$(PROJECT).git
 
 GENERATED			:=	vintage setup generate
-SYNTHESIZED			:=	$(PROJECT)_release.h $(PROJECT)_vintage.h $(PROJECT)_revision.h
+SYNTHESIZED			:=	release.h vintage.h revision.h platform.h product.h
 
 NEW					:=	dummy
 OLD					:=	dummy
@@ -112,6 +112,7 @@ SO					:=	so
 
 A2SOARCH			:=	-shared -Wl,-soname,lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
 A2SOXXARCH			:=	-shared -Wl,-soname,lib$(PROJECT)xx.$(SO).$(MAJOR).$(MINOR)
+A2SOUTARCH			:=	-shared -Wl,-soname,lib$(PROJECT)ut.$(SO).$(MAJOR).$(MINOR)
 
 ########## Configuration Makefile
 
@@ -131,7 +132,7 @@ DIMINUTO_HEADERS	:=	$(DIMINUTO_ROOT)/$(INC_DIR)
 DIMINUTO_LIBRARIES	:=	$(DIMINUTO_ROOT)/$(OUT)/$(LIB_DIR)
 
 DIMINUTO_CPPFLAGS	:=	-iquote $(DIMINUTO_HEADERS)
-DIMINUTO_LDFLAGS	:=	-L$(DIMINUTO_LIBRARIES) -l$(DIMINUTO_PROJECT) -lpthread -lrt -ldl
+DIMINUTO_LDFLAGS	:=	-L$(DIMINUTO_LIBRARIES) -l$(DIMINUTO_PROJECT)
 
 ########## Commands and Option Flags
 
@@ -158,10 +159,12 @@ CFLAGS				:=	$(CARCH) -g
 CXXFLAGS			:=	$(CXXARCH) -g
 CPFLAGS				:=	-i
 MVFLAGS				:=	-i
-LDFLAGS				:=	$(LDARCH) -l$(PROJECT) $(LDLIBRARIES) $(DIMINUTO_LDFLAGS)
-LDXXFLAGS			:=	$(LDARCH) -l$(PROJECT)ut -l$(PROJECT)xx -l$(PROJECT) $(LDXXLIBRARIES)
+LDFLAGS				:=	$(LDARCH) -l$(PROJECT) $(DIMINUTO_LDFLAGS) $(LDLIBRARIES) 
+LDUTFLAGS			:=	$(LDARCH) -l$(PROJECT) -l$(PROJECT)xx $(DIMINUTO_LDFLAGS) $(LDXXLIBRARIES)
+LDXXFLAGS			:=	$(LDARCH) -l$(PROJECT)ut -l$(PROJECT) -l$(PROJECT)xx $(DIMINUTO_LDFLAGS) $(LDXXLIBRARIES) 
 SOFLAGS				:=	$(SOARCH) $(LDLIBRARIES)
 SOXXFLAGS			:=	$(SOXXARCH) $(LDXXLIBRARIES)
+SOUTFLAGS			:=	$(SOUTARCH) $(LDXXLIBRARIES)
 
 #BROWSER			:=	firefox
 #BROWSER			:=	epiphany
@@ -200,7 +203,7 @@ TARGETSHAREDUT		+=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO)
 TARGETLIBRARIES		:=	$(TARGETARCHIVE) $(TARGETSHARED)
 TARGETLIBRARIESXX	:=	$(TARGETARCHIVEXX) $(TARGETSHAREDXX) $(TARGETSHAREDUT)
 TARGETPROGRAMS		:=	$(TARGETBINARIES) $(TARGETUNITTESTS) $(TARGETGENERATED) $(TARGETSCRIPTS)
-TARGETALL		:=	$(TARGETLIBRARIES) $(TARGETLIBRARIESXX) $(TARGETPROGRAMS)
+TARGETALL			:=	$(TARGETLIBRARIES) $(TARGETLIBRARIESXX) $(TARGETPROGRAMS)
 
 ########## Main Entry Points
 
@@ -308,16 +311,16 @@ $(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO).$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT
 $(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)xx.$(SO).$(MAJOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
 
-########## Target Unit TestLibraries
+########## Target Unit Test Libraries
 
-$(OUT)/$(ARC_DIR)/$(PROJECTUT_A):	$(TARGETOBJECTSUT)
+$(OUT)/$(ARC_DIR)/$(PROJECTUT_A):	$(TARGETOBJECTSUT) $(TARGETOBJECTSUTXX)
 	D=`dirname $@`; mkdir -p $$D
 	$(AR) $(ARFLAGS) $@ $^
 	$(RANLIB) $@
 
-$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR).$(MINOR):	$(TARGETOBJECTSUT) $(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
+$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR).$(MINOR):	$(TARGETOBJECTSUT) $(TARGETOBJECTSUTXX) $(OUT)/$(LIB_DIR)/lib$(PROJECT).$(SO).$(MAJOR).$(MINOR)
 	D=`dirname $@`; mkdir -p $$D
-	$(CXX) $(CXXFLAGS) $(A2SOXXARCH) -o $@ $(SOXXFLAGS) $(TARGETOBJECTSUT)
+	$(CXX) $(CXXFLAGS) $(A2SOUTARCH) -o $@ $(SOUTFLAGS) $(TARGETOBJECTSUT) $(TARGETOBJECTSUTXX) $(LDUTFLAGS)
 
 $(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR):	$(OUT)/$(LIB_DIR)/lib$(PROJECT)ut.$(SO).$(MAJOR).$(MINOR)
 	D=`dirname $<`; F=`basename $<`; T=`basename $@`; ( cd $$D; ln -s -f $$F $$T ) 
@@ -405,14 +408,14 @@ $(OUT)/$(GEN_DIR)/vintage.c:	Makefile
 	@echo MAKE_VERSION=$(MAKE_VERSION) SLASHES=$(SLASHES)
 	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/release.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/release.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/platform.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/platform.h"' >> $@
 	echo '#include <stdio.h>' >> $@
 	echo '#include <assert.h>' >> $@
 	echo 'static const char METADATA[] =' >> $@
@@ -483,14 +486,14 @@ $(OUT)/$(GEN_DIR)/vintage.c:	Makefile
 	@echo MAKE_VERSION=$(MAKE_VERSION) SLASHES=$(SLASHES)
 	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_release.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_vintage.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_revision.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
-	echo '#include "com/diag/$(PROJECT)/$(PROJECT)_platform.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/release.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/release.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/vintage.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/revision.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/platform.h"' >> $@
+	echo '#include "com/diag/$(PROJECT)/platform.h"' >> $@
 	echo '#include <stdio.h>' >> $@
 	echo '#include <assert.h>' >> $@
 	echo 'static const char METADATA[] =' >> $@
@@ -556,11 +559,11 @@ $(OUT)/$(GEN_DIR)/vintage.c:	Makefile
 endif
 
 # For embedding in an application where it can be interrogated or displayed.
-$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h:	Makefile
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/release.h:	Makefile
 	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
-	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_RELEASE_' >> $@
-	echo '#define _H_COM_DIAG_$(SYMBOL)_RELEASE_' >> $@
+	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_RELEASE_GENERATED_' >> $@
+	echo '#define _H_COM_DIAG_$(SYMBOL)_RELEASE_GENERATED_' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_RELEASE_MAJOR $(MAJOR)' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_RELEASE_MINOR $(MINOR)' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_RELEASE_BUILD $(BUILD)' >> $@
@@ -568,31 +571,63 @@ $(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h:	Makefile
 	echo '#endif' >> $@
 
 # For embedding in the library archive and shared object.
-$(OUT)/$(OBC_DIR)/$(SRC_DIR)/$(PROJECT)_release.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_release.h
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/release.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/release.h
 
 # For embedding in an application where it can be interrogated or displayed.
-$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h:	Makefile
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/vintage.h:	Makefile
 	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
-	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_VINTAGE_' >> $@
-	echo '#define _H_COM_DIAG_$(SYMBOL)_VINTAGE_' >> $@
+	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_VINTAGE_GENERATED_' >> $@
+	echo '#define _H_COM_DIAG_$(SYMBOL)_VINTAGE_GENERATED_' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_VINTAGE "$(VINTAGE)"' >> $@
 	echo '#endif' >> $@
 
 # For embedding in the library archive and shared object.
-$(OUT)/$(OBC_DIR)/$(SRC_DIR)/$(PROJECT)_vintage.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_vintage.h
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/vintage.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/vintage.h
 
 # For embedding in an application where it can be interrogated or displayed.
-$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_revision.h:	Makefile
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/revision.h:	Makefile
 	D=`dirname $@`; mkdir -p $$D
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
-	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_REVISION_' >> $@
-	echo '#define _H_COM_DIAG_$(SYMBOL)_REVISION_' >> $@
+	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_REVISION_GENERATED_' >> $@
+	echo '#define _H_COM_DIAG_$(SYMBOL)_REVISION_GENERATED_' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_REVISION "$(REVISION)"' >> $@
 	echo '#endif' >> $@
 
 # For embedding in the library archive and shared object.
-$(OUT)/$(OBC_DIR)/$(SRC_DIR)/$(PROJECT)_revision.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/$(PROJECT)_revision.h
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/revision.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/revision.h
+
+# Synthesized from Diminuto.
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/platform.h:	Makefile
+	D=`dirname $@`; mkdir -p $$D
+	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
+	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_PLATFORM_GENERATED_' >> $@
+	echo '#define _H_COM_DIAG_$(SYMBOL)_PLATFORM_GENERATED_' >> $@
+	echo '#include "com/diag/diminuto/diminuto_platform.h"' >> $@
+	echo '#define COM_DIAG_$(SYMBOL)_PLATFORM COM_DIAG_DIMINUTO_PLATFORM' >> $@
+	echo '#endif' >> $@
+
+# For embedding in the library archive and shared object.
+$(OUT)/$(OBC_DIR)/$(SRC_DIR)/platform.o:	$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/platform.h
+
+# For embedding in an application where it can be interrogated or displayed.
+$(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/product.h:	Makefile
+	D=`dirname $@`; mkdir -p $$D
+	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
+	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_PRODUCT_GENERATED_' >> $@
+	echo '#define _H_COM_DIAG_$(SYMBOL)_PRODUCT_GENERATED_' >> $@
+	echo '#include "com/diag/diminuto/diminuto_platform.h"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_PRODUCT "$(TITLE)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_LICENSE "$(LICENSE)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_COPYRIGHT "$(COPYRIGHT)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_CONTACT "$(CONTACT)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_URL "$(HOMEPAGE)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_DATE "$(MODIFIED)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_RELEASE "$(MAJOR).$(MINOR).$(BUILD)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_VERSION "$(REVISION)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_TARGET "$(TARGET)"' >> $@
+	echo '#define $(SYMBOL)_VINTAGE_PLATFORM COM_DIAG_DIMINUTO_PLATFORM' >> $@
+	echo '#endif' >> $@
 
 # For executing from the command line during testing.
 $(OUT)/$(SYM_DIR)/vintage:	$(OUT)/$(GEN_DIR)/vintage.c

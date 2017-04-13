@@ -3,7 +3,7 @@
 /******************************************************************************
 
     Copyright 2006-2011 Digital Aggregates Corporation, Colorado, USA.
-    This file is part of the Digital Aggregates Desperadito library.
+    This file is part of the Digital Aggregates Grandote library.
     
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -55,7 +55,7 @@
 
 
 
-#include "com/diag/grandote/release.h"
+#include "com/diag/grandote/product.h"
 #include "com/diag/grandote/Vintage.h"
 #include "com/diag/grandote/Platform.h"
 #include "com/diag/grandote/Print.h"
