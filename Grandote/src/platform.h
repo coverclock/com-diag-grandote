@@ -10,6 +10,7 @@
  * mailto:coverclock@diag.com<BR>
  */
 
+
 #include "com/diag/diminuto/diminuto_platform.h"
 
 

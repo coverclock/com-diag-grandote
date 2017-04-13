@@ -59,13 +59,13 @@
  */
 
 
+#include "platform.h"
 #if defined(__cplusplus)
 #   include <cstring>
 #   include <string>
 #else
 #   include <string.h>
 #endif
-#include "com/diag/diminuto/diminuto_platform.h"
 #include "com/diag/grandote/target.h"
 #include "com/diag/grandote/cxxcapi.h"
 
@@ -182,9 +182,11 @@ CXXCAPI char* grandote_strnrchr(const char* s, size_t count, int c);
  */
  
 
-#if defined(COM_DIAG_DIMINUTO_PLATFORM_CYGWIN)
+#if defined(GRANDOTE_PLATFORM_IS_Cygwin)
 #   define GRANDOTE_NEEDS_STRNCHR
-#elif defined(COM_DIAG_DIMINUTO_PLATFORM_GLIBC)
+#elif defined(GRANDOTE_PLATFORM_IS_Linux)
+#   define GRANDOTE_NEEDS_STRNCHR
+#elif defined(GRANDOTE_PLATFORM_IS_Diminuto)
 #   define GRANDOTE_NEEDS_STRNCHR
 #else
 #   if !defined(__HAVE_ARCH_STRNLEN)

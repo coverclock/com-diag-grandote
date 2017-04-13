@@ -603,7 +603,10 @@ $(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/platform.h:	Makefile
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
 	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_PLATFORM_GENERATED_' >> $@
 	echo '#define _H_COM_DIAG_$(SYMBOL)_PLATFORM_GENERATED_' >> $@
+	echo '#include "com/diag/$(PROJECT)/cxxcapi.h"' >> $@
+	echo 'CXXCAPI {' >> $@
 	echo '#include "com/diag/diminuto/diminuto_platform.h"' >> $@
+	echo '}' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_PLATFORM COM_DIAG_DIMINUTO_PLATFORM' >> $@
 	echo '#endif' >> $@
 
