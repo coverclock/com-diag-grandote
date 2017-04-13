@@ -12,14 +12,14 @@ ABSTRACT
 
 This is a work in progress.
 
-Grandote (Spanish for, "ginormous") is a C++ layer on top of the
-Diminuto library.  Diminuto is a C-based library specifically written
-for Linux/GNU. Grandote is fork of Desperadito, which itself is a fork
-of Desperado. Desperado is a C++ library that was intended to abstract
-out the underlying operating system so that applications written on top
-of it would be portable to other hardware targets and software platforms
-like Linux, Cygwin, VxWorks, etc. In this incarnation, Grandote provides
-C++ facilities on top of Diminuto's OS abstraction.
+Grandote (Spanish for "ginormous") is a C++ layer on top of the Diminuto
+(Spanish for "tiny") library.  Diminuto is a C-based library specifically
+written for Linux/GNU. Grandote is fork of Desperadito, which itself
+is a fork of Desperado. Desperado is a C++ library that was intended
+to abstract out the underlying operating system so that applications
+written on top of it would be portable to other hardware targets and
+software platforms like Linux, Cygwin, VxWorks, etc. In this incarnation,
+Grandote provides C++ facilities on top of Diminuto's OS abstraction.
 
 To make this even more complicated, Diminuto itself was at one time an
 OS choice for Desperado, which referred not to the Diminuto library, but
