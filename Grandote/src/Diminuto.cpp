@@ -60,6 +60,7 @@
 
 
 #include "com/diag/grandote/Diminuto.h"
+#include "com/diag/diminuto/diminuto_frequency.h"
 
 
 #include "com/diag/grandote/Begin.h"
@@ -82,6 +83,15 @@ Diminuto::Diminuto() :
 //  Destructor.
 //
 Diminuto::~Diminuto() {
+}
+
+
+//
+//  Return the resolution of the Linux clock in ticks per second as a ratio.
+//
+void Diminuto::frequency(ticks_t& numerator, ticks_t& denominator) {
+    numerator = diminuto_frequency();
+    denominator = 1;
 }
 
 

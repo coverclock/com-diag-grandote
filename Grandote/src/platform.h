@@ -12,14 +12,14 @@
 
 #include "com/diag/diminuto/diminuto_platform.h"
 
-#define GRANDOTE_PLATFORM_NAME COM_DIAG_DIMINUTO_PLATFORM
 
 #if defined(COM_DIAG_DIMINUTO_PLATFORM_GLIBC)
-#   define GRANDOTE_PLATFORM_IS_Linux
-#elif defined(COM_DIAG_DIMINUTO_PLATFORM_CYGWIN)
-#   define GRANDOTE_PLATFORM_IS_Cygwin
+#   define GRANDOTE_PLATFORM_IS_Diminuto
+#   define GRANDOTE_PLATFORM_NAME COM_DIAG_DIMINUTO_PLATFORM
 #else
-#   warning COM_DIAG_DIMINUTO_PLATFORM usupported!
+#   warning COM_DIAG_DIMINUTO_PLATFORM not recognized!!
+#   define GRANDOTE_PLATFORM_IS_Linux
+#   define GRANDOTE_PLATFORM_NAME "Linux"
 #endif
 
 #endif

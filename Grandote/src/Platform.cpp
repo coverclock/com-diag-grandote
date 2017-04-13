@@ -68,7 +68,10 @@
 #include "com/diag/grandote/cxxcapi.h"
 
 
-#if defined(GRANDOTE_PLATFORM_IS_Linux)
+#if defined(GRANDOTE_PLATFORM_IS_Diminuto)
+#   include "com/diag/grandote/Diminuto.h"
+typedef CXXCTYPE(::com::diag::grandote::, Diminuto) OperatingSystem;
+#elif defined(GRANDOTE_PLATFORM_IS_Linux)
 #   include "com/diag/grandote/Linux.h"
 typedef CXXCTYPE(::com::diag::grandote::, Linux) OperatingSystem;
 #   elif defined(GRANDOTE_PLATFORM_IS_Cygwin)

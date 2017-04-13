@@ -56,6 +56,9 @@
  */
 
 
+#include "com/diag/grandote/platform.h"
+
+
 #if defined(GRANDOTE_PLATFORM_IS_Linux) || defined(GRANDOTE_PLATFORM_IS_Diminuto) || defined(GRANDOTE_PLATFORM_IS_Arroyo)
 
 
