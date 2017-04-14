@@ -85,3 +85,12 @@ Digital Aggregates Corporation<br/>
 3440 Youngfield Street #209<br/>
 Wheat Ridge CO 80033<br/>
 USA<br/>
+
+NOTES
+
+    cd ~/src
+    git clone https://github.com/google/googletest
+    cd googletest
+    cmake -Dgtest_build_samples=ON -Dgtest_build_tests=ON `pwd`
+    make
+    make test
