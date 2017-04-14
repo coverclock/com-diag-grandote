@@ -25,8 +25,8 @@ To make this even more complicated, Diminuto itself was at one time an
 OS choice for Desperado, which referred not to the Diminuto library, but
 to the ARMv4-based hardware target for which Diminuto was originally
 written. That target - laughably small in light of today's 64-bit
-gigaHertz microprocessors (and the reason for Diminuto's name) - is
-long gone, but the Diminuto library remains and continues to evolve.
+gigaHertz multicore microprocessors (and the reason for Diminuto's name)
+- is long gone, but the Diminuto library remains and continues to evolve.
 I don't know that anyone but me has ever used Desperado, but portions
 of Diminuto are shipping in a number of commercial products from several
 of my clients.
