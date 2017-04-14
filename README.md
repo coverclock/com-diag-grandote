@@ -33,7 +33,7 @@ of my clients.
 
 The pthread portions of Desperadito - and, hence, Grandote - were forked
 from Hayloft, a C++ framework for using Amazon Web Service (AWS) Simple
-Storage Service (s3). Grandote inherited the Google Test based unit tests
+Storage Service (S3). Grandote inherited the Google Test based unit tests
 from Hayloft. I recommend Google Test; Diminuto and Desperado/Desperadito
 didn't use Google Test only because they predate its existence by many
 years.
