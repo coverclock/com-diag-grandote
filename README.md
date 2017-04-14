@@ -31,17 +31,35 @@ I don't know that anyone but me has ever used Desperado, but portions
 of Diminuto are shipping in a number of commercial products from several
 of my clients.
 
-I have written hundreds of thousands of lines of C++ for embedded
-products, mostly during my time at Bell Labs and its various offshoots. At
-one time I was a strong advocate for the use of C++ in embedded
-products. But over the years, I have seen a decline in the use of C++
-in this way, and an increase in the use of C for the systems layer,
-and languages like Python, Java, and even JavaScript in the application
-layer. I can't argue with the economics of that: you can hire cheaper
-developers for those other langauges. Meanwhile, C++ has evolved into
-a language so complex that my clients can't afford - or can't find -
-developers with that skill set and that level of expertise. But perhaps
-my interest in Grandote means I'm not ready to give up on C++ quite yet.
+The pthread portions of Desperadito - and, hence, Grandote - were forked
+from Hayloft, a C++ framework for using Amazon Web Service (AWS) Simple
+Storage Service (s3).
+
+The unit tests are a mixture of straight C++ programs (whose
+implementations were a little strange to make them easier to use in
+VxWorks) from the ancient Desperado code base, and Google Test programs
+from the Hayloft code base. The Google Test programs use a thin helper
+layer from yet another project, Lariat.
+
+To use Grandote you need to also install Diminuto, Lariat, and Google Test
+(but NOT Desperadito, Desperado, or Hayloft).
+
+I have written tens if not hundreds of thousands of lines of C++
+for embedded products, mostly during my years at Bell Labs and its
+various spinoffs. At one time I was a strong advocate for the use of
+C++ in embedded products. But over the years, I have seen a decline in
+the use of C++ for such work, and an increase in the use of C for the
+systems layer, and languages like Python, Java, and even JavaScript
+in the application layer. I can't argue with the economics of that:
+you can hire less expensive developers for those other langauges. As
+a consequence of dealing with mixed language product development,
+I've done my share of coding in Python and Java, and have even hacked
+JavaScript. Meanwhile, C++ has evolved into a language so complex that
+my clients can't afford - or can't find - developers with that skill set
+and that level of expertise.
+
+But perhaps my interest in Grandote means I'm not ready to give up on C++
+quite yet.
 
 REPOSITORIES
 
@@ -49,9 +67,15 @@ REPOSITORIES
 
 <https://github.com/coverclock/com-diag-diminuto>
 
+<https://github.com/coverclock/com-diag-lariat>
+
+<https://github.com/google/googletest>
+
 <https://github.com/coverclock/com-diag-desperadito>
 
 <https://github.com/coverclock/com-diag-desperado>
+
+<https://github.com/coverclock/com-diag-hayloft>
 
 CONTACT
 

@@ -79,6 +79,7 @@ SYS_DIR				:=	sys# Kernel module build directory
 TGZ_DIR				:=	tgz# Compressed tarballs
 TST_DIR				:=	tst# Unit tests
 UTF_DIR				:=	utf# Unit test functions
+GOT_DIR				:=	got# Google Tests
 
 ########## Configuration
 
@@ -134,6 +135,34 @@ DIMINUTO_LIBRARIES	:=	$(DIMINUTO_ROOT)/$(OUT)/$(LIB_DIR)
 DIMINUTO_CPPFLAGS	:=	-iquote $(DIMINUTO_HEADERS)
 DIMINUTO_LDFLAGS	:=	-L$(DIMINUTO_LIBRARIES) -l$(DIMINUTO_PROJECT)
 
+########## Lariat Configuration
+
+LARIAT_TITLE		:=	Lariat
+
+LARIAT_PROJECT		:=	$(shell echo $(LARIAT_TITLE) | tr '[A-Z]' '[a-z]')
+LARIAT_SYMBOL		:=	$(shell echo $(LARIAT_TITLE) | tr '[a-z]' '[A-Z]')
+
+LARIAT_ROOT			:=	$(HOME)/src/com-diag-$(LARIAT_PROJECT)/$(LARIAT_TITLE)
+LARIAT_HEADERS		:=	$(LARIAT_ROOT)/$(INC_DIR)
+LARIAT_LIBRARIES	:=	$(LARIAT_ROOT)
+
+LARIAT_CPPFLAGS		:=	-iquote $(LARIAT_HEADERS)
+LARIAT_LDFLAGS		:=	$(LARIAT_LIBRARIES)/lib$(LARIAT_PROJECT).a
+
+########## Google Test Configuration
+
+GTEST_TITLE			:=	GoogleTest
+
+GTEST_PROJECT		:=	$(shell echo $(GTEST_TITLE) | tr '[A-Z]' '[a-z]')
+GTEST_SYMBOL		:=	$(shell echo $(GTEST_TITLE) | tr '[a-z]' '[A-Z]')
+
+GTEST_ROOT			:=	$(HOME)/src/$(GTEST_PROJECT)
+GTEST_HEADERS		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/include
+GTEST_LIBRARIES		:=	$(GTEST_ROOT)/googlemock/gtest
+
+GTEST_CPPFLAGS		:=	-iquote $(GTEST_HEADERS)
+GTEST_LDFLAGS		:=	$(GTEST_LIBRARIES)/libgtest.a
+
 ########## Commands and Option Flags
 
 PROJECT_A			:=	lib$(PROJECT).a
@@ -154,14 +183,19 @@ STRIP				:=	$(CROSS_COMPILE)strip
 CDEFINES			:=
 
 ARFLAGS				:=	crsv
-CPPFLAGS			:=	$(CDEFINES) -iquote $(SRC_DIR) -iquote $(INC_DIR) -iquote $(OUT)/$(INC_DIR) $(DIMINUTO_CPPFLAGS) $(CPPARCH)
+CPPFLAGS			:=	$(CDEFINES) -iquote $(SRC_DIR) -iquote $(INC_DIR) -iquote $(OUT)/$(INC_DIR) $(DIMINUTO_CPPFLAGS) $(LARIAT_CPPFLAGS) $(GTEST_CPPFLAGS) $(CPPARCH)
 CFLAGS				:=	$(CARCH) -g
 CXXFLAGS			:=	$(CXXARCH) -g
 CPFLAGS				:=	-i
 MVFLAGS				:=	-i
-LDFLAGS				:=	$(LDARCH) -l$(PROJECT) $(DIMINUTO_LDFLAGS) $(LDLIBRARIES) 
-LDUTFLAGS			:=	$(LDARCH) -l$(PROJECT) -l$(PROJECT)xx $(DIMINUTO_LDFLAGS) $(LDXXLIBRARIES)
-LDXXFLAGS			:=	$(LDARCH) -l$(PROJECT)ut -l$(PROJECT) -l$(PROJECT)xx $(DIMINUTO_LDFLAGS) $(LDXXLIBRARIES) 
+#LDPREFIX			:=	$(LDARCH) -Wl,--start-group
+#LDPREFIX			:=	-Wl,--verbose $(LDARCH)
+LDPREFIX			:=	$(LDARCH)
+#LDSUFFIX			:=	-Wl,--end-group
+LDSUFFIX			:=	
+LDFLAGS				:=	$(LDPREFIX) -l$(PROJECT) $(DIMINUTO_LDFLAGS) $(LDLIBRARIES) $(LDSUFFIX)
+LDUTFLAGS			:=	$(LDPREFIX) -l$(PROJECT) -l$(PROJECT)xx $(DIMINUTO_LDFLAGS) $(LDXXLIBRARIES) $(LDSUFFIX)
+LDXXFLAGS			:=	$(LDPREFIX) -l$(PROJECT)ut -l$(PROJECT) -l$(PROJECT)xx $(DIMINUTO_LDFLAGS) $(LDXXLIBRARIES) $(LDSUFFIX)
 SOFLAGS				:=	$(SOARCH) $(LDLIBRARIES)
 SOXXFLAGS			:=	$(SOXXARCH) $(LDXXLIBRARIES)
 SOUTFLAGS			:=	$(SOUTARCH) $(LDXXLIBRARIES)
@@ -186,6 +220,7 @@ TARGETUNITTESTS		+=	$(addprefix $(OUT)/,$(basename $(wildcard $(TST_DIR)/*.cpp))
 TARGETUNITTESTS		+=	$(addprefix $(OUT)/,$(basename $(wildcard $(TST_DIR)/*.sh)))
 TARGETUTFUNCTIONS	:=	$(addprefix $(OUT)/,$(basename $(wildcard $(UTF_DIR)/*.c)))
 TARGETUTFUNCTIONS	+=	$(addprefix $(OUT)/,$(basename $(wildcard $(UTF_DIR)/*.cpp)))
+TARGETGOOGLETESTS	:=	$(addprefix $(OUT)/,$(basename $(wildcard $(GOT_DIR)/*.cpp)))
 
 TARGETARCHIVE		:=	$(OUT)/$(ARC_DIR)/$(PROJECT_A)
 TARGETARCHIVEXX		:=	$(OUT)/$(ARC_DIR)/$(PROJECTXX_A)
@@ -202,7 +237,7 @@ TARGETSHAREDUT		+=	$(OUT)/$(LIB_DIR)/$(PROJECTUT_SO)
 
 TARGETLIBRARIES		:=	$(TARGETARCHIVE) $(TARGETSHARED)
 TARGETLIBRARIESXX	:=	$(TARGETARCHIVEXX) $(TARGETSHAREDXX) $(TARGETSHAREDUT)
-TARGETPROGRAMS		:=	$(TARGETBINARIES) $(TARGETUNITTESTS) $(TARGETGENERATED) $(TARGETSCRIPTS)
+TARGETPROGRAMS		:=	$(TARGETBINARIES) $(TARGETUNITTESTS) $(TARGETGENERATED) $(TARGETSCRIPTS) $(TARGETGOOGLETESTS)
 TARGETALL			:=	$(TARGETLIBRARIES) $(TARGETLIBRARIESXX) $(TARGETPROGRAMS)
 
 ########## Main Entry Points
@@ -374,10 +409,23 @@ $(OUT)/$(SYM_DIR)/%:	$(OUT)/$(OBX_DIR)/$(BIN_DIR)/%.o $(TARGETLIBRARIESXX) $(TAR
 $(OUT)/$(TST_DIR)/%:	$(OUT)/$(OBC_DIR)/$(TST_DIR)/%.o $(TARGETLIBRARIES)
 	D=`dirname $@`; mkdir -p $$D
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
-	
+
 $(OUT)/$(TST_DIR)/%:	$(OUT)/$(OBX_DIR)/$(TST_DIR)/%.o $(TARGETLIBRARIESXX) $(TARGETLIBRARIES)
 	D=`dirname $@`; mkdir -p $$D
 	$(CXX) $(CXXFLAGS) -o $@ $< $(LDXXFLAGS)
+
+########## Google Tests
+
+# These gtest programs have to have the Digital Aggregates Lariat library and the
+# Google Test library installed.
+
+$(OUT)/$(GOT_DIR)/%:	$(OUT)/$(OBX_DIR)/$(GOT_DIR)/%.o $(TARGETLIBRARIESXX) $(TARGETLIBRARIES)
+	D=`dirname $@`; mkdir -p $$D
+	$(CXX) $(CXXFLAGS) -o $@ $< $(LARIAT_LDFLAGS) $(GTEST_LDFLAGS) $(LDXXFLAGS)
+
+$(OUT)/$(OBX_DIR)/$(GOT_DIR)/%.o:	$(GOT_DIR)/%.cpp
+	D=`dirname $@`; mkdir -p $$D
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ -c $<
 
 ########## Generated Source Files
 
@@ -603,10 +651,7 @@ $(OUT)/$(INC_DIR)/com/diag/$(PROJECT)/platform.h:	Makefile
 	echo '/* GENERATED FILE! DO NOT EDIT! */' > $@
 	echo '#ifndef _H_COM_DIAG_$(SYMBOL)_PLATFORM_GENERATED_' >> $@
 	echo '#define _H_COM_DIAG_$(SYMBOL)_PLATFORM_GENERATED_' >> $@
-	echo '#include "com/diag/$(PROJECT)/cxxcapi.h"' >> $@
-	echo 'CXXCAPI {' >> $@
 	echo '#include "com/diag/diminuto/diminuto_platform.h"' >> $@
-	echo '}' >> $@
 	echo '#define COM_DIAG_$(SYMBOL)_PLATFORM COM_DIAG_DIMINUTO_PLATFORM' >> $@
 	echo '#endif' >> $@
 
@@ -780,7 +825,7 @@ DEPENDENCIES := $(OUT)/$(DEP_DIR)/dependencies.mk
 depend:	$(TARGETSYNTHESIZED)
 	M=`dirname $(DEPENDENCIES)`; mkdir -p $$M
 	cp /dev/null $(DEPENDENCIES)
-	for S in $(SRC_DIR); do \
+	for S in $(SRC_DIR) $(UTF_DIR); do \
 		if [ -d $$S ]; then \
 			for F in $$S/*.c; do \
 				D=`dirname $$F`; \
@@ -791,7 +836,7 @@ depend:	$(TARGETSYNTHESIZED)
 			done; \
 		fi; \
 	done
-	for S in $(BIN_DIR) $(SRC_DIR) $(TST_DIR); do \
+	for S in $(BIN_DIR) $(SRC_DIR) $(TST_DIR) $(UTF_DIR) $(GOT_DIR); do \
 		if [ -d $$S ]; then \
 			for F in $$S/*.cpp; do \
 				D=`dirname $$F`; \
