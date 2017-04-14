@@ -10,8 +10,6 @@ Licensed under the terms of FSF LGPL v2.1.
 
 ABSTRACT
 
-This is a work in progress.
-
 Grandote (Spanish for "ginormous") is a C++ layer on top of the Diminuto
 (Spanish for "tiny") library.  Diminuto is a C-based library specifically
 written for Linux/GNU. Grandote is fork of Desperadito, which itself
@@ -52,7 +50,7 @@ tiny dependency issue that was easily remedied.
 
 Grandote, Desperado, Desperadito, Hayloft, Lariat, and Diminuto were all
 written by me, are the intellectual property of the Digital Aggregates
-Corporation, and are licensed on one FSF GNU license or another.
+Corporation, and are licensed using one FSF GNU license or another.
 
 I have written tens if not hundreds of thousands of lines of C++
 for embedded products, mostly during my years at Bell Labs and its
