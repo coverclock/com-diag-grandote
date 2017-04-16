@@ -29,22 +29,26 @@ I don't know that anyone but me has ever used Desperado, but portions
 of Diminuto are shipping in a number of commercial products from several
 of my clients.
 
-The pthread portions of Desperadito - and, hence, Grandote - were
+The POSIX thread portions of Desperadito - and, hence, Grandote - were
 forked from Hayloft, a C++ framework for using Amazon Web Service (AWS)
-Simple Storage Service (S3). The unit tests are a mixture of straight
-C++ programs (whose implementations were a little strange to make them
-easier to use in VxWorks) from the ancient Desperado code base, Google
-Test programs from the Hayloft code base, and even some unit tests
-main programs from the Diminuto code base that use the Diminuto unit
-test framework. The Google Test programs use a thin helper layer from
-yet another project, Lariat.  For new unit tests, I strongly recommend
-Google Test.
+Simple Storage Service (S3). A tiny portion of Diminuto was in C++,
+and those facilities have been moved into Grandote, making Diminuto
+purely C. The unit tests are a mixture of straight C++ programs (whose
+implementations were a little strange to make them easier to use in
+VxWorks) from the ancient Desperado code base, Google Test programs from
+the Hayloft code base, and even some unit test main programs from the
+Diminuto code base that use the Diminuto unit test framework. The Google
+Test programs use a thin helper layer from yet another project, Lariat.
+For new unit tests, I strongly recommend Google Test, although the
+Diminuto unit test framework is simple and easy to use.
 
 To use Grandote you need to also install Diminuto, Lariat, and Google
-Test. This is easier than it sounds. I had issues getting the Google
-Test unittest program to link under Ubuntu 14.04 and the problem defied
-my ability to fix it; I ran the same build on Ubuntu 16.04 and had one
-tiny dependency issue that was easily remedied.
+Test. This is easier than it sounds. I had issues getting the unittest
+main program that uses Google Test to link under Ubuntu 14.04 and the
+problem defied my ability to fix it; I ran the same build on Ubuntu 16.04
+and had one tiny dependency issue that was easily remedied; my guess is
+there was really only that one small issue, and the other error messages
+that side-tracked me were spurious.
 
 Grandote, Desperado, Desperadito, Hayloft, Lariat, and Diminuto were all
 written by me, are the intellectual property of the Digital Aggregates
