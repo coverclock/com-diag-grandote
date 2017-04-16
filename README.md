@@ -29,18 +29,16 @@ I don't know that anyone but me has ever used Desperado, but portions
 of Diminuto are shipping in a number of commercial products from several
 of my clients.
 
-The pthread portions of Desperadito - and, hence, Grandote - were forked
-from Hayloft, a C++ framework for using Amazon Web Service (AWS) Simple
-Storage Service (S3). Grandote inherited the Google Test based unit tests
-from Hayloft. I recommend Google Test; Diminuto and Desperado/Desperadito
-didn't use Google Test only because they predate its existence by many
-years.
-
-The unit tests are a mixture of straight C++ programs (whose
-implementations were a little strange to make them easier to use in
-VxWorks) from the ancient Desperado code base, and Google Test programs
-from the Hayloft code base. The Google Test programs use a thin helper
-layer from yet another project, Lariat.
+The pthread portions of Desperadito - and, hence, Grandote - were
+forked from Hayloft, a C++ framework for using Amazon Web Service (AWS)
+Simple Storage Service (S3). The unit tests are a mixture of straight
+C++ programs (whose implementations were a little strange to make them
+easier to use in VxWorks) from the ancient Desperado code base, Google
+Test programs from the Hayloft code base, and even some unit tests
+main programs from the Diminuto code base that use the Diminuto unit
+test framework. The Google Test programs use a thin helper layer from
+yet another project, Lariat.  For new unit tests, I strongly recommend
+Google Test.
 
 To use Grandote you need to also install Diminuto, Lariat, and Google
 Test. This is easier than it sounds. I had issues getting the Google
