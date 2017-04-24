@@ -62,60 +62,60 @@ echo "$NAME[$PID]: $TS begin"
 
 # Errors in these commands do not count.
 cat << EOF > $SCRIPT1
-mainassert
+unittestassert
 EOF
 
 # Errors in these commands do count.
 cat << EOF > $SCRIPT2
-mainArgument
-mainAscii
-mainAttribute
-mainBandwidthThrottle
-mainByteOrder
-mainCellRateThrottle
-mainChain
-mainCounters
-mainCrc
-mainDump
-mainEncode
-mainEscape
-mainException
-mainFifo
-mainGeometricThrottle
-mainGrayCode
-mainHeap
-mainImplementation
-mainInputOutputStatic
-mainIso3166
-mainLinkType
-mainLogger
-mainMeter
-mainMinimumMaximum
-mainMutex
-mainNumber
-mainPlatform
-mainRam
-mainService
-mainStreamSocket
-mainThrottle
-mainVintage
-mainWord
-mainbarrier
-maincxxcapi
-maingenerics
-mainnamespace
-mainstring
-maintarget
+unittestArgument
+unittestAscii
+unittestAttribute
+unittestBandwidthThrottle
+unittestByteOrder
+unittestCellRateThrottle
+unittestChain
+unittestCounters
+unittestCrc
+unittestDump
+unittestEncode
+unittestEscape
+unittestException
+unittestFifo
+unittestGeometricThrottle
+unittestGrayCode
+unittestHeap
+unittestImplementation
+unittestInputOutputStatic
+unittestIso3166
+unittestLinkType
+unittestLogger
+unittestMeter
+unittestMinimumMaximum
+unittestMutex
+unittestNumber
+unittestPlatform
+unittestRam
+unittestService
+unittestStreamSocket
+unittestThrottle
+unittestVintage
+unittestWord
+unittestbarrier
+unittestcxxcapi
+unittestgenerics
+unittestnamespace
+unitteststring
+unittesttarget
 EOF
 
 # These commands are shell scripts.
 cat << EOF > $SCRIPT3
-unittestInputOutput
+unittestInputOutputSuite
 EOF
 
 # These commands take eons to run so we do them last.
 cat << EOF > $SCRIPT4
-mainCommonEra
+unittestCommonEra
 EOF
 
 # Verify that we have everything.

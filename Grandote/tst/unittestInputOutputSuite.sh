@@ -43,7 +43,7 @@ CMD="`basename $0`"
 DIR=${TMPDIR}/${CMD}
 ROOT=${DIR}/$$
 FILE=lesser.txt
-PGM="mainInputOutput"
+PGM="unittestInputOutput"
 ERRORS=0
 
 echo "${CMD}: begin"
