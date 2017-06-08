@@ -23,7 +23,7 @@ TITLE				:=	Grandote
 
 MAJOR				:=	1# API changes that may require that applications be modified.
 MINOR				:=	0# Only functionality or features added with no legacy API changes.
-BUILD				:=	0# Only bugs fixed with no API changes or new functionality.
+BUILD				:=	1# Only bugs fixed with no API changes or new functionality.
 
 TARGET				:=	host# Build for the x86_64 running Ubuntu 14.04 LTS.
 
@@ -158,10 +158,10 @@ GTEST_SYMBOL		:=	$(shell echo $(GTEST_TITLE) | tr '[a-z]' '[A-Z]')
 
 GTEST_ROOT			:=	$(HOME)/src/$(GTEST_PROJECT)
 GTEST_HEADERS		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/include
-GTEST_LIBRARIES		:=	$(GTEST_ROOT)/googlemock/gtest
+GTEST_LIBRARIES		:=	$(GTEST_ROOT)/googletest/make
 
 GTEST_CPPFLAGS		:=	-iquote $(GTEST_HEADERS)
-GTEST_LDFLAGS		:=	$(GTEST_LIBRARIES)/libgtest.a
+GTEST_LDFLAGS		:=	$(GTEST_LIBRARIES)/gtest.a
 
 ########## Commands and Option Flags
 
