@@ -158,10 +158,10 @@ GTEST_SYMBOL		:=	$(shell echo $(GTEST_TITLE) | tr '[a-z]' '[A-Z]')
 
 GTEST_ROOT			:=	$(HOME)/src/$(GTEST_PROJECT)
 GTEST_HEADERS		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/include
-GTEST_LIBRARIES		:=	$(GTEST_ROOT)/googletest/make
+GTEST_LIBRARIES		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/out
 
 GTEST_CPPFLAGS		:=	-iquote $(GTEST_HEADERS)
-GTEST_LDFLAGS		:=	$(GTEST_LIBRARIES)/gtest.a
+GTEST_LDFLAGS		:=	$(GTEST_LIBRARIES)/libgtest.a $(GTEST_LIBRARIES)/libgtest_main.a
 
 ########## Commands and Option Flags
 
