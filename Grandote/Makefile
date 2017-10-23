@@ -23,7 +23,7 @@ TITLE				:=	Grandote
 
 MAJOR				:=	1# API changes that may require that applications be modified.
 MINOR				:=	0# Only functionality or features added with no legacy API changes.
-BUILD				:=	1# Only bugs fixed with no API changes or new functionality.
+BUILD				:=	2# Only bugs fixed with no API changes or new functionality.
 
 TARGET				:=	host# Build for the x86_64 running Ubuntu 14.04 LTS.
 
@@ -87,6 +87,7 @@ PROJECT				:=	$(shell echo $(TITLE) | tr '[A-Z]' '[a-z]')
 SYMBOL				:=	$(shell echo $(TITLE) | tr '[a-z]' '[A-Z]')
 
 HERE				:=	$(shell pwd)
+THERE				:=	$(shell realpath ../..)
 
 OUT					:=	$(OUT_DIR)/$(TARGET)
 
@@ -128,7 +129,7 @@ DIMINUTO_TITLE		:=	Diminuto
 DIMINUTO_PROJECT	:=	$(shell echo $(DIMINUTO_TITLE) | tr '[A-Z]' '[a-z]')
 DIMINUTO_SYMBOL		:=	$(shell echo $(DIMINUTO_TITLE) | tr '[a-z]' '[A-Z]')
 
-DIMINUTO_ROOT		:=	$(HOME)/src/com-diag-$(DIMINUTO_PROJECT)/$(DIMINUTO_TITLE)
+DIMINUTO_ROOT		:=	$(THERE)/com-diag-$(DIMINUTO_PROJECT)/$(DIMINUTO_TITLE)
 DIMINUTO_HEADERS	:=	$(DIMINUTO_ROOT)/$(INC_DIR)
 DIMINUTO_LIBRARIES	:=	$(DIMINUTO_ROOT)/$(OUT)/$(LIB_DIR)
 
@@ -142,7 +143,7 @@ LARIAT_TITLE		:=	Lariat
 LARIAT_PROJECT		:=	$(shell echo $(LARIAT_TITLE) | tr '[A-Z]' '[a-z]')
 LARIAT_SYMBOL		:=	$(shell echo $(LARIAT_TITLE) | tr '[a-z]' '[A-Z]')
 
-LARIAT_ROOT			:=	$(HOME)/src/com-diag-$(LARIAT_PROJECT)/$(LARIAT_TITLE)
+LARIAT_ROOT			:=	$(THERE)/com-diag-$(LARIAT_PROJECT)/$(LARIAT_TITLE)
 LARIAT_HEADERS		:=	$(LARIAT_ROOT)/$(INC_DIR)
 LARIAT_LIBRARIES	:=	$(LARIAT_ROOT)
 
@@ -156,7 +157,7 @@ GTEST_TITLE			:=	GoogleTest
 GTEST_PROJECT		:=	$(shell echo $(GTEST_TITLE) | tr '[A-Z]' '[a-z]')
 GTEST_SYMBOL		:=	$(shell echo $(GTEST_TITLE) | tr '[a-z]' '[A-Z]')
 
-GTEST_ROOT			:=	$(HOME)/src/$(GTEST_PROJECT)
+GTEST_ROOT			:=	$(THERE)/$(GTEST_PROJECT)
 GTEST_HEADERS		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/include
 GTEST_LIBRARIES		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/out
 
