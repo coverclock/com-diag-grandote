@@ -61,7 +61,9 @@
 
 
 /* (As required per ISO C99 for limits of integral types to be defined...) */
+#ifndef __STDC_LIMIT_MACROS
 #define __STDC_LIMIT_MACROS (1)
+#endif
 #include "com/diag/grandote/stdint.h"
 /* (... except it does not define these useful ones.) */
 #if !defined(UINT8_MIN)
