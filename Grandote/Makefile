@@ -153,13 +153,17 @@ LARIAT_LDFLAGS		:=	$(LARIAT_LIBRARIES)/lib$(LARIAT_PROJECT).a
 ########## Google Test Configuration
 
 GTEST_TITLE			:=	GoogleTest
+GMOCK_TITLE			:=	GoogleMock
 
 GTEST_PROJECT		:=	$(shell echo $(GTEST_TITLE) | tr '[A-Z]' '[a-z]')
 GTEST_SYMBOL		:=	$(shell echo $(GTEST_TITLE) | tr '[a-z]' '[A-Z]')
 
+GMOCK_PROJECT		:=	$(shell echo $(GMOCK_TITLE) | tr '[A-Z]' '[a-z]')
+GMOCK_SYMBOL		:=	$(shell echo $(GMOCK_TITLE) | tr '[a-z]' '[A-Z]')
+
 GTEST_ROOT			:=	$(THERE)/$(GTEST_PROJECT)
 GTEST_HEADERS		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/include
-GTEST_LIBRARIES		:=	$(GTEST_ROOT)/$(GTEST_PROJECT)/out
+GTEST_LIBRARIES		:=	$(GTEST_ROOT)/out/$(GMOCK_PROJECT)/gtest
 
 GTEST_CPPFLAGS		:=	-iquote $(GTEST_HEADERS)
 GTEST_LDFLAGS		:=	$(GTEST_LIBRARIES)/libgtest.a $(GTEST_LIBRARIES)/libgtest_main.a
