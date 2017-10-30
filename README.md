@@ -98,11 +98,12 @@ Wheat Ridge CO 80033<br/>
 USA<br/>
 <http://www.diag.com><br/>
 
-NOTES
+BUILD
 
     cd ~/src
     git clone https://github.com/google/googletest
-    cd googletest
-    cmake -Dgtest_build_samples=ON -Dgtest_build_tests=ON `pwd`
-    make
-    make test
+    ( cd googletest; cmake -Dgtest_build_samples=ON -Dgtest_build_tests=ON `pwd`; make; make test )
+    git clone https://github.com/coverclock/com-diag-diminuto
+    make -C com-diag-diminuto/Diminuto pristine all
+    git clone https://github.com/coverclock/com-diag-grandote
+    make -C com-diag-grandote/Grandote pristine all
