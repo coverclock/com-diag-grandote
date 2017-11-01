@@ -261,7 +261,7 @@ TEST_F(ThreadTest, ExitJoin) {
 
 struct ThreadJoinReturn : public Thread {
 	virtual void * run() {
-		::com::diag::grandote::Platform::instance().yield(::com::diag::grandote::Platform::instance().frequency());
+		Platform::instance().yield(Platform::instance().frequency());
 		return 0;
 	}
 };
@@ -483,7 +483,7 @@ struct ThreadMonitor : public Thread {
 	: variable(shared)
 	{}
 	virtual void * run() {
-		::com::diag::grandote::Platform::instance().yield(::com::diag::grandote::Platform::instance().frequency());
+		Platform::instance().yield(Platform::instance().frequency());
 		{
 			MyCriticalSection guard(monitormutex);
 			monitorcondition.signal();

@@ -855,7 +855,7 @@ TEST_F(PacketInputOutputTest, Formatted) {
 	static const size_t ALLOC = 7;
 	Packet packet(ALLOC, Packet::APPEND);
 	EXPECT_TRUE(packet.empty());
-	::com::diag::grandote::Print print(packet.output());
+	Print print(packet.output());
 	for (size_t ii = 0; ii < countof(HENRYV); ++ii) {
 		print("%s", HENRYV[ii]);
 		EXPECT_FALSE(packet.empty());
@@ -886,28 +886,27 @@ static const char RICHARDII[] = {
 };
 
 TEST_F(PacketInputOutputTest, SourceSinkBuffer) {
-	::com::diag::grandote::DataInput datainput(RICHARDII, sizeof(RICHARDII));
+	DataInput datainput(RICHARDII, sizeof(RICHARDII));
 	static const size_t ALLOC = 7;
 	Packet packet(ALLOC, Packet::APPEND);
 	EXPECT_TRUE(packet.empty());
 	EXPECT_EQ(packet.source(datainput), sizeof(RICHARDII));
 	EXPECT_FALSE(packet.empty());
 	char buffer[sizeof(RICHARDII)];
-	::com::diag::grandote::BufferOutput bufferoutput(buffer, sizeof(buffer));
+	BufferOutput bufferoutput(buffer, sizeof(buffer));
 	EXPECT_EQ(packet.sink(bufferoutput), sizeof(RICHARDII));
 	EXPECT_TRUE(packet.empty());
 	EXPECT_EQ(std::strncmp(RICHARDII, buffer, sizeof(buffer)), 0);
 }
 
 TEST_F(PacketInputOutputTest, SourceSinkPathFile) {
-
-	::com::diag::grandote::PathInput input("unittest.txt", "r");
+	PathInput input("unittest.txt", "r");
 	Size inputsize = size(input);
 	EXPECT_TRUE(inputsize > 0);
 	char name[] = "/tmp/PacketTest.SourceSinkPathFile.XXXXXX";
 	int fd = ::mkstemp(name);
 	ASSERT_TRUE(fd > 0);
-	::com::diag::grandote::DescriptorOutput output(fd);
+	DescriptorOutput output(fd);
 	Packet packet;
 	EXPECT_TRUE(packet.empty());
 	size_t sourced = packet.source(input);

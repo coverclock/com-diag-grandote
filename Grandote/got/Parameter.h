@@ -41,7 +41,7 @@ TEST_F(ParameterTest, String) {
 
 TEST_F(ParameterTest, Stack) {
 	static const char INPUT[] = "/usr/local/etc/stack.conf";
-	::com::diag::grandote::DataInput input(INPUT);
+	DataInput input(INPUT);
 	Parameter parameter(input);
 	EXPECT_EQ(std::strcmp(parameter, INPUT), 0);
 	EXPECT_EQ((int)parameter, std::strlen(INPUT));
@@ -49,7 +49,7 @@ TEST_F(ParameterTest, Stack) {
 
 TEST_F(ParameterTest, StackLength) {
 	static const char INPUT[] = "/usr/local/etc/stack.conf";
-	::com::diag::grandote::DataInput input(INPUT);
+	DataInput input(INPUT);
 	Parameter parameter(input, std::strlen(INPUT) - 5);
 	EXPECT_EQ(std::strcmp(parameter, "/usr/local/etc/stack"), 0);
 	EXPECT_EQ((int)parameter, std::strlen("/usr/local/etc/stack"));
@@ -57,7 +57,7 @@ TEST_F(ParameterTest, StackLength) {
 
 TEST_F(ParameterTest, Heap) {
 	static const char INPUT[] = "/usr/local/etc/heap.conf";
-	::com::diag::grandote::DataInput * input = new ::com::diag::grandote::DataInput(INPUT);
+	DataInput * input = new DataInput(INPUT);
 	Parameter * parameter = new Parameter(input);
 	EXPECT_EQ(std::strcmp(*parameter, INPUT), 0);
 	EXPECT_EQ((int)*parameter, std::strlen(INPUT));
@@ -65,7 +65,7 @@ TEST_F(ParameterTest, Heap) {
 }
 
 static const char PARAMETERTESTINPUT[] = "/usr/local/etc/default.conf";
-static const char * parameterfunction(const Parameter & parameter = Parameter(new ::com::diag::grandote::DataInput(PARAMETERTESTINPUT))) {
+static const char * parameterfunction(const Parameter & parameter = Parameter(new DataInput(PARAMETERTESTINPUT))) {
 	return parameter;
 }
 

@@ -134,7 +134,7 @@ TEST_F(LoggerTest, EnableDisable) {
 }
 
 TEST_F(LoggerTest, Initialization) {
-	::com::diag::grandote::Output nulloutput;
+	Output nulloutput;
 	MaskableLogger mylogger;
 	EXPECT_FALSE(mylogger.isEnabled(mylogger.FINEST));
 	EXPECT_FALSE(mylogger.isEnabled(mylogger.FINER));
@@ -318,8 +318,8 @@ TEST_F(LoggerTest, SetMaskEnvironment) {
 	} while (false)
 
 TEST_F(LoggerTest, Logging) {
-	::com::diag::grandote::FileOutput errput(stderr);
-	::com::diag::grandote::LogOutput logput(errput);
+	FileOutput errput(stderr);
+	LogOutput logput(errput);
 	MaskableLogger mylogger(logput);
 	for (int mask = 0; mask <= 0xffff; mask = (mask == 0) ? 1 : (mask << 1)) {
 		LOGGER_TEST_ENABLEDISABLE_SET(mylogger.FINEST);
@@ -361,8 +361,8 @@ TEST_F(LoggerTest, Logging) {
 
 TEST_F(LoggerTest, Instance) {
 	MaskableLogger & l1 = MaskableLogger::instance();
-	::com::diag::grandote::FileOutput errput(stderr);
-	::com::diag::grandote::LogOutput logput(errput);
+	FileOutput errput(stderr);
+	LogOutput logput(errput);
 	MaskableLogger mylogger(logput);
 	EXPECT_NE(&l1, &mylogger);
 	MaskableLogger & l2 = MaskableLogger::instance(mylogger);

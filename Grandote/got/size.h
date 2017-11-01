@@ -46,11 +46,11 @@ TEST_F(SizeTest, Size) {
 	Size fpsize = size(fp);
 	EXPECT_EQ(fpsize, namesize);
 	/**/
-	::com::diag::grandote::DescriptorInput descriptorinput(fd);
+	DescriptorInput descriptorinput(fd);
 	Size descriptorsize = size(descriptorinput);
 	EXPECT_EQ(descriptorsize, namesize);
 	/**/
-	::com::diag::grandote::PathInput pathinput("unittest.txt");
+	PathInput pathinput("unittest.txt");
 	Size pathsize = size(pathinput);
 	EXPECT_EQ(pathsize, namesize);
 	/**/
@@ -65,15 +65,15 @@ TEST_F(SizeTest, Size) {
 	/**/
 	char * buffer = new char [sourcesize];
 	EXPECT_NE(buffer, (char *)0);
-	::com::diag::grandote::BufferOutput bufferoutput(buffer, sourcesize);
+	BufferOutput bufferoutput(buffer, sourcesize);
 	Size sinksize = packet.sink(bufferoutput);
 	EXPECT_EQ(sinksize, namesize);
 	/**/
-	::com::diag::grandote::BufferInput bufferinput(bufferoutput.getBuffer(), bufferoutput.getOffset());
+	BufferInput bufferinput(bufferoutput.getBuffer(), bufferoutput.getOffset());
 	Size buffersize = size(bufferinput);
 	EXPECT_EQ(buffersize, namesize);
 	/**/
-	::com::diag::grandote::DataInput datainput(bufferoutput.getBuffer(), bufferoutput.getOffset());
+	DataInput datainput(bufferoutput.getBuffer(), bufferoutput.getOffset());
 	Size datasize = size(datainput);
 	EXPECT_EQ(datasize, namesize);
 	/**/
@@ -90,7 +90,7 @@ TEST_F(SizeTest, Size) {
 	EXPECT_EQ(size(stdin), EOF);
 	EXPECT_EQ(size(stdout), EOF);
 	EXPECT_EQ(size(stderr), EOF);
-	::com::diag::grandote::Input input;
+	Input input;
 	EXPECT_EQ(size(input), EOF);
 }
 

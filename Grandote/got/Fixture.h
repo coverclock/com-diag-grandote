@@ -29,17 +29,17 @@ class Test : public ::testing::Test {
 
 protected:
 
-	::com::diag::grandote::FileOutput errput;
-	::com::diag::grandote::LogOutput logput;
-	::com::diag::grandote::Output * output;
+	FileOutput errput;
+	LogOutput logput;
+	Output * output;
 	MaskableLogger::Mask mask;
 
 public:
 
 	MaskableLogger & logger;
-	::com::diag::grandote::Platform & platform;
-	::com::diag::grandote::Print printf;
-	::com::diag::grandote::Dump dump;
+	Platform & platform;
+	Print printf;
+	Dump dump;
 
 	explicit Test()
 	: errput(::stderr)
@@ -47,7 +47,7 @@ public:
 	, output(0)
 	, mask(0)
 	, logger(MaskableLogger::instance())
-	, platform(::com::diag::grandote::Platform::instance())
+	, platform(Platform::instance())
 	, printf(errput)
 	, dump(errput)
 	{}
