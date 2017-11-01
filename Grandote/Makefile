@@ -144,7 +144,7 @@ LARIAT_PROJECT		:=	$(shell echo $(LARIAT_TITLE) | tr '[A-Z]' '[a-z]')
 LARIAT_SYMBOL		:=	$(shell echo $(LARIAT_TITLE) | tr '[a-z]' '[A-Z]')
 
 LARIAT_ROOT			:=	$(THERE)/com-diag-$(LARIAT_PROJECT)/$(LARIAT_TITLE)
-LARIAT_HEADERS		:=	$(LARIAT_ROOT)/$(INC_DIR)
+LARIAT_HEADERS		:=	$(LARIAT_ROOT)/include
 LARIAT_LIBRARIES	:=	$(LARIAT_ROOT)
 
 LARIAT_CPPFLAGS		:=	-iquote $(LARIAT_HEADERS)

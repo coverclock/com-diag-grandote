@@ -1,6 +1,6 @@
 /* vi: set ts=4 expandtab shiftwidth=4: */
 #ifndef _H_COM_DIAG_GRANDOTE_SECONDS_
-#define _H_COM_DIAG_HGRANDOTE_SECONDS_
+#define _H_COM_DIAG_GRANDOTE_SECONDS_
 
 /**
  * @file

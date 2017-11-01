@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_UNITTEST_FIBONACCI_
-#define _H__COM_DIAG_UNITTEST_FIBONACCI_
+#ifndef _H_COM_DIAG_UNITTEST_GRANDOTE_FIBONACCI_
+#define _H_COM_DIAG_UNITTEST_GRANDOTE_FIBONACCI_
 
 /**
  * @file
