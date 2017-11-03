@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_UNITTEST_GRANDOTE_SIZE_
-#define _H_COM_DIAG_UNITTEST_GRANDOTE_SIZE_
+#ifndef _H_COM_DIAG_GRANDOTE_UNITTEST_SIZE_
+#define _H_COM_DIAG_GRANDOTE_UNITTEST_SIZE_
 
 /**
  * @file
@@ -42,7 +42,7 @@ TEST_F(SizeTest, Size) {
 	EXPECT_EQ(fdsize, namesize);
 	/**/
 	FILE * fp = ::fopen("unittest.txt", "r");
-	EXPECT_TRUE(fp != 0);
+	ASSERT_TRUE(fp != 0);
 	Size fpsize = size(fp);
 	EXPECT_EQ(fpsize, namesize);
 	/**/

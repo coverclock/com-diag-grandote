@@ -1,6 +1,6 @@
 /* vim: set ts=4 expandtab shiftwidth=4: */
-#ifndef _H_COM_DIAG_UNITTEST_GRANDOTE_PARAMETER_
-#define _H_COM_DIAG_UNITTEST_GRANDOTE_PARAMETER_
+#ifndef _H_COM_DIAG_GRANDOTE_UNITTEST_PARAMETER_
+#define _H_COM_DIAG_GRANDOTE_UNITTEST_PARAMETER_
 
 /**
  * @file
