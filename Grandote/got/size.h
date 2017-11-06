@@ -23,6 +23,7 @@
 #include "com/diag/grandote/PathInput.h"
 #include "com/diag/grandote/Packet.h"
 #include "com/diag/grandote/stdlib.h"
+#include "com/diag/grandote/stdio.h"
 
 namespace com {
 namespace diag {
@@ -33,48 +34,58 @@ using namespace ::com::diag::grandote;
 typedef Fixture SizeTest;
 
 TEST_F(SizeTest, Size) {
-	Size namesize = size("unittest.txt");
+	Size namesize = size("dat/unittest.txt");
+    fprintf(stderr, "namesize=%zu\n", namesize);
 	EXPECT_TRUE(namesize > 0);
 	/**/
-	int fd = ::open("unittest.txt", O_RDONLY);
+	int fd = ::open("dat/unittest.txt", O_RDONLY);
 	EXPECT_TRUE(fd >= 0);
 	Size fdsize = size(fd);
+    fprintf(stderr, "fdsize=%zu\n", fdsize);
 	EXPECT_EQ(fdsize, namesize);
 	/**/
-	FILE * fp = ::fopen("unittest.txt", "r");
+	FILE * fp = ::fopen("dat/unittest.txt", "r");
 	ASSERT_TRUE(fp != 0);
 	Size fpsize = size(fp);
+    fprintf(stderr, "fpsize=%zu\n", fpsize);
 	EXPECT_EQ(fpsize, namesize);
 	/**/
 	DescriptorInput descriptorinput(fd);
 	Size descriptorsize = size(descriptorinput);
+    fprintf(stderr, "descriptorsize=%zu\n", descriptorsize);
 	EXPECT_EQ(descriptorsize, namesize);
 	/**/
-	PathInput pathinput("unittest.txt");
+	PathInput pathinput("dat/unittest.txt");
 	Size pathsize = size(pathinput);
+    fprintf(stderr, "pathsize=%zu\n", pathsize);
 	EXPECT_EQ(pathsize, namesize);
 	/**/
 	Packet packet;
 	Size sourcesize = packet.source(pathinput);
 	EXPECT_EQ(sourcesize, namesize);
 	Size packetsize = size(packet);
+    fprintf(stderr, "packetsize=%zu\n", packetsize);
 	EXPECT_EQ(packetsize, namesize);
 	/**/
 	Size packetinputsize = size(packet.input());
+    fprintf(stderr, "packetinputsize=%zu\n", packetinputsize);
 	EXPECT_EQ(packetinputsize, namesize);
 	/**/
 	char * buffer = new char [sourcesize];
 	EXPECT_NE(buffer, (char *)0);
 	BufferOutput bufferoutput(buffer, sourcesize);
 	Size sinksize = packet.sink(bufferoutput);
+    fprintf(stderr, "sinksize=%zu\n", sinksize);
 	EXPECT_EQ(sinksize, namesize);
 	/**/
 	BufferInput bufferinput(bufferoutput.getBuffer(), bufferoutput.getOffset());
 	Size buffersize = size(bufferinput);
+    fprintf(stderr, "buffersize=%zu\n", buffersize);
 	EXPECT_EQ(buffersize, namesize);
 	/**/
 	DataInput datainput(bufferoutput.getBuffer(), bufferoutput.getOffset());
 	Size datasize = size(datainput);
+    fprintf(stderr, "datasize=%zu\n", datasize);
 	EXPECT_EQ(datasize, namesize);
 	/**/
 	delete [] buffer;

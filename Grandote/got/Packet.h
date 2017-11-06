@@ -900,7 +900,7 @@ TEST_F(PacketInputOutputTest, SourceSinkBuffer) {
 }
 
 TEST_F(PacketInputOutputTest, SourceSinkPathFile) {
-	PathInput input("unittest.txt", "r");
+	PathInput input("dat/unittest.txt", "r");
 	Size inputsize = size(input);
 	EXPECT_TRUE(inputsize > 0);
 	char name[] = "/tmp/PacketTest.SourceSinkPathFile.XXXXXX";
@@ -920,7 +920,7 @@ TEST_F(PacketInputOutputTest, SourceSinkPathFile) {
 	EXPECT_EQ(outputsize, inputsize);
 	EXPECT_EQ(::close(fd), 0);
 	std::string command = "diff ";
-	command += "unittest.txt";
+	command += "dat/unittest.txt";
 	command += " ";
 	command += name;
 	EXPECT_EQ(std::system(command.c_str()), 0);
