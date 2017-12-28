@@ -2,7 +2,7 @@
 
 /******************************************************************************
 
-    Copyright 2005-2011 Digital Aggregates Corporation, Colorado, USA.
+    Copyright 2005-2017 Digital Aggregates Corporation, Colorado, USA.
     This file is part of the Digital Aggregates Grandote library.
     
     This library is free software; you can redistribute it and/or
