@@ -66,7 +66,9 @@
 /**
  *  Defines a class that offers both an input functor and an
  *  output functor interface. The input and output functors of
- *  this base class are /dev/null-like Input and Output objects.
+ *  this base class are by default /dev/null-like Input and Output
+ *  objects. The class can also be used as a container for an Input
+ *  and an Output object (which do not have to be the same device).
  *  A derived class may implement more complex behavior such as
  *  reading to and writing from a common buffer, or (perhaps defining
  *  additional methods) accessing a database. The exact semantics of
@@ -86,9 +88,41 @@ class InputOutput : public Object {
 public:
 
     /**
-     *  Constructor.
+     *  Construct an InputOutput container in which the
+     *  Input and the Output are effectively /dev/null.
      */
     explicit InputOutput();
+
+    /**
+     * Construct an InputOutput container in which the
+     * Input and Output functors will NOT be deleted by this
+     * class' descructor.
+     * @param in refers to an Input functor.
+     * @param out refers to an Output functor.
+     */
+    explicit InputOutput(Input & in, Output & out) :
+        inputr(in),
+        outputr(out),
+        inputp((Input *)0),
+        outputp((Output *)0)
+    {
+    }
+
+    /**
+     * Construct an InputOutput container in which the
+     * Input and Output functors WILL be deleted by this
+     * class' descructor.
+     * @param inp points to an Input functor.
+     * @param outp points to an Output functor.
+     */
+    explicit InputOutput(Input * inp, Output * outp) :
+        inputr(*inp),
+        outputr(*outp),
+        inputp(inp),
+        outputp(outp)
+    {
+    }
+
 
     /**
      *  Destructor.
@@ -131,6 +165,17 @@ public:
      *                  inherited and composited objects.
      */
     virtual void show(int level = 0, Output* display = 0, int indent = 0) const;
+
+private:
+
+    Input & inputr;
+
+    Output & outputr;
+
+    Input * inputp;
+
+    Output * outputp;
+
 
 };
 

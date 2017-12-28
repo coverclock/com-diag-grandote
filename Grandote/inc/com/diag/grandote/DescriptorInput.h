@@ -96,7 +96,7 @@ public:
      *
      *  @return the associated file descriptor.
      */
-    int getDescriptor() const;
+    virtual int getDescriptor() const;
 
     /**
      * Returns the number of pushed characters. For this implementation this

@@ -9,10 +9,16 @@
 .PHONY:	scope
 
 scope:
-	mycscope
+	cscope.sh
 
 .PHONY:	rescope
 
 rescope:
 	rm -f .cscope*
-	mycscope
+	cscope.sh
+
+.PHONY:	descope
+
+descope:
+	rm -f .cscope*
+	cscope.sh .

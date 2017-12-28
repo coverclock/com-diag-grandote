@@ -61,14 +61,19 @@
 #include "com/diag/grandote/Begin.h"
 
 
-static Input INPUT;
-static Output OUTPUT;
+static Input eof;
+static Output null;
 
 
 //
 //  Constructor.
 //
-InputOutput::InputOutput() {
+InputOutput::InputOutput() :
+    inputr(eof),
+    outputr(null),
+    inputp((Input *)0),
+    outputp((Output *)0)
+{
 }
 
 
@@ -76,6 +81,12 @@ InputOutput::InputOutput() {
 //  Destructor.
 //
 InputOutput::~InputOutput() {
+    if (this->inputp != (Input *)0) {
+        delete this->inputp;
+    }
+    if (this->outputp != (Output *)0) {
+        delete this->outputp;
+    }
 }
 
 
@@ -83,7 +94,7 @@ InputOutput::~InputOutput() {
 //  Return a reference to the input interface.
 //
 Input& InputOutput::input() {
-    return INPUT;
+    return this->inputr;
 }
 
 
@@ -91,14 +102,14 @@ Input& InputOutput::input() {
 //  Return a reference to the output interface.
 //
 Output& InputOutput::output() {
-    return OUTPUT;
+    return this->outputr;
 }
 
 
 //
 //  Show this object on the output object.
 //
-void InputOutput::show(int /* level */, Output* display, int indent) const {
+void InputOutput::show(int level, Output* display, int indent) const {
     Platform& pl = Platform::instance();
     Print printf(display);
     const char* sp = printf.output().indentation(indent);
@@ -106,6 +117,12 @@ void InputOutput::show(int /* level */, Output* display, int indent) const {
     printf("%s%s(%p)[%lu]\n",
         sp, pl.component(__FILE__, component, sizeof(component)),
         this, sizeof(*this));
+    printf("%s inputr:\n", sp);
+    this->inputr.show(level, display, indent + 2);
+    printf("%s outputr:\n", sp);
+    this->outputr.show(level, display, indent + 2);
+    printf("%s inputp=%p\n", sp, this->inputp);
+    printf("%s outputp=%p\n", sp, this->outputp);
 }
 
 

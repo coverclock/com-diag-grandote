@@ -12,6 +12,7 @@
  */
 
 #include <pthread.h>
+#include <signal.h>
 
 namespace com {
 namespace diag {
@@ -63,6 +64,22 @@ public:
 	 */
 	static ::pthread_t self();
 
+	/**
+	 * This is the default signal number used when notifying Threads.
+	 */
+	static const int SIG_NOTIFY = SIGUSR1;
+
+	/**
+	 * Set the signal number to use to interrupt threads blocked on system
+	 * calls when being notified, or zero (0) to disable the feature completely.
+	 * If called before the first Thread is started, disabling this feature will
+	 * prevent a signal handler from being installed. This feature is enabled
+	 * by default. Recall that signal handlers are process-wide.
+	 * @param sig is the signal number (or zero) used when notifying threads.
+	 * @return the previous signal number.
+	 */
+	static int notification(int sig = SIG_NOTIFY);
+
 public:
 
 	/***************************************************************************
@@ -87,6 +104,8 @@ protected:
 	static ::pthread_key_t key;
 
 	static int setupped;
+
+	static int signo;
 
 	static int setup();
 
@@ -157,7 +176,7 @@ public:
 	virtual int join(void * & result = dontcare);
 
 	/**
-	 * Notify the Thread. This merely sets the a flag in this Thread which can
+	 * Notify the Thread. This sets  a flag in this Thread which can
 	 * be interrogated by the notified method. Once a Thread is notified, it
 	 * remains notified until it terminates and is re-started.
 	 *

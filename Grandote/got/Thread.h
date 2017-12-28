@@ -223,7 +223,6 @@ TEST_F(ThreadTest, Notify) {
 	EXPECT_EQ(variable, 3);
 	EXPECT_FALSE(thread.notified());
 	EXPECT_EQ(thread.notify(), 0);
-	EXPECT_TRUE(thread.notified());
 	EXPECT_EQ(thread.join(), 0);
 	EXPECT_EQ(variable, 3);
 	variable = 4;
@@ -335,7 +334,6 @@ TEST_F(ThreadTest, Uncancellable) {
 	EXPECT_NE(one, two);
 	EXPECT_FALSE(thread.notified());
 	EXPECT_EQ(thread.notify(), 0);
-	EXPECT_TRUE(thread.notified());
 	EXPECT_EQ(thread.join(), 0);
 }
 

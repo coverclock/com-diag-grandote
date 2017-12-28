@@ -27,6 +27,8 @@ Thread Thread::main(::pthread_self());
 
 int Thread::setupped = Thread::setup();
 
+int Thread::signo = Thread::SIG_NOTIFY;
+
 /*******************************************************************************
  * C ABI PROXY FUNCTIONS
  ******************************************************************************/
@@ -49,6 +51,10 @@ extern "C" {
 
 	static void * start_routine_proxy(void * arg) {
 		return Thread::start_routine(arg);
+	}
+
+	static void notification_handler_proxy(int signo) {
+		/* Do nothing. */
 	}
 
 }
@@ -74,8 +80,8 @@ void Thread::cleanup_thread(void * arg) {
 	Thread * that = static_cast<Thread *>(arg);
 	if (that->running) {
 		::pthread_mutex_lock(&that->mutex);
-		that->running = false;
-		::pthread_cond_broadcast(&that->condition);
+			that->running = false;
+			::pthread_cond_broadcast(&that->condition);
 		::pthread_mutex_unlock(&that->mutex);
 	}
 }
@@ -87,8 +93,8 @@ void * Thread::start_routine(void * arg) {
 	::pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &dontcare);
 	::pthread_setspecific(key, that);
 	pthread_cleanup_push(cleanup_thread_proxy, that);
-	MaskableLogger::instance().debug("Thread@%p{0x%lx}: run{0x%lx}\n", that, pthread_self(), that->identity);
-	that->final = that->run();
+		MaskableLogger::instance().debug("Thread@%p{0x%lx}: run{0x%lx}\n", that, pthread_self(), that->identity);
+		that->final = that->run();
 	pthread_cleanup_pop(!0);
 	return that->final;
 }
@@ -113,13 +119,19 @@ void Thread::exit(void * result) {
 	Thread * that = &(Thread::instance());
 	::pthread_mutex_lock(&that->mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, that);
-	that->final = result;
+		that->final = result;
 	pthread_cleanup_pop(!0);
 	::pthread_exit(result);
 }
 
 ::pthread_t Thread::self() {
 	return ::pthread_self();
+}
+
+int Thread::notification(int sig) {
+	int old = signo;
+	signo = sig;
+	return old;
 }
 
 /*******************************************************************************
@@ -169,16 +181,16 @@ Thread::~Thread() {
 	bool self = false;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	if (!running) {
-		// Do nothing.
-	} else if (!::pthread_equal(pthread_self(), identity)) {
-		::pthread_cancel(identity);
-		::pthread_cond_wait(&condition, &mutex);
-	} else {
-		running = false;
-		::pthread_cond_broadcast(&condition);
-		self = true;
-	}
+		if (!running) {
+			// Do nothing.
+		} else if (!::pthread_equal(pthread_self(), identity)) {
+			::pthread_cancel(identity);
+			::pthread_cond_wait(&condition, &mutex);
+		} else {
+			running = false;
+			::pthread_cond_broadcast(&condition);
+			self = true;
+		}
 	pthread_cleanup_pop(!0);
 	if (self) {
 		::pthread_yield();
@@ -194,23 +206,28 @@ int Thread::start(Function & implementation, void * data) {
 	int rc;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	if (!running) {
-		running = true;
-		notifying = false;
-		joining = false;
-		function = &implementation;
-		context = data;
-		final = reinterpret_cast<void *>(~0);
-		rc = ::pthread_create(&identity, 0, start_routine_proxy, this);
-		if (rc == 0) {
-			MaskableLogger::instance().debug("Thread@%p{0x%lx}: start{0x%lx}\n", this, pthread_self(), identity);
-		} else {
-			running = false;
-			joining = true;
+		if (signo > 0) {
+			struct sigaction action = { 0 };
+			action.sa_handler = notification_handler_proxy;
+			::sigaction(signo, &action, (struct sigaction *)0);
 		}
-	} else {
-		rc = EBUSY;
-	}
+		if (!running) {
+			running = true;
+			notifying = false;
+			joining = false;
+			function = &implementation;
+			context = data;
+			final = reinterpret_cast<void *>(~0);
+			rc = ::pthread_create(&identity, 0, start_routine_proxy, this);
+			if (rc == 0) {
+				MaskableLogger::instance().debug("Thread@%p{0x%lx}: start{0x%lx}\n", this, pthread_self(), identity);
+			} else {
+				running = false;
+				joining = true;
+			}
+		} else {
+			rc = EBUSY;
+		}
 	pthread_cleanup_pop(!0);
 	return rc;
 }
@@ -218,7 +235,14 @@ int Thread::start(Function & implementation, void * data) {
 int Thread::notify() {
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	notifying = true;
+		notifying = true;
+		if (!running) {
+			/* Do nothing. */
+		} else if (signo <= 0) {
+			/* Do nothing. */
+		} else {
+			::pthread_kill(identity, signo);
+		}
 	pthread_cleanup_pop(!0);
 	MaskableLogger::instance().debug("Thread@%p{0x%lx}: notify{0x%lx}\n", this, pthread_self(), identity);
 	return 0;
@@ -228,7 +252,8 @@ bool Thread::notified() {
 	bool result;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	result = notifying;
+		result = notifying;
+		notifying = false;
 	pthread_cleanup_pop(!0);
 	return result;
 }
@@ -237,37 +262,37 @@ int Thread::join(void * & result) {
 	int rc;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	// It's okay to invoke a Grandote Thread join even if the thread of control
-	// is not running. It is not okay for a thread of control to try to join
-	// with itself.
-	if (!running) {
-		rc = 0;
-	} else if (::pthread_equal(pthread_self(), identity)) {
-		rc = EBUSY;
-	} else {
-		rc = ::pthread_cond_wait(&condition, &mutex);
-	}
-	// The first thread unblocked by the terminating thread does an actual
-	// POSIX thread join operation. Some thread implementations depend on this
-	// to clean up underlying resources in the platform before the parent
-	// process terminates. We save the value given to us by the POSIX thread
-	// join; for some code paths, it's the only way to get the final value of
-	// the thread of control associated with this Thread. It also guarantees
-	// that the thread of control has completely terminated from a POSIX POV.
-	if (rc == 0) {
-		if (!joining) {
-			rc = ::pthread_join(identity, &final);
-			if (rc == 0) {
-				joining = true;
-				MaskableLogger::instance().debug("Thread@%p{0x%lx}: join{0x%lx}\n", this, pthread_self(), identity);
+		// It's okay to invoke a Grandote Thread join even if the thread of control
+		// is not running. It is not okay for a thread of control to try to join
+		// with itself.
+		if (!running) {
+			rc = 0;
+		} else if (::pthread_equal(pthread_self(), identity)) {
+			rc = EBUSY;
+		} else {
+			rc = ::pthread_cond_wait(&condition, &mutex);
+		}
+		// The first thread unblocked by the terminating thread does an actual
+		// POSIX thread join operation. Some thread implementations depend on this
+		// to clean up underlying resources in the platform before the parent
+		// process terminates. We save the value given to us by the POSIX thread
+		// join; for some code paths, it's the only way to get the final value of
+		// the thread of control associated with this Thread. It also guarantees
+		// that the thread of control has completely terminated from a POSIX POV.
+		if (rc == 0) {
+			if (!joining) {
+				rc = ::pthread_join(identity, &final);
+				if (rc == 0) {
+					joining = true;
+					MaskableLogger::instance().debug("Thread@%p{0x%lx}: join{0x%lx}\n", this, pthread_self(), identity);
+				}
 			}
 		}
-	}
-	// We have to check the return code again because it could have changed if
-	// the join failed. The final value is only valid if everything succeeded.
-	if (rc == 0) {
-		result = final;
-	}
+		// We have to check the return code again because it could have changed if
+		// the join failed. The final value is only valid if everything succeeded.
+		if (rc == 0) {
+			result = final;
+		}
 	pthread_cleanup_pop(!0);
 	return rc;
 }
@@ -288,17 +313,17 @@ int Thread::cancel() {
 	int rc;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	if (!running) {
-		rc = 0;
-	} else if (!::pthread_equal(pthread_self(), identity)) {
-		canceling = true;
-		rc = ::pthread_cancel(identity);
-		if (rc == 0) {
-			MaskableLogger::instance().debug("Thread@%p{0x%lx}: cancel{0x%lx}\n", this, pthread_self(), identity);
+		if (!running) {
+			rc = 0;
+		} else if (!::pthread_equal(pthread_self(), identity)) {
+			canceling = true;
+			rc = ::pthread_cancel(identity);
+			if (rc == 0) {
+				MaskableLogger::instance().debug("Thread@%p{0x%lx}: cancel{0x%lx}\n", this, pthread_self(), identity);
+			}
+		} else {
+			rc = EBUSY;
 		}
-	} else {
-		rc = EBUSY;
-	}
 	pthread_cleanup_pop(!0);
 	return rc;
 }
@@ -307,7 +332,7 @@ bool Thread::cancelled() {
 	bool result;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-	result = canceling;
+		result = canceling;
 	pthread_cleanup_pop(!0);
 	return result;
 }
