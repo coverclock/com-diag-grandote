@@ -23,7 +23,7 @@
 #include "com/diag/grandote/errno.h"
 #include "com/diag/grandote/target.h"
 #include "com/diag/grandote/generics.h"
-#include <pthread.h>
+#include <unistd.h>
 
 namespace com {
 namespace diag {
@@ -214,6 +214,45 @@ TEST_F(ThreadTest, Notify) {
 	int variable = 0;
 	EXPECT_EQ(variable, 0);
 	ThreadNotify thread(variable);
+	EXPECT_FALSE(thread.notified());
+	EXPECT_EQ(variable, 1);
+	variable = 2;
+	EXPECT_EQ(variable, 2);
+	EXPECT_EQ(thread.start(), 0);
+	platform.yield(platform.frequency());
+	EXPECT_EQ(variable, 3);
+	EXPECT_FALSE(thread.notified());
+	EXPECT_EQ(thread.notify(), 0);
+	EXPECT_EQ(thread.join(), 0);
+	EXPECT_EQ(variable, 3);
+	variable = 4;
+	platform.yield(platform.frequency());
+	EXPECT_EQ(variable, 4);
+}
+
+struct ThreadSignal : public Thread {
+	int & variable;
+	explicit ThreadSignal(int & shared)
+	: variable(shared) {
+		variable = 1;
+	}
+	virtual void * run() {
+		MyCriticalSection guard(myMutex);
+		while (true) {
+			variable = 3;
+			::pause();
+			if (notified()) {
+				break;
+			}
+		}
+		return 0;
+	}
+};
+
+TEST_F(ThreadTest, Signal) {
+	int variable = 0;
+	EXPECT_EQ(variable, 0);
+	ThreadSignal thread(variable);
 	EXPECT_FALSE(thread.notified());
 	EXPECT_EQ(variable, 1);
 	variable = 2;
