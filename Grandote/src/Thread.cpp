@@ -80,9 +80,10 @@ void Thread::cleanup_thread(void * arg) {
 	Thread * that = static_cast<Thread *>(arg);
 	if (that->running) {
 		::pthread_mutex_lock(&that->mutex);
+		pthread_cleanup_push(cleanup_mutex_proxy, that);
 			that->running = false;
 			::pthread_cond_broadcast(&that->condition);
-		::pthread_mutex_unlock(&that->mutex);
+		pthread_cleanup_pop(!0);
 	}
 }
 

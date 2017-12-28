@@ -177,15 +177,20 @@ public:
 
 	/**
 	 * Notify the Thread. This sets  a flag in this Thread which can
-	 * be interrogated by the notified method. Once a Thread is notified, it
-	 * remains notified until it terminates and is re-started.
+	 * be interrogated by the notified method. Interrogating this flag resets
+	 * it back to false as a side effect. If thread signalling is enabled (which
+	 * it is by default, see notification() above) the thread is signaled to
+	 * possibly interrupt it from a system call on which it is blocked.
+	 * Typically, this is used to indicate to a thread that it should exit, but
+	 * that interpretation is up to the implementor.
 	 *
 	 * @return 0 for success or an error number if an error occurred.
 	 */
 	virtual int notify();
 
 	/**
-	 * Return the notification state of this Thread.
+	 * Return the notification state of this Thread. The notification state is
+	 * reset back to false as a side effect when this function is called.
 	 *
 	 * @return true if this Thread has been notified, false otherwise.
 	 */
