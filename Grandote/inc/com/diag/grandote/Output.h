@@ -135,6 +135,13 @@ public:
     const char* indentation(int indent) const;
 
     /**
+     *  Returns the associated file descriptor.
+     *
+     *  @return the associated file descriptor.
+     */
+    virtual int getDescriptor() const;
+
+    /**
      *  Outputs a character in integer form.
      *
      *  @param  c           is a character in integer form.
@@ -227,6 +234,14 @@ public:
     virtual void show(int level = 0, Output* display = 0, int indent = 0) const;
 
 };
+
+
+//
+//  Return the associated file descriptor.
+//
+inline int Output::getDescriptor() const {
+    return -1;
+}
 
 #include "com/diag/grandote/End.h"
 

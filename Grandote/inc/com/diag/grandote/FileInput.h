@@ -88,7 +88,14 @@ public:
      *
      *  @return a pointer to the associated FILE object.
      */
-    FILE* getFile() const;
+    virtual FILE* getFile() const;
+
+    /**
+     *  Returns the associated file descriptor.
+     *
+     *  @return the associated file descriptor.
+     */
+    virtual int getDescriptor() const;
 
     /**
      *  Returns the next unsigned character in the file, or EOF if
@@ -202,6 +209,13 @@ private:
 //
 inline FILE* FileInput::getFile() const {
     return this->file;
+}
+
+//
+//  Return the associated file descriptor.
+//
+inline int FileInput::getDescriptor() const {
+    return (this->file != (FILE *)0) ? fileno(this->file) : -1;
 }
 
 #include "com/diag/grandote/End.h"

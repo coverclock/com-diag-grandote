@@ -83,6 +83,13 @@ public:
     virtual ~Input();
 
     /**
+     *  Returns the associated file descriptor.
+     *
+     *  @return the associated file descriptor.
+     */
+    virtual int getDescriptor() const;
+
+    /**
      *  Returns the next character.
      *
      *  @return a character in an integer if successful, EOF otherwise.
@@ -171,6 +178,13 @@ public:
     virtual void show(int level = 0, Output* display = 0, int indent = 0) const;
 
 };
+
+//
+//  Return the associated file descriptor.
+//
+inline int Input::getDescriptor() const {
+    return -1;
+}
 
 #include "com/diag/grandote/End.h"
 

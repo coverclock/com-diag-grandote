@@ -87,7 +87,14 @@ public:
      *
      *  @return a pointer to the associated FILE object.
      */
-    FILE* getFile() const;
+    virtual FILE* getFile() const;
+
+    /**
+     *  Returns the associated file descriptor.
+     *
+     *  @return the associated file descriptor.
+     */
+    virtual int getDescriptor() const;
 
     /**
      *  Outputs a character in integer form to the file.
@@ -208,6 +215,13 @@ private:
 //
 inline FILE* FileOutput::getFile() const {
     return this->file;
+}
+
+//
+//  Return the associated file descriptor.
+//
+inline int FileOutput::getDescriptor() const {
+    return (this->file != (FILE *)0) ? fileno(this->file) : -1;
 }
 
 #include "com/diag/grandote/End.h"
