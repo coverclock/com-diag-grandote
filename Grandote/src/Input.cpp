@@ -125,9 +125,9 @@ void Input::show(int /* level */, Output* display, int indent) const {
     Print printf(display);
     const char* sp = printf.output().indentation(indent);
     char component[sizeof(__FILE__)];
-    printf("%s%s(%p)[%lu]\n",
+    printf("%s%s(%p)[%lu]{%d}:\n",
         sp, pl.component(__FILE__, component, sizeof(component)),
-        this, sizeof(*this));
+        this, sizeof(*this), this->getDescriptor());
 }
 
 
