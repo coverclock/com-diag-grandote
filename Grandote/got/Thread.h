@@ -440,15 +440,17 @@ TEST_F(ThreadTest, Condition) {
 	EXPECT_EQ(thread.start(), 0);
 	{
 		MyCriticalSection guard(conditionmutex);
+		EXPECT_EQ(conditionodd.wait(conditionmutex, platform.frequency()), ETIMEDOUT);
 		while (variable < 99) {
 			MaskableLogger::instance().debug("Main: before %d\n", variable);
 			while ((variable % 2) != 0) {
-				conditioneven.wait(conditionmutex);
+				EXPECT_EQ(conditioneven.wait(conditionmutex, platform.frequency()), 0);
 			}
 			MaskableLogger::instance().debug("Main: after %d\n", variable);
 			++variable;
-			conditionodd.signal();
+			EXPECT_EQ(conditionodd.signal(), 0);
 		}
+		EXPECT_EQ(conditionodd.wait(conditionmutex, platform.frequency()), ETIMEDOUT);
 	}
 	EXPECT_EQ(thread.join(), 0);
 	EXPECT_EQ(variable, 100);

@@ -159,6 +159,9 @@ public:
 	 */
 	virtual int start(Function & implementation = empty_function, void * data = 0);
 
+	/**
+	 * Use this as the join() timeout if you want it to block indefinitely.
+	 */
 	static const ticks_t INFINITE = ~(ticks_t)0;
 
 	/**

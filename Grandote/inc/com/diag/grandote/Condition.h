@@ -12,6 +12,7 @@
  */
 
 #include <pthread.h>
+#include "com/diag/grandote/types.h"
 
 namespace com {
 namespace diag {
@@ -55,15 +56,25 @@ public:
 	virtual ~Condition();
 
 	/**
+	 * Use this as the wait() timeout if you want it to block indefinitely.
+	 */
+	static const ticks_t INFINITE = ~(ticks_t)0;
+
+	/**
 	 * Block waiting on this Condition inside a CriticalSection which has Mutex
 	 * locked until all Threads blocked on this Condition are signaled.
 	 *
+	 * @param mutex is the mutex in whose critical section the wait is being
+	 *        done.
+	 * @param timeout is the relative timeout period in platform ticks; returns
+	 *        ETIMEDOUT if the timeout expired.
 	 * @return 0 for success or an error number of an error occurred.
 	 */
-	virtual int wait(Mutex & mutex);
+	virtual int wait(Mutex & mutex, ticks_t timeout = INFINITE);
 
 	/**
-	 * Signal and hence unblock all Threads waiting on this Condtion.
+	 * Broadcast a signal and hence unblock all Threads waiting on this
+	 * Condtion.
 	 *
 	 * @return 0 for success or an error number if an error occurred.
 	 */

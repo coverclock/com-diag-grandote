@@ -11,6 +11,7 @@
 #include "com/diag/grandote/Ticks.h"
 #include "com/diag/grandote/MaskableLogger.h"
 #include "com/diag/grandote/errno.h"
+#include <time.h>
 
 namespace com {
 namespace diag {
