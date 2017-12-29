@@ -62,7 +62,7 @@
 #include "com/diag/grandote/Fifo.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  This is a template that defines a type of the Fifo
@@ -156,7 +156,7 @@ void FifoType<_TYPE_, _CC_>::show(
     this->Fifo<_TYPE_>::show(level, display, indent + 1);
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

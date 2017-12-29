@@ -59,7 +59,7 @@
 #include "com/diag/grandote/target.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements some useful manifest constants in a common location.
@@ -145,7 +145,7 @@ struct Constant {
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

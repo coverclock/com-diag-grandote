@@ -56,10 +56,10 @@
 #include "com/diag/grandote/int32_Number.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 Number<int32_t> int32_Number;
 
 
-#include "com/diag/grandote/End.h"
+} } }

@@ -56,10 +56,10 @@
 #include "com/diag/grandote/TransliteratorType.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 template class TransliteratorType<16>;
 
 
-#include "com/diag/grandote/End.h"
+} } }

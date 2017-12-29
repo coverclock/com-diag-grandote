@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 static const size_t limit = ~(static_cast<size_t>(0));
@@ -198,4 +198,4 @@ void Meter::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

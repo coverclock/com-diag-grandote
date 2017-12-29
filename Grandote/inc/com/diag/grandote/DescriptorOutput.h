@@ -66,7 +66,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an output functor that writes data to a file
@@ -227,7 +227,7 @@ inline int DescriptorOutput::getDescriptor() const {
     return this->descriptor;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

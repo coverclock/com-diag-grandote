@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines a simple composite of seconds and nanoseconds.
@@ -136,7 +136,7 @@ inline Epoch::Epoch(seconds_t sd, uint32_t nd) :
 {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

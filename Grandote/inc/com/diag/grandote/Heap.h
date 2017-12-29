@@ -67,7 +67,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implement the interfaces to the C standard library malloc(3), free(3),
@@ -388,7 +388,7 @@ inline size_t Heap::getFrees() const {
     return this->frees;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #else

@@ -48,7 +48,7 @@
 
 #include "com/diag/grandote/Primes.h"
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 Primes::Vector Primes::primes;
 
@@ -83,4 +83,4 @@ void Primes::generate(Type limit)
 
 }
 
-#include "com/diag/grandote/End.h"
+} } }

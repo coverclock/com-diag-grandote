@@ -73,7 +73,7 @@
 #include "com/diag/grandote/Epoch.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines an interface to an underlying operating system.
@@ -660,7 +660,7 @@ inline DaylightSavingTime& Platform::getDaylightSavingTime() const {
     return *this->dstrule;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 #endif
 

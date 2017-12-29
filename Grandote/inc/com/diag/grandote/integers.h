@@ -54,7 +54,7 @@
 
 #include "com/diag/grandote/target.h"
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 template <typename _TYPE_> inline size_t widthOf() {
 	return sizeof(_TYPE_) * 8;
@@ -112,7 +112,7 @@ template <typename _TYPE_> inline _TYPE_ intminOf(_TYPE_) {
 	return intminOf<_TYPE_>();
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Uses a Transliterator to parse components of a keyword=value pair from
@@ -160,7 +160,7 @@ inline const char* Attribute::special() {
     return "\"#'=\\";
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

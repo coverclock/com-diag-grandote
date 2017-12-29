@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Counters.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a Counter object in which the counters are dynamically
@@ -139,7 +139,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

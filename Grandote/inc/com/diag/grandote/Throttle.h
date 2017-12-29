@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a generic interface to a throttle, an object which
@@ -231,7 +231,7 @@ public:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

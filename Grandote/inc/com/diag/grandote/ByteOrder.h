@@ -51,7 +51,7 @@
 #include "com/diag/grandote/target.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Template defines a generalized method for swapping bytes.
@@ -192,7 +192,7 @@ GRANDOTE_BYTEORDER_INTEGER(signed char)
 GRANDOTE_BYTEORDER_FLOAT(float64_t, uint64_t)
 GRANDOTE_BYTEORDER_FLOAT(float32_t, uint32_t)
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

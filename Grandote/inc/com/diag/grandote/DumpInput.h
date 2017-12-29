@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Dump.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an input functor that uses Dump to display its input stream
@@ -218,7 +218,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Gcra.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a throttle that enforces a traffic contract based on
@@ -242,7 +242,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

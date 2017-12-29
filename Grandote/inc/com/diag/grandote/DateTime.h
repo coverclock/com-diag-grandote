@@ -62,7 +62,7 @@
 #include "com/diag/grandote/Time.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Composes a Date object and a Time object into a single object.
@@ -563,7 +563,7 @@ inline Time::Meridiem DateTime::oclock(uint8_t& twelve) const {
     return this->time.oclock(twelve);
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

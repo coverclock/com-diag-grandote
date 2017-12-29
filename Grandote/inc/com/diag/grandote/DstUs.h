@@ -59,7 +59,7 @@
 #include "com/diag/grandote/DaylightSavingTime.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Encodes a rule to decide whether a given DateTime falls within
@@ -127,7 +127,7 @@ public:
 inline DstUs::DstUs() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

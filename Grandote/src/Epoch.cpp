@@ -58,7 +58,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -84,4 +84,4 @@ void Epoch::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

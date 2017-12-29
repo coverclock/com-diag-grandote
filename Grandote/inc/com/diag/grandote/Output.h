@@ -68,7 +68,7 @@
 #include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines the interface to an output functor, an object, called
@@ -243,7 +243,7 @@ inline int Output::getDescriptor() const {
     return -1;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #else

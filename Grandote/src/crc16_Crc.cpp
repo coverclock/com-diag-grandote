@@ -56,10 +56,10 @@
 #include "com/diag/grandote/crc16_Crc.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 Crc<uint16_t> crc16_Crc(0x8005, true, 0, 0);
 
 
-#include "com/diag/grandote/End.h"
+} } }

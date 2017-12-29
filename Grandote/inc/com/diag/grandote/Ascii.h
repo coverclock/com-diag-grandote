@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Indexes a table of various names for eight-bit ASCII characters indexed
@@ -188,7 +188,7 @@ inline const Ascii::Entry& Ascii::operator[] (unsigned char index) const {
     return this->table[index];
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

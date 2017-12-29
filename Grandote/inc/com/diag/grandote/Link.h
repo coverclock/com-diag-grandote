@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an object which can be inserted into and removed from a
@@ -527,7 +527,7 @@ inline Link::~Link() {
     this->remove();
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

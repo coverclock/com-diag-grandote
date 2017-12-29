@@ -56,10 +56,10 @@
 #include "com/diag/grandote/Crc.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 template class Crc<uint16_t>;
 
 
-#include "com/diag/grandote/End.h"
+} } }

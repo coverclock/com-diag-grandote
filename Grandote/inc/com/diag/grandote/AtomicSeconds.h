@@ -62,7 +62,7 @@
 #include "com/diag/grandote/CommonEra.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Duplicates the interface of LeapSeconds but never returns any
@@ -175,7 +175,7 @@ public:
 inline AtomicSeconds::AtomicSeconds() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

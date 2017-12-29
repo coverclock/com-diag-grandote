@@ -67,7 +67,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines a simple interface to a multi-level logging mechanism, and
@@ -488,7 +488,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #else

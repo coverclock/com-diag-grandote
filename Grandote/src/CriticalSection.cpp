@@ -52,7 +52,7 @@
 #include "com/diag/grandote/CriticalSection.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 //
 //  Constructor.
@@ -86,4 +86,4 @@ CriticalSection::~CriticalSection() {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

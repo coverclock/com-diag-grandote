@@ -60,7 +60,7 @@
 #include "com/diag/grandote/DateTime.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an object containing a Common Era date and UTC
@@ -339,7 +339,7 @@ public:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

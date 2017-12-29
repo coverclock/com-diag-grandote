@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Throttle.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Creates a throttle by combining zero to two throttles.
@@ -229,7 +229,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

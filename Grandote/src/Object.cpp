@@ -56,7 +56,7 @@
 #include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -66,4 +66,4 @@ Object::~Object() {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

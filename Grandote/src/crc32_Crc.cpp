@@ -57,10 +57,10 @@
 #include "com/diag/grandote/crc32_Crc.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 Crc<uint32_t> crc32_Crc(0x04c11db7, true, 0xffffffff, 0xffffffff);
 
 
-#include "com/diag/grandote/End.h"
+} } }

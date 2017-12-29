@@ -58,7 +58,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 static const DstGeneric::Event BEGINS = {
     Date::SECOND,
@@ -107,4 +107,4 @@ void DstUs2007::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

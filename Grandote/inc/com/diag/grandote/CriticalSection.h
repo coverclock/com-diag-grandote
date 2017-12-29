@@ -57,7 +57,7 @@
 #include "com/diag/grandote/Mutex.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Given a Mutex, locks it upon construction, and unlocks it
@@ -136,7 +136,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

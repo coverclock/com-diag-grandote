@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements methods to convert Platform ticks_t to other representations
@@ -164,7 +164,7 @@ public:
 inline Ticks::Ticks() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

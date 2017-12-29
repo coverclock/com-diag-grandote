@@ -48,7 +48,7 @@
  */
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  @author coverclock@diag.com (Chip Overclock)
@@ -233,7 +233,7 @@ inline bool operator<= (const Ratio & a, const Ratio & b) {
     }
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

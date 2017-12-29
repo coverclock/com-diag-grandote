@@ -57,8 +57,8 @@
 #include "com/diag/grandote/atm_Crc.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 Crc<int32_t> atm_Crc(0x04c11db7, false, 0xffffffff, 0xffffffff);
 
-#include "com/diag/grandote/End.h"
+} } }

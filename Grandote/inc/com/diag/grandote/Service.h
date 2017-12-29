@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a factory that creates sockets for service providers
@@ -339,7 +339,7 @@ public:
     virtual void show(int level = 0, Output* display = 0, int indent = 0) const;
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

@@ -56,11 +56,11 @@
 
 CXXCAPI int unittestnamespace(void);
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 static int function1() {
 	return 1;
 }
-#include "com/diag/grandote/End.h"
+} } }
 
 static int function2() {
 	return com::diag::grandote::function1() + 1;
@@ -68,17 +68,17 @@ static int function2() {
 
 #include "com/diag/grandote/Grandote.h"
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 static int function3() {
 	return function1() + 2;
 }
-#include "com/diag/grandote/End.h"
+} } }
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 static int function4() {
 	return ::function2() + 2;
 }
-#include "com/diag/grandote/End.h"
+} } }
 
 CXXCAPI int unittestnamespace(void) {
     Print printf(Platform::instance().output());

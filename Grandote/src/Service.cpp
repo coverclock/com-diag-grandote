@@ -69,7 +69,7 @@
 #include "com/diag/grandote/uint16_Number.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -427,4 +427,4 @@ void Service::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

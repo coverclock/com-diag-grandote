@@ -55,7 +55,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an input functor that returns data from a pre-existing
@@ -218,7 +218,7 @@ inline int FileInput::getDescriptor() const {
     return (this->file != (FILE *)0) ? fileno(this->file) : -1;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

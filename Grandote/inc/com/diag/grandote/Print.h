@@ -67,7 +67,7 @@
 #include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a printf(3)-style functor that can be used to format
@@ -150,7 +150,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

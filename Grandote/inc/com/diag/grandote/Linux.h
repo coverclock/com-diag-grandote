@@ -69,7 +69,7 @@
 #include "com/diag/grandote/Logger.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements the Platform interface to the Linux operating system.
@@ -400,7 +400,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

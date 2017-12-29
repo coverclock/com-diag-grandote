@@ -65,7 +65,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a DataTime in local civilian time (LCT), taking into
@@ -294,7 +294,7 @@ inline bool LocalTime::getDst() const {
     return this->dst;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

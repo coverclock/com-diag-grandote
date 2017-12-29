@@ -59,7 +59,7 @@
 #include "com/diag/grandote/DaylightSavingTime.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a daylight saving time rule in which DST is always in effect.
@@ -126,7 +126,7 @@ public:
 inline DstAlways::DstAlways() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

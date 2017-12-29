@@ -60,11 +60,11 @@
 #include "com/diag/grandote/Number.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 extern Number<uint16_t> uint16_Number;
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

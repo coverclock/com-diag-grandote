@@ -60,11 +60,11 @@
 #include "com/diag/grandote/Crc.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 extern Crc<int32_t> atm_Crc;
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

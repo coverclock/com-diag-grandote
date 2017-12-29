@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 static Gcra gcra;
@@ -201,4 +201,4 @@ void BandwidthThrottle::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

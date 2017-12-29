@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Object.h"
 #include "com/diag/grandote/Output.h"
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a simple parser using strtok_r(3) to break up a character
@@ -171,7 +171,7 @@ public:
 inline Argument::Argument() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

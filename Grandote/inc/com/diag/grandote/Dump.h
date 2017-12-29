@@ -68,7 +68,7 @@
 #include "com/diag/grandote/Input.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Displays the contents of a block of memory of an arbitary location,
@@ -425,7 +425,7 @@ inline char* Dump::hexadecimals(const Byte value, char* to) const {
     return to;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #else

@@ -56,7 +56,7 @@
  */
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 class Output;
 
@@ -120,7 +120,7 @@ private:
 inline Object::Object() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

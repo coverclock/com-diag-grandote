@@ -86,7 +86,7 @@
 extern long timezone;
 extern int daylight;
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 static DstNever dstnever;           // Used if no Daylight Saving Time.
@@ -555,7 +555,7 @@ void Cygwin::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -144,4 +144,4 @@ void Implementation::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

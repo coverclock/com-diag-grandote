@@ -64,7 +64,7 @@
 #include "com/diag/grandote/Dump.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Generates a very lightweight mechanism for implementing a circular
@@ -379,7 +379,7 @@ void Fifo<_TYPE_>::show(int level, Output* display, int indent) const {
     }
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

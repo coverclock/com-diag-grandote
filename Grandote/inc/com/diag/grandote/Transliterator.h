@@ -62,7 +62,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a table driven transliterator useful in constructing
@@ -530,7 +530,7 @@ inline void Transliterator::insert(char c, char* to, size_t size) {
     }
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

@@ -64,7 +64,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Generates a method to parse a character string and convert it into a
@@ -616,7 +616,7 @@ void Number<_TYPE_>::show(int /* level */, Output* display, int indent) const {
     printf("%s widthof*=%u\n", sp, widthof(_TYPE_*));
 }
 
-#include "com/diag/grandote/End.h"
+} } }
     
     
 #if defined(GRANDOTE_HAS_UNITTESTS)

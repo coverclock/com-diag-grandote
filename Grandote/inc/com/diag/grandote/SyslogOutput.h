@@ -70,7 +70,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an output functor that writes to the Linux system log file
@@ -275,7 +275,7 @@ inline int SyslogOutput::getFacility() const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

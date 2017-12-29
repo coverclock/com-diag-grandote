@@ -82,7 +82,7 @@ typedef CXXCTYPE(::com::diag::grandote::, Cygwin) OperatingSystem;
 #endif
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 static Mutex mutex;
 
@@ -213,4 +213,4 @@ void Platform::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

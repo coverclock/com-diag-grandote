@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Date.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Encodes a rule to decide whether a given DateTime falls within
@@ -200,7 +200,7 @@ inline DstGeneric::DstGeneric(const Event& bs, const Event& es) :
 {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

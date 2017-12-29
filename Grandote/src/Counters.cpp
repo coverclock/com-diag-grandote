@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -357,4 +357,4 @@ Counters::Functor::~Functor() {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

@@ -57,7 +57,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines the interface to an input functor, an object, called
@@ -186,7 +186,7 @@ inline int Input::getDescriptor() const {
     return -1;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

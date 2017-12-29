@@ -48,7 +48,7 @@
  */
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  This template generates a function which provides a very rough
@@ -101,7 +101,7 @@ inline _TYPE_ maximum(_TYPE_ datum1, _TYPE_ datum2)
     return datum1 > datum2 ? datum1 : datum2;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

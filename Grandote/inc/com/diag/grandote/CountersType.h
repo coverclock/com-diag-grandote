@@ -64,7 +64,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  This is a template that defines a type of the Counters
@@ -164,7 +164,7 @@ void CountersType<_NCOUNTERS_>::show(
     this->Counters::show(level, display, indent + 1);
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

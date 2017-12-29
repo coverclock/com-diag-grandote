@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Contains a table of country names, abbreviations, and country numbers
@@ -1158,7 +1158,7 @@ inline const Iso3166::Entry& Iso3166::operator[] (Index index)
     return this->table[index];
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

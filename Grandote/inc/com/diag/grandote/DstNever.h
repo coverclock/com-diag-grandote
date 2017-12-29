@@ -59,7 +59,7 @@
 #include "com/diag/grandote/DaylightSavingTime.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Encodes a rule to in which daylight saving time is never in effect.
@@ -124,7 +124,7 @@ public:
 inline DstNever::DstNever() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

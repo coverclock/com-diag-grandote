@@ -59,7 +59,7 @@
 #include "com/diag/grandote/FileInput.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an input functor that returns data from a C standard
@@ -126,7 +126,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

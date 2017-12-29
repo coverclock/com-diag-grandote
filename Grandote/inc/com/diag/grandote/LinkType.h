@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Offers a type-safe implemtation of Link by allowing the type
@@ -422,7 +422,7 @@ template <typename _TYPE_>
 LinkType<_TYPE_>::Functor::~Functor() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

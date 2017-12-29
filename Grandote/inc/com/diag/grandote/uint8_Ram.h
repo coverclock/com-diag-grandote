@@ -60,11 +60,11 @@
 #include "com/diag/grandote/Ram.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 extern Ram<uint8_t> uint8_Ram;
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

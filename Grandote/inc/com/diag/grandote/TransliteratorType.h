@@ -62,7 +62,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines a template that generates a Transliterator class in which
@@ -158,7 +158,7 @@ void TransliteratorType<_CONTEXTS_>::show(
     this->Transliterator::show(level, display, indent + 1);
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

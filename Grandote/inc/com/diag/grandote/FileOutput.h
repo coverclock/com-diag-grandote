@@ -54,7 +54,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an output functor that writes data to a pre-existing
@@ -224,7 +224,7 @@ inline int FileOutput::getDescriptor() const {
     return (this->file != (FILE *)0) ? fileno(this->file) : -1;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

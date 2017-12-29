@@ -56,10 +56,10 @@
 #include "com/diag/grandote/uint8_Ram.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 Ram<uint8_t> uint8_Ram;
 
 
-#include "com/diag/grandote/End.h"
+} } }

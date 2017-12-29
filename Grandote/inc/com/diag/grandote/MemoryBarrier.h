@@ -59,7 +59,7 @@
 #include "com/diag/grandote/barrier.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Invokes the Grandote memory barrier function
@@ -104,7 +104,7 @@ inline MemoryBarrier::~MemoryBarrier() {
     grandote_memory_barrier();
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

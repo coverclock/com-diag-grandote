@@ -58,7 +58,7 @@
 #include "com/diag/grandote/Platform.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -116,4 +116,4 @@ Link::Functor::~Functor() {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

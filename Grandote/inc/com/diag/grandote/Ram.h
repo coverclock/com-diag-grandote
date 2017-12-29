@@ -65,7 +65,7 @@
 #include "com/diag/grandote/generics.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Generates a suite of memory diagnostics for a memory architecture with
@@ -471,7 +471,7 @@ Ram<_TYPE_>::device(volatile _TYPE_ * baseAddress, size_t nBytes)
 
 }   /* memTestDevice() */
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

@@ -50,7 +50,7 @@
 #include "com/diag/grandote/Primes.h"
 #include "com/diag/grandote/Ratio.h"
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /*
  * We take care of all the special cases before the complicated stuff.
@@ -123,4 +123,4 @@ Ratio * Ratio::normalize()
     return this;	
 }
 
-#include "com/diag/grandote/End.h"
+} } }

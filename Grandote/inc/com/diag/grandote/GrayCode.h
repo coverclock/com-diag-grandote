@@ -62,7 +62,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Generates methods to convert between any integral type and
@@ -201,7 +201,7 @@ void GrayCode<_TYPE_>::show(int /* level */, Output* display, int indent) const{
     printf("%s widthof=%u\n", sp, widthof(_TYPE_));
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

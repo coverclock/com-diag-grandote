@@ -64,7 +64,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an input functor that returns data from a file
@@ -232,7 +232,7 @@ inline size_t DescriptorInput::getPushed() const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

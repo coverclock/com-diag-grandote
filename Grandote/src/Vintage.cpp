@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 const char Vintage::product[] =     "$Product: " GRANDOTE_VINTAGE_PRODUCT " $";
@@ -130,4 +130,4 @@ void Vintage::show(int /* level */, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

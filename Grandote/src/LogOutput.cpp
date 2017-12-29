@@ -58,7 +58,7 @@
 #include "com/diag/grandote/Logger.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 //
@@ -152,4 +152,4 @@ void LogOutput::show(int level, Output* display, int indent) const {
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

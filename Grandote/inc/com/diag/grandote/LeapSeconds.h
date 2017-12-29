@@ -62,7 +62,7 @@
 #include "com/diag/grandote/CommonEra.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements an interface to determine the number of cumulative leap
@@ -195,7 +195,7 @@ protected:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

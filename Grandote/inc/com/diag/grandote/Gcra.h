@@ -60,7 +60,7 @@
 #include "com/diag/grandote/Throttle.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  This class implements a throttle that enforces a traffic contract
@@ -297,7 +297,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

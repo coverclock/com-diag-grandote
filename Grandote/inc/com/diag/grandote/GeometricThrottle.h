@@ -59,7 +59,7 @@
 #include "com/diag/grandote/Throttle.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a throttle that decays geometrically by admitting
@@ -272,7 +272,7 @@ private:
 
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

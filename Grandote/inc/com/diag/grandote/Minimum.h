@@ -56,7 +56,7 @@
  */
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Generates a class containing functors to find the maximum from a
@@ -411,7 +411,7 @@ inline _TYPE_ Minimum<_TYPE_>::operator() (
     return (*this)((*this)(one, two, three, four, five, six, seven), eight);
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

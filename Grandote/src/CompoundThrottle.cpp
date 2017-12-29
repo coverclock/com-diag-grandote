@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Print.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 static Throttle promiscuous;
@@ -207,4 +207,4 @@ void CompoundThrottle::show(
 }
 
 
-#include "com/diag/grandote/End.h"
+} } }

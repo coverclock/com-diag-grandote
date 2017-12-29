@@ -50,7 +50,7 @@
 
 #include <vector>
 #include "com/diag/grandote/target.h"
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  @author coverclock@diag.com (Chip Overclock)
@@ -88,7 +88,7 @@ private:
 };
 
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(GRANDOTE_HAS_UNITTESTS)

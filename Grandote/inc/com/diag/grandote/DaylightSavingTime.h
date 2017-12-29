@@ -60,7 +60,7 @@
 #include "com/diag/grandote/DateTime.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines an interface to encode a rule to decide whether a given
@@ -132,7 +132,7 @@ public:
 inline DaylightSavingTime::DaylightSavingTime() {
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

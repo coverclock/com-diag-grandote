@@ -61,7 +61,7 @@
 #include "com/diag/grandote/Object.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  This is the base class for Grandote classes which define exceptions.
@@ -168,7 +168,7 @@ public:
     
 };
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #if defined(__USE_GNU)

@@ -62,7 +62,7 @@
 #include "com/diag/grandote/Output.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Defines time zone offsets and implements conversions of
@@ -424,7 +424,7 @@ inline int32_t TimeZone::normalize(int32_t ot) const {
     return ot;
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif

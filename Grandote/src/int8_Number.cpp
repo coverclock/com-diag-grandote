@@ -56,10 +56,10 @@
 #include "com/diag/grandote/int8_Number.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 
 Number<int8_t> int8_Number;
 
 
-#include "com/diag/grandote/End.h"
+} } }

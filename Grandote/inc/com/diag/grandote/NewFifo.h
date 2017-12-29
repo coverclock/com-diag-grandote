@@ -60,7 +60,7 @@
 #include "com/diag/grandote/exceptions.h"
 
 
-#include "com/diag/grandote/Begin.h"
+namespace com { namespace diag { namespace grandote {
 
 /**
  *  Implements a Fifo object in which the queue is dynamically allocated.
@@ -184,7 +184,7 @@ void NewFifo<_TYPE_>::show(int level, Output* display, int indent) const {
     this->Fifo<_TYPE_>::show(level, display, indent + 1);
 }
 
-#include "com/diag/grandote/End.h"
+} } }
 
 
 #endif
