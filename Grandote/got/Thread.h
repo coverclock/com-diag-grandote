@@ -172,6 +172,7 @@ struct ThreadCancel : public Thread {
 
 TEST_F(ThreadTest, Cancel) {
 	int variable = 0;
+	void * result = (void *)0xdeadbeef;
 	EXPECT_EQ(variable, 0);
 	ThreadCancel thread(variable);
 	EXPECT_FALSE(thread.cancelled());
@@ -181,10 +182,12 @@ TEST_F(ThreadTest, Cancel) {
 	EXPECT_EQ(thread.start(), 0);
 	platform.yield(platform.frequency());
 	EXPECT_EQ(variable, 3);
+	EXPECT_EQ(thread.join(result, platform.frequency()), ETIMEDOUT);
+	EXPECT_EQ(result, (void *)0xdeadbeef);
 	EXPECT_FALSE(thread.cancelled());
 	EXPECT_EQ(thread.cancel(), 0);
 	EXPECT_TRUE(thread.cancelled());
-	EXPECT_EQ(thread.join(), 0);
+	EXPECT_EQ(thread.join(result, platform.frequency()), 0);
 	EXPECT_EQ(variable, 3);
 	variable = 4;
 	platform.yield(platform.frequency());

@@ -34,7 +34,7 @@ class Mutex;
  * does not block). I suspect the latter. Note that while it is not required
  * that an application signal while inside a critical section that holds a
  * mutex, there are very few synchronization patterns in which that would not
- * be a (possible subtle) bug in the application.
+ * be a (possibly subtle) bug in the application.
  */
 class Condition {
 

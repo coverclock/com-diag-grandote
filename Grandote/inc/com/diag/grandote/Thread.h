@@ -13,6 +13,7 @@
 
 #include <pthread.h>
 #include <signal.h>
+#include "com/diag/grandote/types.h"
 
 namespace com {
 namespace diag {
@@ -158,6 +159,8 @@ public:
 	 */
 	virtual int start(Function & implementation = empty_function, void * data = 0);
 
+	static const ticks_t INFINITE = ~(ticks_t)0;
+
 	/**
 	 * Wait for the thread of control associated with this Thread to terminate.
 	 * Unlike the POSIX thread join, multiple threads of control can join with
@@ -171,9 +174,11 @@ public:
 	 *
 	 * @param result refers to an optional variable into which the final value
 	 *        of the thread of control associated with this Thread.
+	 * @param timeout is the relative timeout period in platform ticks; returns
+	 *        ETIMEDOUT if the timeout expired.
 	 * @return 0 for success or an error number if an error occurred.
 	 */
-	virtual int join(void * & result = dontcare);
+	virtual int join(void * & result = dontcare, ticks_t timeout = INFINITE);
 
 	/**
 	 * Notify the Thread. This sets  a flag in this Thread which can

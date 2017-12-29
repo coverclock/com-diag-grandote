@@ -8,6 +8,7 @@
  */
 
 #include "com/diag/grandote/Thread.h"
+#include "com/diag/grandote/Ticks.h"
 #include "com/diag/grandote/MaskableLogger.h"
 #include "com/diag/grandote/errno.h"
 
@@ -182,15 +183,17 @@ Thread::~Thread() {
 	bool self = false;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
-		if (!running) {
-			// Do nothing.
-		} else if (!::pthread_equal(pthread_self(), identity)) {
-			::pthread_cancel(identity);
-			::pthread_cond_wait(&condition, &mutex);
-		} else {
-			running = false;
-			::pthread_cond_broadcast(&condition);
-			self = true;
+		if (running) {
+			self = ::pthread_equal(pthread_self(), identity);
+			while (running) {
+				if (!self) {
+					::pthread_cancel(identity);
+					::pthread_cond_wait(&condition, &mutex);
+				} else {
+					running = false;
+					::pthread_cond_broadcast(&condition);
+				}
+			}
 		}
 	pthread_cleanup_pop(!0);
 	if (self) {
@@ -259,8 +262,12 @@ bool Thread::notified() {
 	return result;
 }
 
-int Thread::join(void * & result) {
+int Thread::join(void * & result, ticks_t timeout) {
 	int rc;
+	struct timespec now;
+	Ticks ticks;
+	uint64_t seconds;
+	uint32_t nanoseconds;
 	::pthread_mutex_lock(&mutex);
 	pthread_cleanup_push(cleanup_mutex_proxy, this);
 		// It's okay to invoke a Grandote Thread join even if the thread of control
@@ -270,8 +277,18 @@ int Thread::join(void * & result) {
 			rc = 0;
 		} else if (::pthread_equal(pthread_self(), identity)) {
 			rc = EBUSY;
-		} else {
+		} else if (timeout == INFINITE) {
 			rc = ::pthread_cond_wait(&condition, &mutex);
+		} else if (::clock_gettime(CLOCK_REALTIME, &now) < 0) {
+			rc = errno;
+		} else {
+			ticks.seconds(timeout, seconds, nanoseconds);
+			timeout = now.tv_nsec;
+			timeout += nanoseconds;
+			now.tv_nsec = timeout % 1000000000;
+			now.tv_sec += seconds;
+			now.tv_sec += timeout / 1000000000;
+			rc = ::pthread_cond_timedwait(&condition, &mutex, &now);
 		}
 		// The first thread unblocked by the terminating thread does an actual
 		// POSIX thread join operation. Some thread implementations depend on this
