@@ -57,7 +57,9 @@
 #include "com/diag/grandote/target.h"
 
 
-#include "com/diag/grandote/Begin.h"
+#if defined(__cplusplus)
+namespace com { namespace diag { namespace grandote {
+#endif
 
 
 /**
@@ -92,7 +94,9 @@ typedef uint64_t seconds_t;
 typedef uint64_t identity_t;
 
 
-#include "com/diag/grandote/End.h"
+#if defined(__cplusplus)
+} } }
+#endif
 
 
 #endif
