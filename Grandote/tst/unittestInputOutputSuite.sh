@@ -55,24 +55,22 @@ for OBJECT in D F N P S B; do
             INPUT="${ROOT}/${FILE}"
             OUTPUT="${ROOT}/${OBJECT}${METHOD}${IO}.txt"
             ERROR="${ROOT}/${OBJECT}${METHOD}${IO}.log"
+			cp /dev/null ${ERROR}
 
             if [ "${IO}" = "s" ]; then
                 OUT="1> ${OUTPUT}"
                 IN="< ${INPUT}"
                 cat ${SOURCE} > ${INPUT}
-				ls -l ${SOURCE} ${INPUT}
             elif [ "${IO}" = "f" ]; then
                 OUT="-o ${OUTPUT}"
                 IN="${INPUT}"
                 cp ${SOURCE} ${INPUT}
-				ls -l ${SOURCE} ${INPUT}
             else
                 OUT="1> ${OUTPUT}"
                 IN="< ${INPUT}"
                 cp /dev/null ${INPUT}
-				ls -l /dev/null ${INPUT}
             fi
-            ERR="2> ${ERROR}"
+            ERR="2>&1 | tee -a ${ERROR}"
 
             echo "${PGM} ${DEBUG} ${VERBOSE} -${OBJECT} -${METHOD} ${OUT} ${IN} ${ERR}"
             eval ${PGM} ${DEBUG} ${VERBOSE} -${OBJECT} -${METHOD} ${OUT} ${IN} ${ERR}
@@ -83,8 +81,8 @@ for OBJECT in D F N P S B; do
             ERRORS=`expr ${ERRORS} + ${RC}`
 
             if [ "${OBJECT}" != "N" ]; then
-                ls -l ${INPUT} ${OUTPUT} >> ${ERROR} 2>&1
-                diff -q ${INPUT} ${OUTPUT} >> ${ERROR} 2>&1
+                ls -l ${INPUT} ${OUTPUT} 2>&1 | tee -a ${ERROR}
+                diff -q ${INPUT} ${OUTPUT} 2>&1 | tee -a ${ERROR}
                 RC=$?
                 if [ ${RC} -ne 0 ]; then
                     echo "${CMD}: diff ${OBJECT} ${METHOD} ${IO} ${RC} ${INPUT} ${OUTPUT}!"
@@ -96,7 +94,6 @@ for OBJECT in D F N P S B; do
     done
 done
 
-cat ${ROOT}/*.log
 grep 'errors=[^0]' ${ROOT}/*.log
 echo "$CMD: end errors="${ERRORS}
 
