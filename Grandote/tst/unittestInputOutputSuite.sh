@@ -38,17 +38,15 @@
 #
 ###############################################################################
 
-TMPDIR="/var/tmp"
 CMD="`basename $0`"
-DIR=${TMPDIR}/${CMD}
-ROOT=${DIR}/$$
-FILE=lesser.txt
+ROOT=$(mktemp -d ${TMPDIR:-"/tmp"}/${CMD}.XXXXXXXXXX)
+trap "rm -rf ${ROOT}" HUP INT TERM
+FILE="lesser.txt"
+SOURCE=$(dirname $(dirname $(dirname $(dirname $(dirname $(dirname $(which $0)))))))/${FILE}
 PGM="unittestInputOutput"
 ERRORS=0
 
 echo "${CMD}: begin"
-
-mkdir -p ${ROOT}
 
 for OBJECT in D F N P S B; do
     for METHOD in c l s f b; do
@@ -61,15 +59,18 @@ for OBJECT in D F N P S B; do
             if [ "${IO}" = "s" ]; then
                 OUT="1> ${OUTPUT}"
                 IN="< ${INPUT}"
-                cat ${FILE} > ${INPUT}
+                cat ${SOURCE} > ${INPUT}
+				ls -l ${SOURCE} ${INPUT}
             elif [ "${IO}" = "f" ]; then
                 OUT="-o ${OUTPUT}"
                 IN="${INPUT}"
-                cp ${FILE} ${INPUT}
+                cp ${SOURCE} ${INPUT}
+				ls -l ${SOURCE} ${INPUT}
             else
                 OUT="1> ${OUTPUT}"
                 IN="< ${INPUT}"
                 cp /dev/null ${INPUT}
+				ls -l /dev/null ${INPUT}
             fi
             ERR="2> ${ERROR}"
 
@@ -95,9 +96,10 @@ for OBJECT in D F N P S B; do
     done
 done
 
-echo grep 'errors=[^0]' ${ROOT}/*.log
+cat ${ROOT}/*.log
 grep 'errors=[^0]' ${ROOT}/*.log
+echo "$CMD: end errors="${ERRORS}
 
-echo "$CMD: end errors="$ERRORS
+rm -rf ${ROOT}
 
-exit $ERRORS
+exit ${ERRORS}
