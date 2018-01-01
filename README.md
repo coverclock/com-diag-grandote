@@ -1,6 +1,6 @@
 # com-diag-grandote
 
-Copyright 2018 Digital Aggregates Corporation, Arvada Colorado USA.
+Copyright 2005-2018 Digital Aggregates Corporation, Arvada Colorado USA.
 
 ## License
 
