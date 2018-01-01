@@ -81,6 +81,10 @@ constrained embedded systems, I believed templates could be used as a
 kind of type-safety wrapper, and also to judiciously generate code for
 hardware platforms whose underlying integer types were of different sizes.
 
+I have had a long time interest in timekeeping and calendar systems,
+a theme that shows up in many of my projects. Desperado gave me a way
+to explore this in detail.
+
 There are several frameworks - Boost comes to mind most readily - that
 package most of the complexity of using POSIX Threads into a more easily
 digestible form. But I have learned from experience working on large
