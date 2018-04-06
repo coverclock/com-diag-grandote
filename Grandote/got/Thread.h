@@ -38,6 +38,7 @@ struct MyMutex : public Mutex {
 	int status;
 	explicit MyMutex()
 	: nesting(0)
+	, status(0)
 	{}
 	virtual int begin() {
 		MaskableLogger::instance().debug("MyMutex[0x%lx]::begin\n", Thread::self());
