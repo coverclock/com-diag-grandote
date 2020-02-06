@@ -120,7 +120,7 @@ Meanwhile, C++ has evolved into a language so complex that my clients
 can't afford - or can't find - developers with that skill set and that
 level of expertise. I myself need to come up to speed with some of the
 more recent C++ features, and determine how I might leverage them in
-the kind of work that I do.. Perhaps my interest in Grandote means I'm
+the kind of work that I do. Perhaps my interest in Grandote means I'm
 not ready to give up on C++ quite yet.
 
 ## Repositories
