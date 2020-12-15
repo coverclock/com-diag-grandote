@@ -11,7 +11,7 @@ Licensed under the terms of FSF LGPL v2.1.
 ## Abstract
 
 Grandote ("ginormous") is a C++ layer on top of the Diminuto
-(Spanish for "tiny") library.  Diminuto is a C-based library specifically
+("tiny") library.  Diminuto is a C-based library specifically
 written for Linux/GNU. Grandote is fork of Desperadito, which itself
 is a fork of Desperado. Desperado is a C++ library that was intended
 to abstract out the underlying operating system so that applications
